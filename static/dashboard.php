@@ -441,6 +441,10 @@
 		</div>
 	</div>
 
+	<?php
+		
+	?>
+
 	<script src="js/app.js"></script>
 
 	<script>
