@@ -1,34 +1,34 @@
 CREATE TABLE `admin` (
-    `Utente` varchar(40),
-    `Password` varchar(40),
-)
+    `Username` varchar(40),
+    `Password` varchar(40)
+);
 
 CREATE TABLE `manager` (
-    `Utente` varchar(40),
+    `Username` varchar(40),
     `Password` varchar(40),
-    `Nome` varchar(40),
-    `Cognome` varchar(40),
-    `DataNascita` varchar(40)
-)
+    `Name` varchar(40),
+    `Surname` varchar(40),
+    `Birthday` varchar(40)
+);
 
-CREATE TABLE `allenatore` (
-    `Utente` varchar(40),
+CREATE TABLE `coach` (
+    `Username` varchar(40),
     `Password` varchar(40),
-    `Nome` varchar(40),
-    `Cognome` varchar(40),
-    `DataNascita` varchar(40)
-)
+    `Name` varchar(40),
+    `Surname` varchar(40),
+    `Birthday` varchar(40)
+);
 
-CREATE TABLE `giocatore` (
-    `Utente` varchar(40),
+CREATE TABLE `player` (
+    `Username` varchar(40),
     `Password` varchar(40),
-    `Nome` varchar(40),
-    `Cognome` varchar(40),
-    `DataNascita` varchar(40)
-)
+    `Name` varchar(40),
+    `Surname` varchar(40),
+    `Birthday` varchar(40)
+);
 
-CREATE TABLE `squadra` (
-    `NomeSquadra` varchar(40),
-    `RandomKey` varchar(40),
-)
+CREATE TABLE `club` (
+    `ClubName` varchar(40),
+    `RandomKey` varchar(40)
+);
 
