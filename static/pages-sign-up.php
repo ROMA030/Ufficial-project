@@ -52,15 +52,21 @@
 											<label class="form-label">Password</label>
 											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" />
 										</div>
+										<div class="mb-3">
+											<label class="form-label">Scegli un ruolo:</label>
+											<select name="cars" id="cars" class="form-select mb-3">
+												<option value="Allenatore">Allenatore</option>
+												<option value="Manager">Club Manager</option>
+											</select>
+										</div>
 										<div class="text-center mt-3">
-											<a href="index.html" class="btn btn-lg btn-primary">Sign up</a>
+											<a href="dashboard.php" class="btn btn-lg btn-primary">Sign up</a>
 											<!-- <button type="submit" class="btn btn-lg btn-primary">Sign up</button> -->
 										</div>
 									</form>
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>

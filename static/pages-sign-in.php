@@ -25,44 +25,78 @@
 				<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
 					<div class="d-table-cell align-middle">
 
-						<div class="text-center mt-4">
-							<h1 class="h2">Welcome back, Charles</h1>
-							<p class="lead">
-								Sign in to your account to continue
-							</p>
-						</div>
-
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-4">
-									<div class="text-center">
-										<img src="img/avatars/avatar.jpg" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
-									</div>
-									<form>
+									<form method="post">
 										<div class="mb-3">
-											<label class="form-label">Email</label>
-											<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" />
+											<label class="form-label">Username</label>
+											<input class="form-control form-control-lg" type="username" name="username" placeholder="Enter your username" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Password</label>
 											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
 											<small>
-            <a href="pages-reset-password.html">Forgot password?</a>
-          </small>
+												<a href="pages-reset-password.html">Forgot password?</a>
+											</small>
 										</div>
 										<div>
 											<label class="form-check">
-            <input class="form-check-input" type="checkbox" value="remember-me" name="remember-me" checked>
-            <span class="form-check-label">
-              Remember me next time
-            </span>
-          </label>
+												<input class="form-check-input" type="checkbox" value="remember-me" name="remember-me" checked>
+												<span class="form-check-label">
+													Remember me next time
+												</span>
+											</label>
 										</div>
 										<div class="text-center mt-3">
+											<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Login</button>
+											<!--
 											<a href="index.html" class="btn btn-lg btn-primary">Sign in</a>
-											<!-- <button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
+											<button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
 										</div>
 									</form>
+
+									<?php
+										$username = $password = "";
+										// Used for connect to the database called "sito"
+										$conn = mysqli_connect("localhost","root","","xeos");
+
+										// When submit is pressed, it assigne to username and password variables what you have written in form inputs
+										if ($_SERVER["REQUEST_METHOD"] == "POST") {
+											$username = $_POST["username"];
+											$password = $_POST["password"];
+
+											if (!empty($username) && !empty($password)) {
+												$users = "SELECT * FROM users WHERE Username = '$username' and Password = '$password'";
+												$result = mysqli_query($conn, $users);
+
+												$type = "SELECT UserType FROM users WHERE Username = '$username' and Password = '$password'";
+												$userTypeResult = mysqli_query($conn, $type);
+
+												if (mysqli_num_rows($result) > 0) {
+													while ($row = $result->fetch_assoc()) 
+													{
+														$userType = $row['UserType'];
+													}
+
+													header("Location: dashboard.php?type=". $userType); 
+													exit();
+												}else {
+													echo "<h2>Username or password incorrect</h2>";
+												}
+												mysqli_close($conn);
+											}else {
+												echo "<h2>Don't leave blank input</h2>";
+												mysqli_close($conn);
+											}
+										}
+
+										// If there is an error connecting to database, exit 
+										if (mysqli_connect_errno()) {
+											echo "Failed to connect to MySQL: " . mysqli_connect_error();
+											exit();
+										}
+									?>
 								</div>
 							</div>
 						</div>
