@@ -8,7 +8,7 @@
 
   body
   {
-    background: rgba(4, 82, 155, 0.945);
+    background: #eee;
     font-family: Arial;
   }
 
@@ -119,14 +119,13 @@
 
   .cards
   {
-    height: 50%;
     max-width: 1200px;
     margin: 40px auto;
   }
 
   .card
   {
-    height: 505px;
+    height: 520px;
     width: 30%;
     margin: 0 1.5%;
     background: #fff;
@@ -188,6 +187,18 @@
       margin-bottom: 5px;
   }
 
+  
+  /*-------------------------
+  -----------FOOTER----------
+  ---------------------------*/
+
+  .footer
+  {
+    background: #333;
+    padding: 30px;
+    color: #fff;
+    margin-top: 40px;
+  }
 
 
   @media only screen and (max-width: 768px) {
