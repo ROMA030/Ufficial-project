@@ -67,7 +67,7 @@
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 								data-bs-toggle="dropdown">
-								<img src="" id="avatarImage" class="avatar img-fluid rounded me-1"/> <span class="text-dark" id="nameSurname">Charles Hall</span>
+								<img src="img/avatars/default-avatar.png" id="avatarImage" class="avatar img-fluid rounded me-1"/> <span class="text-dark" id="nameSurname">Charles Hall</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
@@ -398,8 +398,10 @@
 			var sidebarUl = document.getElementById("sidebarUl");
 
 			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
-			var image = document.getElementById('avatarImage');
-            image.src = avatar;
+			if (avatar != null) {
+				var image = document.getElementById('avatarImage');
+            	image.src = avatar;
+			}
 
 			switch (userType) {
 				case 'player':
