@@ -33,8 +33,10 @@
   ---------------------------*/
   .header
   {
-    background: #333; 
+    background: transparent; 
     height: 10%;
+    position: relative;
+    z-index: 1;
   }
 
   .header__logo
