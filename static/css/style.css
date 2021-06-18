@@ -1,0 +1,244 @@
+   /*-------------------------
+  -----------GENERAL----------
+  ---------------------------*/
+  html,body
+  {
+    height: 100%
+  }
+
+  body
+  {
+    background: rgba(4, 82, 155, 0.945);
+    font-family: Arial;
+  }
+
+  .call__to__action 
+  {
+    text-decoration: none;
+    background: #fff;
+    padding: 10px 20px;
+    color: black;
+    border-radius: 3px;
+    font-size: x-large;
+  }
+
+  p
+  {
+    line-height: 22px;
+  }
+  
+  
+  /*-------------------------
+  -----------HEADER----------
+  ---------------------------*/
+  .header
+  {
+    background: #333; 
+    height: 10%;
+  }
+
+  .header__logo
+  {
+    color: #fff; 
+    float: left; 
+    padding: 30px; 
+    font-size: 30px; 
+    display: block;
+  
+  }
+
+  .header__love__phrase 
+  {
+    color: #fff; 
+    float: right; 
+    padding: 35px; 
+    font-size: 20px; 
+    display: block; 
+    font-style: oblique; 
+    font-family: Georgia Italic;
+  }
+  
+  /*-------------------------
+  -----------HEADER----------
+  ---------------------------*/
+
+
+
+  /*-------------------------
+  -----------COVER----------
+  ---------------------------*/
+  .cover
+  {
+    height: 100%; 
+    background-image: url("https://xeos.it/wp-content/uploads/2015/12/2.jpg"); 
+    background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    background-position: center center; 
+    position: relative; 
+  }
+
+
+  .cover__filter
+  {
+    background: #000;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    opacity: 0.6;
+  }
+  
+  .cover__caption
+  {
+    display: table;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    padding: 0 20px;
+  }
+  
+  
+  .cover__caption__copy
+  {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: #fff;
+  }
+
+  /*-------------------------
+  -----------COVER----------
+  ---------------------------*/
+
+
+  /*-------------------------
+  -----------CARDS----------
+  ---------------------------*/
+
+  .cards
+  {
+    height: 50%;
+    max-width: 1200px;
+    margin: 40px auto;
+  }
+
+  .card
+  {
+    height: 505px;
+    width: 30%;
+    margin: 0 1.5%;
+    background: #fff;
+    float: left;
+    text-align: justify;
+  }
+
+  
+  .card__copy
+  {
+    padding: 0 20px;
+  }
+
+  .card__copy h3
+  {
+    margin-bottom: 0;
+  }
+
+
+  .card__images
+  {
+    max-width: 100%;
+    height: 300px;
+  }
+
+  .player__text
+  {
+    margin-bottom: 37px;
+  }
+
+  .registration__buttons
+  {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  .registration__button1
+  {
+      max-height: 100%;
+      text-decoration: none;
+      background: #0a4ee0;
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 3px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+  }
+
+  .registration__button2
+  {
+    max-height: 100%;
+      text-decoration: none;
+      background: #0a4ee0;
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 3px;
+      margin-left: 5px;
+      margin-bottom: 5px;
+  }
+
+
+
+  @media only screen and (max-width: 768px) {
+
+    /*-------------------------
+    -----------COVER----------
+    ---------------------------*/
+  
+    .cover
+    {
+      height: 100%; 
+    }
+
+
+    .card
+    {
+      height: 600px;
+      width: 100%;
+    }
+    .card__images
+    {
+      max-width: 768px;
+      width: 100%;
+      height: 400px;
+    }
+  }
+
+
+
+
+
+  .clearfix:after 
+  {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+
+  .clearfix { display: inline-block; }
+  /* start commented backslash hack \*/
+  * html .clearfix { height: 1%; }
+  .clearfix { display: block; }
+  /* close commented backslash hack */
+
+  *,
+  *:before,
+  *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+  }
