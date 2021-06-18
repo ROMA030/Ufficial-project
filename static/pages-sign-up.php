@@ -53,16 +53,8 @@
 											<input class="form-control form-control-lg" type="text" name="username" placeholder="Enter username" required/>
 										</div>
 										<div class="mb-3">
-											<label class="form-label">Username</label>
-											<input class="form-control form-control-lg" type="username" name="username" placeholder="Enter username" />
-										</div>
-										<div class="mb-3">
 											<label class="form-label">Password</label>
 											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" required/>
-										</div>
-										<div class="avatar">
-											<label>Scegli il tuo avatar: </label>
-											<input type="file" name="avatar" accept="image/*"/>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Scegli un avatar: </label>
