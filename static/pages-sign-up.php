@@ -57,6 +57,10 @@
 											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" />
 										</div>
 										<div class="mb-3">
+											<label class="form-label">Scegli un avatar: </label>
+											<input type="file" name="avatar" accept="image/*" required />
+										</div>
+										<div class="mb-3">
 											<label class="form-label">Scegli un ruolo:</label>
 											<select name="role" id="role" class="form-select mb-3">
 												<option value="Allenatore">Allenatore</option>
@@ -87,6 +91,7 @@
 											$email = $_POST["email"];
 											$username = $_POST["username"];
 											$password = $_POST["password"];
+											$avatar = $_POST["avatar"];
 											$usertype = $_POST['role'];
 
 											// If forum inputs aren't empty
@@ -99,7 +104,7 @@
 												if (mysqli_num_rows($checkResult) > 0) {
 													echo "<h2 class='notification'>Username already exists</h2>";
 												}else {
-													$users = "INSERT INTO users(Name, Surname, Email, Username, Password , UserType) VALUES ('$name', '$surname', '$email', '$username', '$password' , '$usertype')";
+													$users = "INSERT INTO users(Name, Surname, Email, Username, Password , Avatar, UserType) VALUES ('$name', '$surname', '$email', '$username', '$password' , '$avatar', '$usertype')";
 													$result = mysqli_query($conn, $users);
 													echo "<h2 class='notification'>Successfully registered</h2>";
 													header("location: dashboard.php?type=". $userType);
