@@ -68,8 +68,7 @@
   ---------------------------*/
 
   .banner{background-color: #fff; }
-  .banner__image{width: 30%; float: left}
-  .banner__copy{width: 70%; float: center; height: 100%; display: table;}
+  .banner__copy{width: 100%; text-align:center; height: 100%; display: table;}
   .banner__copy__text{display: table-cell; vertical-align: middle; padding: 30px;}
 
   /*-------------------------
