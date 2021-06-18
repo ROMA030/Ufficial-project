@@ -296,28 +296,31 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
+                                <div class="img-container">
+                                    <img src="img/icons/Icone.png" width="600" height="315">
+                                </div>
 								<div class="card-header">
-									<h5 class="card-title mb-0">Primo elemento</h5>
+									<h5 class="card-title mb-0">NOME1</h5>
 								</div>
 								<div class="card-body"><p>Primo elemento</p>
 								</div>
                                 <div class="card-header">
-									<h5 class="card-title mb-0">Secondo elemento</h5>
+									<h5 class="card-title mb-0">NOME2</h5>
 								</div>
 								<div class="card-body"><p>Secondo elemento</p>
 								</div>
                                 <div class="card-header">
-									<h5 class="card-title mb-0">Terzo elemento</h5>
+									<h5 class="card-title mb-0">NOME3</h5>
 								</div>
 								<div class="card-body"><p>Terzo elemento</p>
 								</div>
                                 <div class="card-header">
-									<h5 class="card-title mb-0">Quarto elemento</h5>
+									<h5 class="card-title mb-0">NOME4</h5>
 								</div>
 								<div class="card-body"><p>Quarto elemento</p>
 								</div>
                                 <div class="card-header">
-									<h5 class="card-title mb-0">Quinto elemento</h5>
+									<h5 class="card-title mb-0">NOME5</h5>
 								</div>
 								<div class="card-body"><p>Quinto elemento</p>
 								</div>
@@ -330,6 +333,9 @@
                 <style>
                     h5 {text-align: center;}
                     p {text-align: center;}
+                    .img-container {
+                        text-align: center;
+                    }
                 </style>
 			</main>
 
@@ -343,9 +349,6 @@
 						</div>
 						<div class="col-6 text-end">
 							<ul class="list-inline">
-								<li class="list-inline-item">
-									<a class="text-muted" target="_blank">Contact</a>
-								</li>
 								<li class="list-inline-item">
 									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
 								</li>
