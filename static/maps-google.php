@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>Buttons | AdminKit Demo</title>
+	<title>Google Maps | AdminKit Demo</title>
 
 	<link href="css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
+				<a class="sidebar-brand" href="dashboard.php">
           <span class="align-middle">AdminKit</span>
         </a>
 
@@ -32,31 +32,31 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="index.html">
+						<a class="sidebar-link" href="dashboard.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-profile.html">
+						<a class="sidebar-link" href="pages-profile.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-sign-in.html">
+						<a class="sidebar-link" href="pages-sign-in.php">
               <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-sign-up.html">
+						<a class="sidebar-link" href="pages-sign-up.php">
               <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-blank.html">
+						<a class="sidebar-link" href="pages-blank.php">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
             </a>
 					</li>
@@ -65,32 +65,32 @@
 						Tools & Components
 					</li>
 
-					<li class="sidebar-item active">
-						<a class="sidebar-link" href="ui-buttons.html">
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="ui-buttons.php">
               <i class="align-middle" data-feather="square"></i> <span class="align-middle">Buttons</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-forms.html">
+						<a class="sidebar-link" href="ui-forms.php">
               <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-cards.html">
+						<a class="sidebar-link" href="ui-cards.php">
               <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-typography.html">
+						<a class="sidebar-link" href="ui-typography.php">
               <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">Typography</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="icons-feather.html">
+						<a class="sidebar-link" href="icons-feather.php">
               <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
             </a>
 					</li>
@@ -100,13 +100,13 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="charts-chartjs.html">
+						<a class="sidebar-link" href="charts-chartjs.php">
               <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
             </a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="maps-google.html">
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="maps-google.php">
               <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
             </a>
 					</li>
@@ -292,120 +292,31 @@
 				<div class="container-fluid p-0">
 
 					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Buttons</h1>
+						<h1 class="h3 d-inline align-middle">Google Maps</h1>
 						<a class="badge bg-dark text-white ms-2" href="upgrade-to-pro.html">
-      Get more button examples
+      Get more Google Maps examples
   </a>
 					</div>
 					<div class="row">
 						<div class="col-12 col-lg-6">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title">Basic Buttons</h5>
-									<h6 class="card-subtitle text-muted">Default Bootstrap buttons style.</h6>
+									<h5 class="card-title">Default Map</h5>
+									<h6 class="card-subtitle text-muted">Displays the default road map view.</h6>
 								</div>
-								<div class="card-body text-center">
-									<div class="mb-3">
-										<button class="btn btn-primary">Primary</button>
-										<button class="btn btn-secondary">Secondary</button>
-										<button class="btn btn-success">Success</button>
-										<button class="btn btn-danger">Danger</button>
-										<button class="btn btn-warning">Warning</button>
-										<button class="btn btn-info">Info</button>
-									</div>
-									<div>
-										<button class="btn btn-primary" disabled>Primary</button>
-										<button class="btn btn-secondary" disabled>Secondary</button>
-										<button class="btn btn-success" disabled>Success</button>
-										<button class="btn btn-danger" disabled>Danger</button>
-										<button class="btn btn-warning" disabled>Warning</button>
-										<button class="btn btn-info" disabled>Info</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title">Button Sizes</h5>
-									<h6 class="card-subtitle text-muted">Fancy larger or smaller buttons.</h6>
-								</div>
-								<div class="card-body text-center">
-									<div class="mb-3">
-										<button class="btn btn-primary btn-sm">Small</button>
-										<button class="btn btn-primary">Medium</button>
-										<button class="btn btn-primary btn-lg">Large</button>
-									</div>
+								<div class="card-body">
+									<div class="content" id="default_map" style="height: 300px;"></div>
 								</div>
 							</div>
 						</div>
-
 						<div class="col-12 col-lg-6">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title">Button Group</h5>
-									<h6 class="card-subtitle text-muted">Button group components.</h6>
+									<h5 class="card-title">Hybrid Map</h5>
+									<h6 class="card-subtitle text-muted">Displays a mixture of normal and satellite views.</h6>
 								</div>
 								<div class="card-body">
-									<h6 class="card-subtitle mb-2 text-muted">Horizontal button group</h6>
-									<div class="btn-group btn-group-lg mb-3" role="group" aria-label="Large button group">
-										<button type="button" class="btn btn-secondary">Left</button>
-										<button type="button" class="btn btn-secondary">Middle</button>
-										<button type="button" class="btn btn-secondary">Right</button>
-									</div>
-									<br>
-									<div class="btn-group mb-3" role="group" aria-label="Default button group">
-										<button type="button" class="btn btn-secondary">Left</button>
-										<button type="button" class="btn btn-secondary">Middle</button>
-										<button type="button" class="btn btn-secondary">Right</button>
-									</div>
-									<br>
-									<div class="btn-group btn-group-sm mb-4" role="group" aria-label="Small button group">
-										<button type="button" class="btn btn-secondary">Left</button>
-										<button type="button" class="btn btn-secondary">Middle</button>
-										<button type="button" class="btn btn-secondary">Right</button>
-									</div>
-
-									<h6 class="card-subtitle mb-2 text-muted">Button toolbar</h6>
-									<div class="btn-toolbar mb-4" role="toolbar" aria-label="Toolbar with button groups">
-										<div class="btn-group me-2" role="group" aria-label="First group">
-											<button type="button" class="btn btn-secondary">1</button>
-											<button type="button" class="btn btn-secondary">2</button>
-											<button type="button" class="btn btn-secondary">3</button>
-											<button type="button" class="btn btn-secondary">4</button>
-										</div>
-										<div class="btn-group me-2" role="group" aria-label="Second group">
-											<button type="button" class="btn btn-secondary">5</button>
-											<button type="button" class="btn btn-secondary">6</button>
-											<button type="button" class="btn btn-secondary">7</button>
-										</div>
-										<div class="btn-group" role="group" aria-label="Third group">
-											<button type="button" class="btn btn-secondary">8</button>
-										</div>
-									</div>
-
-									<h6 class="card-subtitle mb-2 text-muted">Vertical button group</h6>
-									<div class="btn-toolbar">
-										<div class="btn-group-vertical me-2" role="group" aria-label="Vertical button group">
-											<button type="button" class="btn btn-primary">Button</button>
-											<button type="button" class="btn btn-primary">Button</button>
-											<button type="button" class="btn btn-primary">Button</button>
-										</div>
-										<div class="btn-group-vertical me-2" role="group" aria-label="Vertical button group">
-											<button type="button" class="btn btn-success">Button</button>
-											<button type="button" class="btn btn-success">Button</button>
-											<button type="button" class="btn btn-success">Button</button>
-										</div>
-										<div class="btn-group-vertical me-2" role="group" aria-label="Vertical button group">
-											<button type="button" class="btn btn-warning">Button</button>
-											<button type="button" class="btn btn-warning">Button</button>
-											<button type="button" class="btn btn-warning">Button</button>
-										</div>
-										<div class="btn-group-vertical me-2" role="group" aria-label="Vertical button group">
-											<button type="button" class="btn btn-danger">Button</button>
-											<button type="button" class="btn btn-danger">Button</button>
-											<button type="button" class="btn btn-danger">Button</button>
-										</div>
-									</div>
+									<div class="content" id="hybrid_map" style="height: 300px;"></div>
 								</div>
 							</div>
 						</div>
@@ -445,6 +356,31 @@
 	</div>
 
 	<script src="js/app.js"></script>
+
+	<script>
+		function initMaps() {
+			var defaultMap = {
+				zoom: 14,
+				center: {
+					lat: 40.712784,
+					lng: -74.005941
+				},
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			new google.maps.Map(document.getElementById("default_map"), defaultMap);
+			var hybridMap = {
+				zoom: 14,
+				center: {
+					lat: 40.712784,
+					lng: -74.005941
+				},
+				mapTypeId: google.maps.MapTypeId.HYBRID
+			};
+			new google.maps.Map(document.getElementById("hybrid_map"), hybridMap);
+		}
+	</script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-aWrwgr64q4b3TEZwQ0lkHI4lZK-moM4&callback=initMaps" async defer></script>
 
 </body>
 

@@ -12,7 +12,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>Blank Page | AdminKit Demo</title>
+	<title>Cards | AdminKit Demo</title>
 
 	<link href="css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
 	<div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
+				<a class="sidebar-brand" href="dashboard.php">
           <span class="align-middle">AdminKit</span>
         </a>
 
@@ -32,31 +32,31 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="index.html">
+						<a class="sidebar-link" href="dashboard.php">
               <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-profile.html">
+						<a class="sidebar-link" href="pages-profile.php">
               <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-sign-in.html">
+						<a class="sidebar-link" href="pages-sign-in.php">
               <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-sign-up.html">
+						<a class="sidebar-link" href="pages-sign-up.php">
               <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
             </a>
 					</li>
 
-					<li class="sidebar-item active">
-						<a class="sidebar-link" href="pages-blank.html">
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="pages-blank.php">
               <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
             </a>
 					</li>
@@ -66,31 +66,31 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-buttons.html">
+						<a class="sidebar-link" href="ui-buttons.php">
               <i class="align-middle" data-feather="square"></i> <span class="align-middle">Buttons</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-forms.html">
+						<a class="sidebar-link" href="ui-forms.php">
               <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
             </a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-cards.html">
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="ui-cards.php">
               <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-typography.html">
+						<a class="sidebar-link" href="ui-typography.php">
               <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">Typography</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="icons-feather.html">
+						<a class="sidebar-link" href="icons-feather.php">
               <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
             </a>
 					</li>
@@ -100,13 +100,13 @@
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="charts-chartjs.html">
+						<a class="sidebar-link" href="charts-chartjs.php">
               <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
             </a>
 					</li>
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="maps-google.html">
+						<a class="sidebar-link" href="maps-google.php">
               <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
             </a>
 					</li>
@@ -291,15 +291,61 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Blank Page</h1>
-
+					<div class="mb-3">
+						<h1 class="h3 d-inline align-middle">Cards</h1>
+						<a class="badge bg-dark text-white ms-2" href="upgrade-to-pro.html">
+      Get more card examples
+  </a>
+					</div>
 					<div class="row">
-						<div class="col-12">
+						<div class="col-12 col-md-6">
 							<div class="card">
+								<img class="card-img-top" src="img/photos/unsplash-1.jpg" alt="Unsplash">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
+									<h5 class="card-title mb-0">Card with image and links</h5>
 								</div>
 								<div class="card-body">
+									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									<a href="#" class="card-link">Card link</a>
+									<a href="#" class="card-link">Another link</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-md-6">
+							<div class="card">
+								<img class="card-img-top" src="img/photos/unsplash-2.jpg" alt="Unsplash">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Card with image and button</h5>
+								</div>
+								<div class="card-body">
+									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									<a href="#" class="btn btn-primary">Go somewhere</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Card with links</h5>
+								</div>
+								<div class="card-body">
+									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									<a href="#" class="card-link">Card link</a>
+									<a href="#" class="card-link">Another link</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<h5 class="card-title mb-0">Card with button</h5>
+								</div>
+								<div class="card-body">
+									<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+									<a href="#" class="btn btn-primary">Go somewhere</a>
 								</div>
 							</div>
 						</div>
