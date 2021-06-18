@@ -37,7 +37,7 @@ CREATE TABLE `users` (
     `Email` varchar(50),
     `Username` varchar(30),
     `Password` varchar(40),
-    `Avatar` longblob DEFAULT NULL,
+    /*`Avatar` longblob DEFAULT NULL,*/
     `UserType` varchar(40)
 );
 
