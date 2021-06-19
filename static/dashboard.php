@@ -67,7 +67,7 @@
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 								data-bs-toggle="dropdown">
-								<img src="img/avatars/default-avatar.png" id="avatarImage" class="avatar img-fluid rounded me-1"/> <span class="text-dark" id="nameSurname">Charles Hall</span>
+								<img src="" id="avatarImage" class="avatar img-fluid rounded me-1"/> <span class="text-dark" id="nameSurname">Charles Hall</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
@@ -349,7 +349,7 @@
 						<div class="col-6 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item">
-									<a class="text-muted" target="_blank">Contact</a>
+									<a class="text-muted" target="_blank" href="contact.php">Contact</a>
 								</li>
 								<li class="list-inline-item">
 									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
@@ -396,10 +396,8 @@
 			var sidebarUl = document.getElementById("sidebarUl");
 
 			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
-			if (avatar != null) {
-				var image = document.getElementById('avatarImage');
-            	image.src = avatar;
-			}
+			var image = document.getElementById('avatarImage');
+            image.src = avatar;
 
 			switch (userType) {
 				case 'player':
@@ -430,7 +428,7 @@
 				//iElement.className += "align-middle";
 				//iElement.setAttribute("data-feather", icon);
 				
-				iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
+				//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
 				//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
 				var spanElement = document.createElement("span");
 				spanElement.className += name;
@@ -667,7 +665,7 @@
 			});
 		});
 	</script>
-
+	<script src="js/app.js"></script>
 </body>
 
 </html>

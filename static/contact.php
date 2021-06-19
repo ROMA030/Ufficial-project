@@ -111,18 +111,6 @@
             </a>
 					</li>
 				</ul>
-
-				<div class="sidebar-cta">
-					<div class="sidebar-cta-content">
-						<strong class="d-inline-block mb-2">Upgrade to Pro</strong>
-						<div class="mb-3 text-sm">
-							Are you looking for more components? Check out our premium version.
-						</div>
-						<div class="d-grid">
-							<a href="upgrade-to-pro.html" class="btn btn-primary">Upgrade to Pro</a>
-						</div>
-					</div>
-				</div>
 			</div>
 		</nav>
 
@@ -289,43 +277,50 @@
 			</nav>
 
 			<main class="content">
-				<div class="container-fluid p-0">
-
-					<h1 class="h3 mb-3">Contact</h1>
-
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Primo elemento</h5>
-								</div>
-								<div class="card-body"><p>Primo elemento</p>
-								</div>
-                                <div class="card-header">
-									<h5 class="card-title mb-0">Secondo elemento</h5>
-								</div>
-								<div class="card-body"><p>Secondo elemento</p>
-								</div>
-                                <div class="card-header">
-									<h5 class="card-title mb-0">Terzo elemento</h5>
-								</div>
-								<div class="card-body"><p>Terzo elemento</p>
-								</div>
-                                <div class="card-header">
-									<h5 class="card-title mb-0">Quarto elemento</h5>
-								</div>
-								<div class="card-body"><p>Quarto elemento</p>
-								</div>
-                                <div class="card-header">
-									<h5 class="card-title mb-0">Quinto elemento</h5>
-								</div>
-								<div class="card-body"><p>Quinto elemento</p>
-								</div>
-							</div>
-						</div>
+                <div class="mb-3">
 					</div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="card">
+                                <img class="card-img-top" src="img/icons/Icone.png" alt="Unsplash">
+                                <div class="card-body">
+                                    <p class="card-text">Contattaci via email per eventuali problemi.</p>
+                                </div>
+                            </div>
+                        </div>
 
-				</div>
+                        <div class="col-12 col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">NOME1</h5>
+                                    </div>
+                                    <div class="card-body"><p>Primo elemento</p>
+                                    </div>
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">NOME2</h5>
+                                    </div>
+                                    <div class="card-body"><p>Secondo elemento</p>
+                                    </div>
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">NOME3</h5>
+                                    </div>
+                                    <div class="card-body"><p>Terzo elemento</p>
+                                    </div>
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">NOME4</h5>
+                                    </div>
+                                    <div class="card-body"><p>Quarto elemento</p>
+                                    </div>
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">NOME5</h5>
+                                    </div>
+                                    <div class="card-body"><p>Quinto elemento</p>
+                                    </div>       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                 <style>
                     h5 {text-align: center;}
@@ -333,7 +328,7 @@
                 </style>
 			</main>
 
-			<footer class="footer">
+            <footer class="footer">
 				<div class="container-fluid">
 					<div class="row text-muted">
 						<div class="col-6 text-start">
@@ -344,7 +339,7 @@
 						<div class="col-6 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item">
-									<a class="text-muted" target="_blank">Contact</a>
+									<a class="text-muted" target="_blank" href="contact.php">Contact</a>
 								</li>
 								<li class="list-inline-item">
 									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
