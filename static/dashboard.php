@@ -366,7 +366,6 @@
 	</div>
 
 	<?php
-		
 		$conn = mysqli_connect("localhost","root","","xeos");
 
 		$user = $_GET['user'];
@@ -383,7 +382,6 @@
 		}
 
 		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
-		
 	?>
 
 	<script src="js/app.js"></script>
@@ -406,7 +404,16 @@
 			switch (userType) {
 				case 'player':
 					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
-
+					break;
+				case 'coach':
+					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+					CreateSidebarElement("sessions.php?user=" + user, "book", "Sessions");
+					break;
+				case 'manager':
+					
+					break;
+				case 'admin':
+					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
 					break;
 				default:
 					console.log(`Sorry, we are out of ${expr}.`);

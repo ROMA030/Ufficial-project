@@ -47,3 +47,52 @@ CREATE TABLE `club` (
     `Avatar` longblob DEFAULT NULL
 );
 
+CREATE TABLE `coachPlayer` (
+    `Coach` varchar(40),
+    `Player` varchar(40)
+);
+
+
+CREATE TABLE `other` (
+    `timestamp` varchar(40),
+    `battery` varchar(40),
+    `skinTemp` varchar(40),
+    `ambientTemp` varchar(40),
+    `occupiedMemory` varchar(40),
+    `respirationRate` varchar(40),
+    `heartRate` varchar(40),
+    `gainCH0` varchar(40),
+    `gainCH1` varchar(40),
+    `gainCH2` varchar(40),
+    `gainCH3` varchar(40),
+    `player` varchar(40),
+    `session` varchar(40)
+);
+
+CREATE TABLE `acc` (
+    `timestamp` varchar(40),
+    `accX` varchar(40),
+    `accY` varchar(40),
+    `accZ` varchar(40),
+    `player` varchar(40),
+    `session` varchar(40)
+);
+
+CREATE TABLE `ecg` (
+    `timestamp` varchar(40),
+    `respiration` varchar(40),
+    `ecgLead1` varchar(40),
+    `ecgLead2` varchar(40),
+    `ecgLead3` varchar(40),
+    `player` varchar(40),
+    `session` varchar(40)
+);
+
+CREATE TABLE `gyro` (
+    `timestamp` varchar(40),
+    `gyroX` varchar(40),
+    `gyroY` varchar(40),
+    `gyroZ` varchar(40),
+    `player` varchar(40),
+    `session` varchar(40)
+);

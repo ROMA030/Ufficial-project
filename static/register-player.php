@@ -13,14 +13,10 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>Blank Page | AdminKit Demo</title>
+	<title>Register player | Xeos</title>
 
 	<link href="css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
 </head>
 
 <body>
@@ -91,82 +87,51 @@
 				</div>
 			</nav>
 
+
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Player graphics</h1>
+					<h1 class="h3 mb-3">Register a player</h1>
 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
+									<h5 class="card-title mb-0">Complete the form</h5>
 								</div>
 								<div class="card-body">
-									<form method="post" enctype="multipart/form-data">
-										<!-- onchange="loadFile(this.files[0])" 
-										<span class="text-dark">Acc.csv</span> <input type="file" name = "other" class="form-control">
-										<div style="padding-bottom: 25px"></div>
-										<span class="text-dark">Ecg.csv</span> <input type="file" name = "other" class="form-control">
-										<div style="padding-bottom: 25px"></div>
-										<span class="text-dark">Gyro.csv</span> <input type="file" name = "other" class="form-control">
-										<div style="padding-bottom: 25px"></div>
-										<span class="text-dark">Other.csv</span> <input type="file" name = "other" class="form-control">
-										<div style="padding-bottom: 25px"></div>
-
-										<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Upload</button>
-										-->
-										<div class="m-sm-4">
-											<form method="post" enctype="multipart/form-data" action="php/register_user.php">
-												<div class="mb-3">
-													<label class="form-label">Acc.csv</label>
-													<input type="file" name="acc" accept="image/*" class="form-control" required />
-												</div>
-												<div class="mb-3">
-													<label class="form-label">Ecg.csv</label>
-													<input type="file" name="ecg" accept="image/*" class="form-control" required />
-												</div>
-												<div class="mb-3">
-													<label class="form-label">Gyro.csv</label>
-													<input type="file" name="gyro" accept="image/*" class="form-control" required />
-												</div>
-												<div class="mb-3">
-													<label class="form-label">Other.csv</label>
-													<input type="file" name="other" accept="image/*" class="form-control" required />
-												</div>
-												<div class="mb-3">
-													<label class="form-label">Session name</label>
-													<input class="form-control form-control-lg" type="text" name="name" placeholder="Enter session name" required/>
-												</div>
-												<div class="mb-3">
-													<label class="form-label">Scegli un ruolo:</label>
-													<select name="playerOfSession" id="pOfSession" class="form-select mb-3" required>
-														
-													</select>
-												</div>
-												<div class="text-center mt-3">
-													<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Upload</button>
-												</div>
-											</form>
-										</div>
-										
-									</form>
-									<div style="padding-bottom: 25px"></div>
-
-									<div class="row">
-										<div class="col-12 col-lg-12 col-xxl-12 d-flex">
-											<div class="card flex-fill">
-												<div class="card-header">
-													<h5 class="card-title mb-0">Latest Sessions</h5>
-												</div>
-												
-												<div class="card-body" id="grapihcDiv">
-													
-												</div>
+									<div class="m-sm-4">
+										<form method="post" enctype="multipart/form-data">
+											<div class="mb-3">
+												<label class="form-label">Nome</label>
+												<input class="form-control form-control-lg" type="text" name="name" placeholder="Enter his name" required/>
 											</div>
-										</div>
+											<div class="mb-3">
+												<label class="form-label">Cognome</label>
+												<input class="form-control form-control-lg" type="text" name="surname" placeholder="Enter his surnname" required/>
+											</div>
+											<div class="mb-3">
+												<label class="form-label">Email</label>
+												<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter his email" required/>
+											</div>
+											<div class="mb-3">
+												<label class="form-label">Username</label>
+												<input class="form-control form-control-lg" type="text" name="username" placeholder="Enter his username" required/>
+											</div>
+											<div class="mb-3">
+												<label class="form-label">Password</label>
+												<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter his password" required/>
+											</div>
+											<div class="mb-3">
+												<label class="form-label">Scegli un avatar: </label>
+												<input type="file" name="avatar" accept="image/*" class="form-control" required />
+											</div>
+											<div class="text-center mt-3">
+												<!--<a href="dashboard.php" class="btn btn-lg btn-primary">Sign up</a>!-->
+												<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Register</button>
+											</div>
+										</form>
 									</div>
-
 								</div>
 							</div>
 						</div>
@@ -186,6 +151,9 @@
 						<div class="col-6 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item">
+									<a class="text-muted" target="_blank">Contact</a>
+								</li>
+								<li class="list-inline-item">
 									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
 								</li>
 								<li class="list-inline-item">
@@ -203,12 +171,9 @@
 
 	<?php
 		$conn = mysqli_connect("localhost","root","","xeos");
-
 		$user = $_GET['user'];
-
 		$query = "SELECT * FROM users WHERE Username = '$user'";
 		$result = mysqli_query($conn, $query);
-		
 		while ($row = $result->fetch_assoc()) 
 		{
 			$name = $row['Name'];
@@ -216,57 +181,40 @@
 			$userType = $row['UserType'];
 			$avatar = $row['Avatar'];
 		}
-
 		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
 
-		$query = "SELECT * FROM other WHERE Username = '$user'";
-		$result = mysqli_query($conn, $query);
-		
-		while ($row = $result->fetch_assoc()) 
-		{
-			$name = $row['Name'];
-			$surname = $row['Surname'];
-			$userType = $row['UserType'];
-			$avatar = $row['Avatar'];
-		}
-	    
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			
-			$fileTypes = {};
-
-			try {
-				$file = clean_dir("csv");
+			$name = $_POST["name"];
+			$surname = $_POST["surname"];
+			$email = $_POST["email"];
+			$username = $_POST["username"];
+			$password = $_POST["password"];
 	
-				$query = "LOAD DATA INFILE '" . $file . "'
-					INTO TABLE other 
-					FIELDS TERMINATED BY ',' 
-					ENCLOSED BY '\"'
-					LINES TERMINATED BY '\\n'
-					IGNORE 1 ROWS
-					SET sessione = 1";
+			$avatar = addslashes(file_get_contents($_FILES['avatar']['tmp_name']));
 	
-				$result = mysqli_query($conn, $query);
+			if (!empty($name) && !empty($surname) && !empty($email) && !empty($username) && !empty($password)) {
+				
+				$checkUser = "SELECT * FROM users WHERE Username = '$username'";
+				$checkResult = mysqli_query($conn, $checkUser);
 	
-				if (!$result) {
-	
-					throw new Exception("Problema! Avvenuto col file: " . $file . "<br>");
+				if (mysqli_num_rows($checkResult) > 0) {
+					header("location: ../pages-sign-up.php");
+					echo "<p class='text-danger text-center mt-3'>Username already exists</p>";
+					exit();
+				}else {
+					$users = "INSERT INTO users(Name, Surname, Email, Username, Password , Avatar, UserType) VALUES ('$name', '$surname', '$email', '$username', '$password' , '$avatar', 'player')";
+					$result = mysqli_query($conn, $users);
+					$coachPlayer = "INSERT INTO coachplayer(Coach, Player) VALUES ('$user', '$username')";
+					$result2 = mysqli_query($conn, $coachPlayer);
+					header("location: ../register-player.php?user=". $user);
+					exit();
 				}
-			} catch (Throwable $e) {
-				echo $e->getMessage();
+				mysqli_close($conn);
 			}
 		}
-
-		function clean_dir($nome_file)
-		{
-			$file = $_FILES[$nome_file]["tmp_name"];
-			$newDir = str_replace('\\', '/', $file);
-			return $newDir;
-		}
-		
 	?>
 
 	<script>
-
 		document.addEventListener("DOMContentLoaded", function () {
 			var user = "<?php echo $user; ?>";
 			var name = "<?php echo $name; ?>";
@@ -313,114 +261,7 @@
 				sidebarUl.appendChild(liElement);
 			}
 		});
-
-		async function loadFile(file) {
-			
-			let text = await file.text();
-
-			function csvJSON(csv){
-				var lines=csv.split("\n");
-
-				var result = [];
-
-				var headers=lines[0].split(",");
-
-				for(var i=1;i<lines.length;i++){
-
-					var obj = {};
-					var currentline=lines[i].split(",");
-
-					for(var j=0;j<headers.length;j++){
-						obj[headers[j]] = currentline[j];
-					}
-
-					result.push(obj);
-
-				}
-
-				return result;
-			}
-
-			//console.log(csvJSON(text));
-			let dataJSON = csvJSON(text);
-			let array = [];
-			let timestampsArray = [];
-			let finalArray = [];
-			let outData = [];
-			
-			//console.log(Object.keys(dataJSON).length);
-			for (var j = 0; j < dataJSON.length; j++)
-			{
-				//array.push(parseInt(dataJSON[j]["heartRate"]));
-				//timestampsArray.push(parseInt(dataJSON[j]["timestamp"]));
-
-				//console.log(parseInt(dataJSON[j]["heartRate"]));
-				console.log(parseInt(dataJSON[j]["timestamp"]));
-
-				var date = new Date(parseInt(dataJSON[j]["timestamp"]));
-
-
-				finalArray.push({ x : date, y : parseInt(dataJSON[j]["heartRate"])});
-
-			}
-
-			for (i = 0; i < finalArray.length; i++) {
-				outData[i] = {
-					x: Date.parse(finalArray[i].x),
-					y: finalArray[i].y
-				}
-			}
-
-			var chart1 = new Highcharts.Chart({
-				chart: {
-					renderTo: 'grapihcDiv',
-					zoomType: 'x'
-				},
-				
-				title: {
-					useHTML: true,
-					style: {
-						color: '#cfcfcf',
-						fontWeight: 'bold'
-					}
-				},
-				
-				xAxis: {
-					type: 'datetime'
-				},
-
-				exporting: {
-					enabled: false
-				},
-
-				colors:["#d3362e"],
-				
-				rangeSelector: {
-					enabled: false
-				},
-				
-				series: [{
-					//pointStart: timestamp,
-					//pointInterval: 10,
-
-					data: outData,
-					tooltip: {
-						valueDecimals: 2
-					},
-					turboThreshold: 0
-				}]
-			});
-
-			function disegnaGrafico(value, timestamp) {
-			
-			}
-
-
-		}
-		
-
 	</script>
-
 
 </body>
 

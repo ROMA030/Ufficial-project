@@ -99,47 +99,37 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
+
 								<div class="card-header">
 									<h5 class="card-title mb-0">Empty card</h5>
 								</div>
+
 								<div class="card-body">
 									<form method="post" enctype="multipart/form-data">
-										<!-- onchange="loadFile(this.files[0])" 
-										<span class="text-dark">Acc.csv</span> <input type="file" name = "other" class="form-control">
-										<div style="padding-bottom: 25px"></div>
-										<span class="text-dark">Ecg.csv</span> <input type="file" name = "other" class="form-control">
-										<div style="padding-bottom: 25px"></div>
-										<span class="text-dark">Gyro.csv</span> <input type="file" name = "other" class="form-control">
-										<div style="padding-bottom: 25px"></div>
-										<span class="text-dark">Other.csv</span> <input type="file" name = "other" class="form-control">
-										<div style="padding-bottom: 25px"></div>
-
-										<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Upload</button>
-										-->
-										<div class="m-sm-4">
+                                        <div class="m-sm-4">
 											<form method="post" enctype="multipart/form-data" action="php/register_user.php">
 												<div class="mb-3">
 													<label class="form-label">Acc.csv</label>
-													<input type="file" name="acc" accept="image/*" class="form-control" required />
+													<input type="file" name="acc" accept=".csv" class="form-control" required />
 												</div>
 												<div class="mb-3">
 													<label class="form-label">Ecg.csv</label>
-													<input type="file" name="ecg" accept="image/*" class="form-control" required />
+													<input type="file" name="ecg" accept=".csv" class="form-control" required />
 												</div>
 												<div class="mb-3">
 													<label class="form-label">Gyro.csv</label>
-													<input type="file" name="gyro" accept="image/*" class="form-control" required />
+													<input type="file" name="gyro" accept=".csv" class="form-control" required />
 												</div>
 												<div class="mb-3">
 													<label class="form-label">Other.csv</label>
-													<input type="file" name="other" accept="image/*" class="form-control" required />
+													<input type="file" name="other" accept=".csv" class="form-control" required />
 												</div>
 												<div class="mb-3">
 													<label class="form-label">Session name</label>
 													<input class="form-control form-control-lg" type="text" name="name" placeholder="Enter session name" required/>
 												</div>
 												<div class="mb-3">
-													<label class="form-label">Scegli un ruolo:</label>
+													<label class="form-label">Select which player it belongs to:</label>
 													<select name="playerOfSession" id="pOfSession" class="form-select mb-3" required>
 														
 													</select>
@@ -149,8 +139,8 @@
 												</div>
 											</form>
 										</div>
-										
 									</form>
+
 									<div style="padding-bottom: 25px"></div>
 
 									<div class="row">
@@ -219,41 +209,60 @@
 
 		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
 
-		$query = "SELECT * FROM other WHERE Username = '$user'";
-		$result = mysqli_query($conn, $query);
-		
-		while ($row = $result->fetch_assoc()) 
-		{
-			$name = $row['Name'];
-			$surname = $row['Surname'];
-			$userType = $row['UserType'];
-			$avatar = $row['Avatar'];
-		}
-	    
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			
-			$fileTypes = {};
+		$playersOfCoach = array();
+		$query2 = "SELECT Player FROM coachplayer WHERE Coach = '$user'";
+		$result2 = mysqli_query($conn, $query2);
 
-			try {
-				$file = clean_dir("csv");
-	
-				$query = "LOAD DATA INFILE '" . $file . "'
-					INTO TABLE other 
-					FIELDS TERMINATED BY ',' 
-					ENCLOSED BY '\"'
-					LINES TERMINATED BY '\\n'
-					IGNORE 1 ROWS
-					SET sessione = 1";
-	
-				$result = mysqli_query($conn, $query);
-	
-				if (!$result) {
-	
-					throw new Exception("Problema! Avvenuto col file: " . $file . "<br>");
-				}
-			} catch (Throwable $e) {
-				echo $e->getMessage();
-			}
+		while ($row = $result2->fetch_assoc()) {
+            //$playersOfCoach = $row["Player"];
+            array_push($playersOfCoach, $row["Player"]);
+        }
+
+		
+
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			$player = $_POST['playerOfSession'];
+			$fileTypes = array("acc", "ecg", "gyro", "other");
+
+			for ($i=0; $i < 4; $i++) { 
+                try {
+					//$query3 = "SELECT session FROM '" . $fileTypes[$i] . "' WHERE player = '" . $player . "' ORDER BY '" . $fileTypes[$i] . "'.`session` DESC LIMIT 1";
+					$temp = $fileTypes[$i];
+					echo $temp;
+					echo $player;
+					$query3 = "SELECT session 
+						FROM $temp
+						WHERE player = $player
+						ORDER BY session 
+						DESC LIMIT 1";
+					$result3 = $conn->query($query3) or die($conn->error);
+					$sessionNumber = 1;
+					while ($row = $result->fetch_assoc()) 
+					{
+						$sessionNumber = $row['session'] + 1;
+					}
+					echo $fileTypes[$i];
+                    $file = clean_dir($fileTypes[$i]);
+        
+                    $query = "LOAD DATA INFILE '" . $file . "'
+                        INTO TABLE '" . $fileTypes[$i] . "'
+                        FIELDS TERMINATED BY ',' 
+                        ENCLOSED BY '\"'
+                        LINES TERMINATED BY '\\n'
+                        IGNORE 1 ROWS
+                        SET sessione = '" . $sessionNumber . "'
+                        SET player = '" . $player . "' ";
+        
+                    $result = mysqli_query($conn, $query);
+        
+                    if (!$result) {
+        
+                        throw new Exception("Problema! Avvenuto col file: " . $file . "<br>");
+                    }
+                } catch (Throwable $e) {
+                    echo $e->getMessage();
+                }
+            }
 		}
 
 		function clean_dir($nome_file)
@@ -274,6 +283,17 @@
 			var userType = "<?php echo $userType; ?>";
 			var avatar = "<?php echo $srcAvatar; ?>";
 			var sidebarUl = document.getElementById("sidebarUl");
+
+            var players = <?php echo json_encode($playersOfCoach); ?>;
+
+			for (let index = 0; index < players.length; index++) {
+                var selection = document.getElementById("pOfSession");
+                var newOption = document.createElement("option");
+                newOption.setAttribute("value", players[index]);
+                newOption.innerHTML = players[index];
+                selection.appendChild(newOption);
+			}
+
 
 			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
 			var image = document.getElementById('avatarImage');
@@ -313,112 +333,7 @@
 				sidebarUl.appendChild(liElement);
 			}
 		});
-
-		async function loadFile(file) {
-			
-			let text = await file.text();
-
-			function csvJSON(csv){
-				var lines=csv.split("\n");
-
-				var result = [];
-
-				var headers=lines[0].split(",");
-
-				for(var i=1;i<lines.length;i++){
-
-					var obj = {};
-					var currentline=lines[i].split(",");
-
-					for(var j=0;j<headers.length;j++){
-						obj[headers[j]] = currentline[j];
-					}
-
-					result.push(obj);
-
-				}
-
-				return result;
-			}
-
-			//console.log(csvJSON(text));
-			let dataJSON = csvJSON(text);
-			let array = [];
-			let timestampsArray = [];
-			let finalArray = [];
-			let outData = [];
-			
-			//console.log(Object.keys(dataJSON).length);
-			for (var j = 0; j < dataJSON.length; j++)
-			{
-				//array.push(parseInt(dataJSON[j]["heartRate"]));
-				//timestampsArray.push(parseInt(dataJSON[j]["timestamp"]));
-
-				//console.log(parseInt(dataJSON[j]["heartRate"]));
-				console.log(parseInt(dataJSON[j]["timestamp"]));
-
-				var date = new Date(parseInt(dataJSON[j]["timestamp"]));
-
-
-				finalArray.push({ x : date, y : parseInt(dataJSON[j]["heartRate"])});
-
-			}
-
-			for (i = 0; i < finalArray.length; i++) {
-				outData[i] = {
-					x: Date.parse(finalArray[i].x),
-					y: finalArray[i].y
-				}
-			}
-
-			var chart1 = new Highcharts.Chart({
-				chart: {
-					renderTo: 'grapihcDiv',
-					zoomType: 'x'
-				},
-				
-				title: {
-					useHTML: true,
-					style: {
-						color: '#cfcfcf',
-						fontWeight: 'bold'
-					}
-				},
-				
-				xAxis: {
-					type: 'datetime'
-				},
-
-				exporting: {
-					enabled: false
-				},
-
-				colors:["#d3362e"],
-				
-				rangeSelector: {
-					enabled: false
-				},
-				
-				series: [{
-					//pointStart: timestamp,
-					//pointInterval: 10,
-
-					data: outData,
-					tooltip: {
-						valueDecimals: 2
-					},
-					turboThreshold: 0
-				}]
-			});
-
-			function disegnaGrafico(value, timestamp) {
-			
-			}
-
-
-		}
 		
-
 	</script>
 
 
