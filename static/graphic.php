@@ -100,7 +100,7 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
+									<h5 class="card-title mb-0">Show graphics of a player</h5>
 								</div>
 								<div class="card-body">
 									<form method="post" enctype="multipart/form-data">
@@ -119,27 +119,7 @@
 										<div class="m-sm-4">
 											<form method="post" enctype="multipart/form-data" action="php/register_user.php">
 												<div class="mb-3">
-													<label class="form-label">Acc.csv</label>
-													<input type="file" name="acc" accept="image/*" class="form-control" required />
-												</div>
-												<div class="mb-3">
-													<label class="form-label">Ecg.csv</label>
-													<input type="file" name="ecg" accept="image/*" class="form-control" required />
-												</div>
-												<div class="mb-3">
-													<label class="form-label">Gyro.csv</label>
-													<input type="file" name="gyro" accept="image/*" class="form-control" required />
-												</div>
-												<div class="mb-3">
-													<label class="form-label">Other.csv</label>
-													<input type="file" name="other" accept="image/*" class="form-control" required />
-												</div>
-												<div class="mb-3">
-													<label class="form-label">Session name</label>
-													<input class="form-control form-control-lg" type="text" name="name" placeholder="Enter session name" required/>
-												</div>
-												<div class="mb-3">
-													<label class="form-label">Scegli un ruolo:</label>
+													<label class="form-label">Select a player:</label>
 													<select name="playerOfSession" id="pOfSession" class="form-select mb-3" required>
 														
 													</select>
@@ -219,8 +199,17 @@
 
 		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
 
-		$query = "SELECT * FROM other WHERE Username = '$user'";
-		$result = mysqli_query($conn, $query);
+		$playersOfCoach = array();
+		$query2 = "SELECT Player FROM coachplayer WHERE Coach = '$user'";
+		$result2 = mysqli_query($conn, $query2);
+
+		while ($row = $result2->fetch_assoc()) {
+            array_push($playersOfCoach, $row["Player"]);
+        }
+
+		/*
+		$query3 = "SELECT * FROM other WHERE Username = '$user'";
+		$result3 = mysqli_query($conn, $query3);
 		
 		while ($row = $result->fetch_assoc()) 
 		{
@@ -229,40 +218,8 @@
 			$userType = $row['UserType'];
 			$avatar = $row['Avatar'];
 		}
-	    
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			
-			$fileTypes = {};
+		*/
 
-			try {
-				$file = clean_dir("csv");
-	
-				$query = "LOAD DATA INFILE '" . $file . "'
-					INTO TABLE other 
-					FIELDS TERMINATED BY ',' 
-					ENCLOSED BY '\"'
-					LINES TERMINATED BY '\\n'
-					IGNORE 1 ROWS
-					SET sessione = 1";
-	
-				$result = mysqli_query($conn, $query);
-	
-				if (!$result) {
-	
-					throw new Exception("Problema! Avvenuto col file: " . $file . "<br>");
-				}
-			} catch (Throwable $e) {
-				echo $e->getMessage();
-			}
-		}
-
-		function clean_dir($nome_file)
-		{
-			$file = $_FILES[$nome_file]["tmp_name"];
-			$newDir = str_replace('\\', '/', $file);
-			return $newDir;
-		}
-		
 	?>
 
 	<script>
@@ -275,22 +232,44 @@
 			var avatar = "<?php echo $srcAvatar; ?>";
 			var sidebarUl = document.getElementById("sidebarUl");
 
+			var players = <?php echo json_encode($playersOfCoach); ?>;
+
+			for (let index = 0; index < players.length; index++) {
+                var selection = document.getElementById("pOfSession");
+                var newOption = document.createElement("option");
+                newOption.setAttribute("value", players[index]);
+                newOption.innerHTML = players[index];
+                selection.appendChild(newOption);
+			}
+
 			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
 			var image = document.getElementById('avatarImage');
             image.src = avatar;
 
 			switch (userType) {
 				case 'player':
+					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+					break;
+				case 'coach':
 					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics", true);
-
+					CreateSidebarElement("sessions.php?user=" + user, "book", "Sessions", false);
+					break;
+				case 'manager':
+					
+					break;
+				case 'admin':
+					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
 					break;
 				default:
-					console.log(`Sorry, we are out of ${expr}.`);
+					console.log("UserType not found");
 			}
 
 			function  CreateSidebarElement(href, icon, name, active){
 				var liElement = document.createElement("li");
 				liElement.className += "sidebar-item";
+				if (active == true) {
+					liElement.className += " active";
+				}
 				var aElement = document.createElement("a");
 				aElement.className += "sidebar-link";
 				aElement.href = href;
@@ -299,11 +278,11 @@
 				//iElement.className += "align-middle";
 				//iElement.setAttribute("data-feather", icon);
 				
-				iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
+				//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
 				//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
 				var spanElement = document.createElement("span");
-				spanElement.className += name;
-				spanElement.textContent = "Graphics";
+				spanElement.className += " align-middle";
+				spanElement.textContent = name;
 
 				aElement.appendChild(iElement);
 				aElement.appendChild(spanElement);

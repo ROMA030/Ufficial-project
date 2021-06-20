@@ -1,4 +1,4 @@
-CREATE TABLE `admin` (
+CREATE TABLE IF NOT EXISTS `admin` (
     `Username` varchar(40),
     `Password` varchar(40)
 );
@@ -31,7 +31,7 @@ CREATE TABLE `player` (
 );
 */
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
     `Name` varchar(40),
     `Surname` varchar(40),
     `Email` varchar(50),
@@ -41,19 +41,18 @@ CREATE TABLE `users` (
     `UserType` varchar(40)
 );
 
-CREATE TABLE `club` (
+CREATE TABLE IF NOT EXISTS `club` (
     `ClubName` varchar(40),
     `RandomKey` varchar(40),
     `Avatar` longblob DEFAULT NULL
 );
 
-CREATE TABLE `coachPlayer` (
+CREATE TABLE IF NOT EXISTS `coachPlayer` (
     `Coach` varchar(40),
     `Player` varchar(40)
 );
 
-
-CREATE TABLE `other` (
+CREATE TABLE IF NOT EXISTS `other` (
     `timestamp` varchar(40),
     `battery` varchar(40),
     `skinTemp` varchar(40),
@@ -66,33 +65,37 @@ CREATE TABLE `other` (
     `gainCH2` varchar(40),
     `gainCH3` varchar(40),
     `player` varchar(40),
-    `session` varchar(40)
+    `session` varchar(40),
+    `date` varchar(40)
 );
 
-CREATE TABLE `acc` (
+CREATE TABLE IF NOT EXISTS `acc` (
     `timestamp` varchar(40),
     `accX` varchar(40),
     `accY` varchar(40),
     `accZ` varchar(40),
     `player` varchar(40),
-    `session` varchar(40)
+    `session` varchar(40),
+    `date` varchar(40)
 );
 
-CREATE TABLE `ecg` (
+CREATE TABLE IF NOT EXISTS `ecg` (
     `timestamp` varchar(40),
     `respiration` varchar(40),
     `ecgLead1` varchar(40),
     `ecgLead2` varchar(40),
     `ecgLead3` varchar(40),
     `player` varchar(40),
-    `session` varchar(40)
+    `session` varchar(40),
+    `date` varchar(40)
 );
 
-CREATE TABLE `gyro` (
+CREATE TABLE IF NOT EXISTS `gyro` (
     `timestamp` varchar(40),
     `gyroX` varchar(40),
     `gyroY` varchar(40),
     `gyroZ` varchar(40),
     `player` varchar(40),
-    `session` varchar(40)
+    `session` varchar(40),
+    `date` varchar(40)
 );

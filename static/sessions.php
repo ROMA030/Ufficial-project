@@ -7,13 +7,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="AdminKit">
-	<meta name="keywords"
-		content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>Blank Page | AdminKit Demo</title>
+	<title>Sessions | Xeos</title>
 
 	<link href="css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -107,7 +106,7 @@
 								<div class="card-body">
 									<form method="post" enctype="multipart/form-data">
                                         <div class="m-sm-4">
-											<form method="post" enctype="multipart/form-data" action="php/register_user.php">
+											<form method="post" enctype="multipart/form-data">
 												<div class="mb-3">
 													<label class="form-label">Acc.csv</label>
 													<input type="file" name="acc" accept=".csv" class="form-control" required />
@@ -223,40 +222,50 @@
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$player = $_POST['playerOfSession'];
 			$fileTypes = array("acc", "ecg", "gyro", "other");
+			$sessionNumber = 1;
+			$incremented = false;
+			$timestamp = 0;
+			$i = 0;
 
+			$handler = fopen($_FILES["other"]["tmp_name"], 'r');
+			while (($line = fgetcsv($handler)) !== FALSE) {
+				if ($i == 1) {
+					$timestamp = $line[0];
+					break;
+				}
+				$i = $i + 1;
+			}
+
+			$timestamp = $timestamp / 1000;
+			$fileDate = gmdate("d M Y H:i:s", $timestamp);
+			
 			for ($i=0; $i < 4; $i++) { 
-                try {
-					//$query3 = "SELECT session FROM '" . $fileTypes[$i] . "' WHERE player = '" . $player . "' ORDER BY '" . $fileTypes[$i] . "'.`session` DESC LIMIT 1";
+				try {
 					$temp = $fileTypes[$i];
-					echo $temp;
-					echo $player;
-					$query3 = "SELECT session 
-						FROM $temp
-						WHERE player = $player
-						ORDER BY session 
-						DESC LIMIT 1";
+
+					$query3 = "SELECT `session` FROM " . $temp . " WHERE player = '$player' ORDER BY `session` DESC LIMIT 1";
 					$result3 = $conn->query($query3) or die($conn->error);
-					$sessionNumber = 1;
-					while ($row = $result->fetch_assoc()) 
-					{
-						$sessionNumber = $row['session'] + 1;
+					if (!$incremented) {
+						if (mysqli_num_rows($result3) > 0) {
+							while ($row = $result3->fetch_assoc()) {
+								$sessionNumber = $row['session'] + 1;
+								$incremented = true;
+							}
+						}
 					}
-					echo $fileTypes[$i];
-                    $file = clean_dir($fileTypes[$i]);
-        
-                    $query = "LOAD DATA INFILE '" . $file . "'
-                        INTO TABLE '" . $fileTypes[$i] . "'
-                        FIELDS TERMINATED BY ',' 
-                        ENCLOSED BY '\"'
-                        LINES TERMINATED BY '\\n'
-                        IGNORE 1 ROWS
-                        SET sessione = '" . $sessionNumber . "'
-                        SET player = '" . $player . "' ";
-        
-                    $result = mysqli_query($conn, $query);
-        
-                    if (!$result) {
-        
+
+                    $file = clean_dir($temp);
+
+                    $query4 = "LOAD DATA INFILE '" . $file . "'
+							   INTO TABLE `" . $temp . "` 
+							   FIELDS TERMINATED by ','
+							   LINES TERMINATED BY \"\n\"
+							   IGNORE 1 ROWS 
+							   SET player = '$player', session = '$sessionNumber', date = '$fileDate'";
+					
+                    $result4 = mysqli_query($conn, $query4);
+					
+                    if (!$result4) {
                         throw new Exception("Problema! Avvenuto col file: " . $file . "<br>");
                     }
                 } catch (Throwable $e) {
@@ -301,16 +310,28 @@
 
 			switch (userType) {
 				case 'player':
-					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics", true);
-
+					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+					break;
+				case 'coach':
+					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics", false);
+					CreateSidebarElement("sessions.php?user=" + user, "book", "Sessions", true);
+					break;
+				case 'manager':
+					
+					break;
+				case 'admin':
+					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
 					break;
 				default:
-					console.log(`Sorry, we are out of ${expr}.`);
+					console.log("UserType not found");
 			}
 
 			function  CreateSidebarElement(href, icon, name, active){
 				var liElement = document.createElement("li");
 				liElement.className += "sidebar-item";
+				if (active == true) {
+					liElement.className += " active";
+				}
 				var aElement = document.createElement("a");
 				aElement.className += "sidebar-link";
 				aElement.href = href;
@@ -319,11 +340,11 @@
 				//iElement.className += "align-middle";
 				//iElement.setAttribute("data-feather", icon);
 				
-				iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
+				//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
 				//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
 				var spanElement = document.createElement("span");
-				spanElement.className += name;
-				spanElement.textContent = "Graphics";
+				spanElement.className += " align-middle";
+				spanElement.textContent = name;
 
 				aElement.appendChild(iElement);
 				aElement.appendChild(spanElement);
