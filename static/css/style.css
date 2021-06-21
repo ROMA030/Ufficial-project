@@ -243,12 +243,16 @@
   -----------CARDS----------
   ---------------------------*/
 
+
+  #section{
+    background: url('../images/contact-background.jpg') center center no-repeat;
+	  background-size: cover;
+  }
+
   .cards
   {
     max-width: 1200px;
-    margin: 40px auto;
-    background: url('../images/contact-background.jpg') center center no-repeat;
-	  background-size: cover;
+    padding: 40px auto;
   }
 
   .card1
