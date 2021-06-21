@@ -1,5 +1,9 @@
 <?php
-    $coach = $_GET['user'];
+	session_start();
+?>
+<?php
+    $user = $_SESSION['username'];
+
     $conn = mysqli_connect("localhost","root","","xeos");
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -28,7 +32,7 @@
                 $result = mysqli_query($conn, $users);
                 $coachPlayer = "INSERT INTO coachplayer(Coach, Player) VALUES ('$coach', '$username')";
                 $result2 = mysqli_query($conn, $coachPlayer);
-                header("location: ../register-player.php?user=". $coach);
+                header("location: ../register-player.php");
                 exit();
             }
             mysqli_close($conn);

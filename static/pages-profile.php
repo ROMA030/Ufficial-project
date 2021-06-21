@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,14 +37,14 @@
 						Pages
 					</li>
 
-					<li class="sidebar-item active">
+					<li class="sidebar-item">
 						<a class="sidebar-link" href="dashboard.php">
 							<i class="align-middle" data-feather="sliders"></i>
 							<span class="align-middle">Dashboard</span>
 						</a>
 					</li>
 
-					<li class="sidebar-item">
+					<li class="sidebar-item active">
 						<a class="sidebar-link" href="pages-profile.php">
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
 						</a>
@@ -67,19 +70,16 @@
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 								data-bs-toggle="dropdown">
-								<img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
-									alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
+								<img src="" id="avatarImage" class="avatar img-fluid rounded me-1"/> <span class="text-dark" id="nameSurname">Charles Hall</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
+								<a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1"
 										data-feather="user"></i> Profile</a>
 								<a class="dropdown-item" href="#"><i class="align-middle me-1"
 										data-feather="pie-chart"></i> Analytics</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="pages-settings.html"><i class="align-middle me-1"
-										data-feather="settings"></i> Settings & Privacy</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1"
-										data-feather="help-circle"></i> Help Center</a>
+								<a class="dropdown-item" href="Contact.php"><i class="align-middle me-1"
+										data-feather="help-circle"></i> Contact</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#">Log out</a>
 							</div>
@@ -99,65 +99,62 @@
 						</div>
 						<div class="col-md-6 col-xl-6">
 							<div class="card mb-3">
-								<div class="card-header">
+								<div class="card-header" >
 									<h5 class="card-title mb-0">Profile Details</h5>
 								</div>
 								<div class="card-body text-center">
-									<img src="img/avatars/avatar-4.jpg" alt="Christina Mason"
-										class="img-fluid rounded-circle mb-2" width="128" height="128" />
-									<h5 class="card-title mb-0">Christina Mason</h5>
+									<img src="" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" id = "bigAvatarImage"/>
+									<h5 class="card-title mb-0" id="nameProfile">Christina Mason</h5>
 									<div class="text-muted mb-2">Lead Developer</div>
 
-									<div>
-										<a class="btn btn-primary btn-sm" href="#">Follow</a>
-										<a class="btn btn-primary btn-sm" href="#"><span
-												data-feather="message-square"></span> Message</a>
+								</div>
+								<hr class="my-0" />
+								<div class="card-body" id="myDiv">
+									<h5 class="h6 card-title">Type</h5>
+									<a href="#" id="userTypeAnchor" class="badge bg-primary me-1 my-1">A</a>
+								</div>
+								<hr class="my-0" />
+								<div class="card-body">
+									<h5 class="h6 card-title">Info</h5>
+										<div class="col-md-8">
+											<div class="card mb-3">
+												<div class="card-body">
+													<div class="row">
+														<div class="col-sm-3">
+														<h6 class="mb-0">Name</h6>
+														</div>
+														<div class="col-sm-9 text-secondary" id="nameP"></div>
+													</div>
+													<hr>
+													<div class="row">
+														<div class="col-sm-3">
+														<h6 class="mb-0">Surname</h6>
+														</div>
+														<div class="col-sm-9 text-secondary" id="surnameP"></div>
+													</div>
+													<hr>
+													<div class="row">
+														<div class="col-sm-3">
+														<h6 class="mb-0">Email</h6>
+														</div>
+														<div class="col-sm-9 text-secondary" id="emailP"></div>
+													</div>
+													<hr>
+													<div class="row">
+														<div class="col-sm-3">
+														<h6 class="mb-0">Username</h6>
+														</div>
+														<div class="col-sm-9 text-secondary" id="userP"></div>
+													</div>																					
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
-								<hr class="my-0" />
-								<div class="card-body">
-									<h5 class="h6 card-title">Skills</h5>
-									<a href="#" class="badge bg-primary me-1 my-1">HTML</a>
-									<a href="#" class="badge bg-primary me-1 my-1">JavaScript</a>
-									<a href="#" class="badge bg-primary me-1 my-1">Sass</a>
-									<a href="#" class="badge bg-primary me-1 my-1">Angular</a>
-									<a href="#" class="badge bg-primary me-1 my-1">Vue</a>
-									<a href="#" class="badge bg-primary me-1 my-1">React</a>
-									<a href="#" class="badge bg-primary me-1 my-1">Redux</a>
-									<a href="#" class="badge bg-primary me-1 my-1">UI</a>
-									<a href="#" class="badge bg-primary me-1 my-1">UX</a>
-								</div>
-								<hr class="my-0" />
-								<div class="card-body">
-									<h5 class="h6 card-title">About</h5>
-									<ul class="list-unstyled mb-0">
-										<li class="mb-1"><span data-feather="home" class="feather-sm me-1"></span> Lives
-											in <a href="#">San Francisco, SA</a></li>
-
-										<li class="mb-1"><span data-feather="briefcase" class="feather-sm me-1"></span>
-											Works at <a href="#">GitHub</a></li>
-										<li class="mb-1"><span data-feather="map-pin" class="feather-sm me-1"></span>
-											From <a href="#">Boston</a></li>
-									</ul>
-								</div>
-								<hr class="my-0" />
-								<div class="card-body">
-									<h5 class="h6 card-title">Elsewhere</h5>
-									<ul class="list-unstyled mb-0">
-										<li class="mb-1"><a href="#">staciehall.co</a></li>
-										<li class="mb-1"><a href="#">Twitter</a></li>
-										<li class="mb-1"><a href="#">Facebook</a></li>
-										<li class="mb-1"><a href="#">Instagram</a></li>
-										<li class="mb-1"><a href="#">LinkedIn</a></li>
-									</ul>
-								</div>
-							</div>
+							<div class="col-md-3 col-xl-3">
 						</div>
-						<div class="col-md-3 col-xl-3">
-						</div>
-					</div>
-
 				</div>
+					
 			</main>
 
 			<footer class="footer">
@@ -188,6 +185,88 @@
 	</div>
 
 	<script src="js/app.js"></script>
+
+	<?php
+		$user = $_SESSION['username'];
+		$name = $_SESSION['Name'];
+		$surname = $_SESSION['Surname'];
+		$userType = $_SESSION['UserType'];
+		$srcAvatar = $_SESSION['Avatar'];
+		$email = $_SESSION['Email'];
+	?>
+
+	<script>
+
+		document.addEventListener("DOMContentLoaded", function () {
+			var user = "<?php echo $user; ?>";
+			var name = "<?php echo $name; ?>";
+			var surname = "<?php echo $surname; ?>";
+			var userType = "<?php echo $userType; ?>";
+			var avatar = "<?php echo $srcAvatar; ?>";
+			var email = "<?php echo $email; ?>"; 
+			var sidebarUl = document.getElementById("sidebarUl");
+			console.log(userType);
+			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
+			document.getElementById("userTypeAnchor").innerHTML = userType;
+			var image = document.getElementById('avatarImage');
+			var bigImage = document.getElementById('bigAvatarImage');
+			bigImage.src = avatar;
+            image.src = avatar;
+			document.getElementById("nameProfile").innerHTML =  name + ' ' + surname;
+			document.getElementById("nameP").innerHTML = name;
+			document.getElementById("surnameP").innerHTML = surname;
+			document.getElementById("emailP").innerHTML = email;
+			document.getElementById("userP").innerHTML = user;
+
+
+			switch (userType) {
+				case 'player':
+					CreateSidebarElement("graphic.php", "book", "Graphics");
+					break;
+				case 'coach':
+					CreateSidebarElement("graphic.php", "book", "Graphics", false);
+					CreateSidebarElement("sessions.php", "book", "Sessions", false);
+					break;
+				case 'manager':
+					
+					break;
+				case 'admin':
+					CreateSidebarElement("graphic.php", "book", "Graphics");
+					break;
+				default:
+					console.log("UserType not found");
+			}
+
+			function  CreateSidebarElement(href, icon, name, active){
+				var liElement = document.createElement("li");
+				liElement.className += "sidebar-item";
+				if (active == true) {
+					liElement.className += " active";
+				}
+				var aElement = document.createElement("a");
+				aElement.className += "sidebar-link";
+				aElement.href = href;
+				var divElement = document.createElement("div");
+				var iElement = document.createElement("i");
+				//iElement.className += "align-middle";
+				//iElement.setAttribute("data-feather", icon);
+				
+				//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
+				//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
+				var spanElement = document.createElement("span");
+				spanElement.className += " align-middle";
+				spanElement.textContent = name;
+
+				aElement.appendChild(iElement);
+				aElement.appendChild(spanElement);
+				aElement.appendChild(divElement);
+				
+				liElement.appendChild(aElement);
+				sidebarUl.appendChild(liElement);
+			}
+		});
+		
+	</script>
 
 </body>
 

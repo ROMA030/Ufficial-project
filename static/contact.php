@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,92 +26,22 @@
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="dashboard.php">
-          <span class="align-middle">AdminKit</span>
-        </a>
+					<span class="align-middle">AdminKit</span>
+				</a>
 
 				<ul class="sidebar-nav">
 					<li class="sidebar-header">
 						Pages
 					</li>
-
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="dashboard.php">
-              <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-            </a>
+				<a class="sidebar-link" href="dashboard.php">
+              		<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+           		</a>
 					</li>
-
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="pages-profile.php">
-              <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-sign-in.php">
-              <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-sign-up.php">
-              <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item active">
-						<a class="sidebar-link" href="pages-blank.php">
-              <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
-            </a>
-					</li>
-
-					<li class="sidebar-header">
-						Tools & Components
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-buttons.php">
-              <i class="align-middle" data-feather="square"></i> <span class="align-middle">Buttons</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-forms.php">
-              <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-cards.php">
-              <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-typography.php">
-              <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">Typography</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="icons-feather.php">
-              <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
-            </a>
-					</li>
-
-					<li class="sidebar-header">
-						Plugins & Addons
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="charts-chartjs.php">
-              <i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
-            </a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="maps-google.php">
-              <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
-            </a>
+              	<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+            	</a>
 					</li>
 				</ul>
 			</div>
@@ -116,9 +49,9 @@
 
 		<div class="main">
 			<nav class="navbar navbar-expand navbar-light navbar-bg">
-				<a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
+			<a class="sidebar-toggle js-sidebar-toggle">
+          		<i class="hamburger align-self-center"></i>
+        	</a>
 
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
@@ -274,6 +207,7 @@
 						</li>
 					</ul>
 				</div>
+				
 			</nav>
 
 			<main class="content">
@@ -320,21 +254,19 @@
                             </div>
                         </div>
                     </div>
-
+				</div>
 
                 <style>
                     h5 {text-align: center;}
                     p {text-align: center;}
                 </style>
 			</main>
-
-            <footer class="footer">
+       
+			<footer class="footer">
 				<div class="container-fluid">
 					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<p class="mb-0">
-								<a class="text-muted" target="_blank"><strong>Xeos</strong></a> &copy;
-							</p>
+					<div class="col-6 text-start">
+								<a class="text-muted" target="_blank"><strong>Xeos</strong></a> &copy;	
 						</div>
 						<div class="col-6 text-end">
 							<ul class="list-inline">
@@ -356,6 +288,62 @@
 	</div>
 
 	<script src="js/app.js"></script>
+
+	<?php
+		$user = $_SESSION['username'];
+		$name = $_SESSION['Name'];
+		$surname = $_SESSION['Surname'];
+		$userType = $_SESSION['UserType'];
+		$srcAvatar = $_SESSION['Avatar'];
+	?>
+
+	<script>
+		switch (userType) {
+			case 'player':
+				CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+				break;
+			case 'coach':
+				CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics", false);
+				CreateSidebarElement("sessions.php?user=" + user, "book", "Sessions", true);
+				break;
+			case 'manager':
+				
+				break;
+			case 'admin':
+				CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+				break;
+			default:
+				console.log("UserType not found");
+		}
+
+		function  CreateSidebarElement(href, icon, name, active){
+			var liElement = document.createElement("li");
+			liElement.className += "sidebar-item";
+			if (active == true) {
+				liElement.className += " active";
+			}
+			var aElement = document.createElement("a");
+			aElement.className += "sidebar-link";
+			aElement.href = href;
+			var divElement = document.createElement("div");
+			var iElement = document.createElement("i");
+			//iElement.className += "align-middle";
+			//iElement.setAttribute("data-feather", icon);
+			
+			//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
+			//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
+			var spanElement = document.createElement("span");
+			spanElement.className += " align-middle";
+			spanElement.textContent = name;
+
+			aElement.appendChild(iElement);
+			aElement.appendChild(spanElement);
+			aElement.appendChild(divElement);
+			
+			liElement.appendChild(aElement);
+			sidebarUl.appendChild(liElement);
+		}
+	</script>
 
 </body>
 

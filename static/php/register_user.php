@@ -1,4 +1,7 @@
 <?php
+	session_start();
+?>
+<?php
     $conn = mysqli_connect("localhost","root","","xeos");
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -28,7 +31,7 @@
             }else {
                 $users = "INSERT INTO users(Name, Surname, Email, Username, Password , Avatar, UserType) VALUES ('$name', '$surname', '$email', '$username', '$password' , '$avatar', '$usertype')";
                 $result = mysqli_query($conn, $users);
-                header("location: ../dashboard.php?user=". $username);
+                header("location: ../pages-sign-in.php");
                 exit();
             }
             mysqli_close($conn);

@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -193,20 +196,11 @@
 	<?php
 		$conn = mysqli_connect("localhost","root","","xeos");
 
-		$user = $_GET['user'];
-
-		$query = "SELECT * FROM users WHERE Username = '$user'";
-		$result = mysqli_query($conn, $query);
-		
-		while ($row = $result->fetch_assoc()) 
-		{
-			$name = $row['Name'];
-			$surname = $row['Surname'];
-			$userType = $row['UserType'];
-			$avatar = $row['Avatar'];
-		}
-
-		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
+		$user = $_SESSION['username'];
+		$name = $_SESSION['Name'];
+		$surname = $_SESSION['Surname'];
+		$userType = $_SESSION['UserType'];
+		$srcAvatar = $_SESSION['Avatar'];
 
 		$playersOfCoach = array();
 		$query2 = "SELECT Player FROM coachplayer WHERE Coach = '$user'";
@@ -310,17 +304,17 @@
 
 			switch (userType) {
 				case 'player':
-					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				case 'coach':
-					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics", false);
-					CreateSidebarElement("sessions.php?user=" + user, "book", "Sessions", true);
+					CreateSidebarElement("graphic.php", "book", "Graphics", false);
+					CreateSidebarElement("sessions.php", "book", "Sessions", true);
 					break;
 				case 'manager':
 					
 					break;
 				case 'admin':
-					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				default:
 					console.log("UserType not found");

@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,8 +74,8 @@
 												$result = mysqli_query($conn, $users);
 
 												if (mysqli_num_rows($result) > 0) {
-
-													header("Location: dashboard.php?user=". $username); 
+													$_SESSION['username']=$username;
+													header("Location: dashboard.php"); 
 													exit();
 												}else {
 													echo "<p class='text-danger text-center mt-3'>Username or password incorrect</p>";

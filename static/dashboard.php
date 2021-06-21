@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -367,8 +370,8 @@
 
 	<?php
 		$conn = mysqli_connect("localhost","root","","xeos");
-
-		$user = $_GET['user'];
+		$user = $_SESSION['username'];
+		//$user = $_GET['user'];
 
 		$query = "SELECT * FROM users WHERE Username = '$user'";
 		$result = mysqli_query($conn, $query);
@@ -376,12 +379,18 @@
 		while ($row = $result->fetch_assoc()) 
 		{
 			$name = $row['Name'];
+			$_SESSION['Name'] = $name;
 			$surname = $row['Surname'];
+			$_SESSION['Surname'] = $surname;
 			$userType = $row['UserType'];
+			$_SESSION['UserType'] = $userType;
 			$avatar = $row['Avatar'];
+			$email = $row['Email'];
+			$_SESSION['Email'] = $email;
+			
 		}
-
 		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
+		$_SESSION['Avatar'] = $srcAvatar;
 	?>
 
 	<script src="js/app.js"></script>
@@ -401,25 +410,28 @@
 
 			switch (userType) {
 				case 'player':
-					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				case 'coach':
-					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
-					CreateSidebarElement("sessions.php?user=" + user, "book", "Sessions");
+					CreateSidebarElement("graphic.php", "book", "Graphics", false);
+					CreateSidebarElement("sessions.php", "book", "Sessions", false);
 					break;
 				case 'manager':
 					
 					break;
 				case 'admin':
-					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				default:
-					console.log(`Sorry, we are out of ${expr}.`);
+					console.log("UserType not found");
 			}
 
-			function  CreateSidebarElement(href, icon, name){
+			function  CreateSidebarElement(href, icon, name, active){
 				var liElement = document.createElement("li");
 				liElement.className += "sidebar-item";
+				if (active == true) {
+					liElement.className += " active";
+				}
 				var aElement = document.createElement("a");
 				aElement.className += "sidebar-link";
 				aElement.href = href;
@@ -431,8 +443,8 @@
 				//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
 				//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
 				var spanElement = document.createElement("span");
-				spanElement.className += name;
-				spanElement.textContent = "Graphics";
+				spanElement.className += " align-middle";
+				spanElement.textContent = name;
 
 				aElement.appendChild(iElement);
 				aElement.appendChild(spanElement);

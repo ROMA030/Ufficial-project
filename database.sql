@@ -99,3 +99,10 @@ CREATE TABLE IF NOT EXISTS `gyro` (
     `session` varchar(40),
     `date` varchar(40)
 );
+
+CREATE TABLE IF NOT EXISTS `events` (
+    `Coach` varchar(40),
+    `Player` varchar(40),
+    `Date` varchar(40),
+    `Text` varchar(255)
+);
