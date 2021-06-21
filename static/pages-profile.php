@@ -73,7 +73,7 @@
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 								data-bs-toggle="dropdown">
-								<img src="" id="avatarImage" class="avatar img-fluid rounded me-1"/> <span class="text-dark" id="nameSurname">Charles Hall</span>
+								<img src="" id="avatarImage" class="avatar img-fluid rounded me-1"/> <span class="text-dark" id="nameSurname"></span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1"
@@ -107,14 +107,13 @@
 								</div>
 								<div class="card-body text-center">
 									<img src="" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="128" height="128" id = "bigAvatarImage"/>
-									<h5 class="card-title mb-0" id="nameProfile">Christina Mason</h5>
-									<div class="text-muted mb-2">Lead Developer</div>
+									<h5 class="card-title mb-0" id="nameProfile"></h5>
 
 								</div>
 								<hr class="my-0" />
 								<div class="card-body" id="myDiv">
 									<h5 class="h6 card-title">Type</h5>
-									<a href="#" id="userTypeAnchor" class="badge bg-primary me-1 my-1">A</a>
+									<a id="userTypeAnchor" class="badge bg-primary me-1 my-1">A</a>
 								</div>
 								<hr class="my-0" />
 								<div class="card-body">
