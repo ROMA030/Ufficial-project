@@ -10,9 +10,11 @@
 	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+	<link rel="icon" href="favicon.ico">
+	<link rel="stylesheet" href="css/style.css">
 
-	<title>Sign In | AdminKit Demo</title>
+
+	<title>Sign In </title>
 
 	<link href="css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -49,7 +51,7 @@
 											</label>
 										</div>
 										<div class="text-center mt-3">
-											<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Login</button>
+											<button type="submit" name="submit" value="Submit" class="registration__button1 ">Login</button>
 											<!--
 											<a href="index.html" class="btn btn-lg btn-primary">Sign in</a>
 											<button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->

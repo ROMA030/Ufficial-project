@@ -4,7 +4,7 @@
  */
 
 const theme = {
-  "primary": "#3B7DDD",
+  "primary": "#dd3b3b",
   "secondary": "#6c757d",
   "success": "#1cbb8c",
   "info": "#17a2b8",
