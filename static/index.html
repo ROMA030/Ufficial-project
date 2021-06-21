@@ -5,103 +5,382 @@
     <head>
 
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
         <link rel="stylesheet" href="css/style.css">
+
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@600&display=swap" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/fontawesome-all.min.css" rel="stylesheet">
+        <link href="css/swiper.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+        
         
         <link rel="icon" href="favicon.ico">
+
+
+        <script>
+            function myFunction() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "topnav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "topnav";
+                }
+                }
+        </script>
+
+        <script>
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(200);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
+            });
+
+            // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+                }
+        </script>
 
     </head>
 
 
-    <body>        
+    <body>
+        <a href="javascript:" onclick="topFunction()" id="return-to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>   
+
         <section class="cover">
             <div class="cover__filter"></div>
             <header class="header clearfix">
                 <img class="header__logo" src="retina-gym3.png"></img>
+                <div class="topnav" id="myTopnav">
+                    <a class="active" href=""><i class="fa fa-fw fa-home"></i> Home</a>
+                    <a href="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+                    <a href=""><i class="fa fa-fw fa-user"></i> Login/Register</a>
+                    <a href="#intro"><i class="fa fa-fw fa-search"></i> About</a>
+                    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>     
             </header>
                 <div class="cover__caption">
                     <div class="cover__caption__copy">
                         <h1>Search of incredible</h1>
-                        <h2>Secondary</h2>
                         <a href="#section" class="call__to__action">Allenati con noi!</a>
                     </div>
                 </div>
         </section>
 
-        <section class="banner clearfix">
-                <div class="banner__copy">
-                    <div class="banner__copy__text"> 
-                    <h2>Chi siamo?</h2>
-                    <p>Qui potrai registrarti come manager o allenatore, mentre potrai accedere come giocatore.  Il manager crea la squadra e permette all'allenatore, attraverso un id univoco, di farvi parte. Quest' ultimo inserirà ogni  giocatore specificandone i dati ed ognuno di loro potrà accedervi e visualizzare le proprie sessioni in un dettagliato grafico.  Inoltre, verrà fornito ad ogni squadra un calendario dove all'interno gli allenatori inseriranno eventi e sessioni dei giocatori.</p>
-                </div>
-            </div>
-        </section>
+        <div id="intro" class="basic-1 bg-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h1>Chi siamo?</h1>
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6">
+                        <div class="text-container">
+                            <p><strong>Crea</strong> le tue squadre, permetti a loro di osservare i propri dati per vedere le proprie prestazioni e migliorarsi</p>
+                            <p><strong>Assegna</strong> gli allenatori alle tue squadre, permettendogli di inserire i dati della tua squadra</p>
+                            <p><strong>Allenati</strong> sempre di più per poter aumentare le tue prestazioni e raggiungere i tuoi obbiettivi</p>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of basic-1 -->
+        <!-- end of introduction -->
 
+<!-- role selection -->
+<div class="cards-2 form-1" id="section">
+    <div class="container">
+        <div class="row" >
+            <div class="col-lg-12">
 
-        <section class="cards clearfix" id="section">
-            <div class="card">
-                    <img src="diventare-allenatore-di-calcio-878x400.jpg" alt="" class="card__images">
+                <div class="card1">
+                    <img class="img-fluid" src="diventare-allenatore-di-calcio-878x400.jpg" alt="">
                     <div class="card__copy">
                         <h2>Allenatore</h2>
                         <p>Registrati oppure entra nel account già esistente, per iniziare a monitorare i dati dei tuoi giocatori!</p>
                         <div class="registration__buttons">
-                            <a href="" class="registration__button1">Registrati</a>
-                            <a href="" class="registration__button2">Accedi</a>
+                            <a href="pages-sign-up.php" class="registration__button1" >Registrati</a>
+                            <a href="pages-sign-in.php" class="registration__button2">Accedi</a>
                         </div>          
                     </div>
                 </div>
-                <div class="card">
-                    <img src="covid-manager-avanzato-12-ore.jpg" alt="" class="card__images">
+
+                <div class="card1">
+                    <img src="covid-manager-avanzato-12-ore.jpg" alt="" class="img-fluid">
                     <div class="card__copy">
                         <h2>Club manager</h2>
                         <p>Crea la tua squadra e permetti al tuo personale di gestire le prestazioni della tua squadra!</p>
                         <div class="registration__buttons">
-                            <a href="" class="registration__button1">Registrati</a>
-                            <a href="" class="registration__button2">Accedi</a>
+                            <a href="pages-sign-up.php" class="registration__button1" >Registrati</a>
+                            <a href="pages-sign-in.php" class="registration__button2">Accedi</a>
                         </div>          
                     </div>
                 </div>
-                <div class="card">
-                    <img src="img.jpg" alt="" class="card__images">
+
+                <div class="card1">
+                    <img src="img.jpg" alt="" class="img-fluid">
                     <div class="card__copy">
                         <h2>Giocatore</h2>
                         <p class="player__text">Unisciti alla tua squadra e monitora i tuoi dati per migliorare sempre di più!</p>
                         <div class="registration__buttons">
-                            <a href="" class="registration__button2">Accedi</a>
+                            <a href="pages-sign-in.php" class="registration__button2" >Accedi</a>
                         </div>          
                     </div>
-                </div>
-            
-        </section>
+                </div>  
+                
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <footer class="footer">
-            <p>copyright</p>
-        </footer>
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div> <!-- end of cards-2 -->
+<!-- end of role selection -->
 
 
+        <!-- Team -->
+        <div class="cards-2 bg-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="h2-heading">Membri del team</h2>
+                        <p class="p-heading">Questi sono i vari membri che hanno realizzato questo progetto e hanno reso tutto questo possibile</p>
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+                <div class="row" >
+                    <div class="col-lg-12" >
+                        
+                        <!-- Card -->
+                        <div class="card">
+                            <div class="card-image">
+                                <img class="img-fluid" src="images/team-member-1.jpg" alt="alternative">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Yegor Cherednychenko</h5>
+                                <p class="card-text">Sviluppatore</p>
+                                <span class="fa-stack">
+                                    <a href="#your-link">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x"></i>
+                                    </a>
+                                </span>
+                                <span class="fa-stack">
+                                    <a href="#your-link">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- end of card -->
+    
+                        <!-- Card -->
+                        <div class="card">
+                            <div class="card-image">
+                                <img class="img-fluid" src="images/team-member-2.jpg" alt="alternative">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Michele Arici</h5>
+                                <p class="card-text">Sviluppatore</p>
+                                <span class="fa-stack">
+                                    <a href="#your-link">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x"></i>
+                                    </a>
+                                </span>
+                                <span class="fa-stack">
+                                    <a href="#your-link">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- end of card -->
+
+                         <!-- Card -->
+                         <div class="card">
+                            <div class="card-image">
+                                <img class="img-fluid" src="images/team-member-2.jpg" alt="alternative">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Francesco Tonassi</h5>
+                                <p class="card-text">Sviluppatore</p>
+                                <span class="fa-stack">
+                                    <a href="#your-link">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x"></i>
+                                    </a>
+                                </span>
+                                <span class="fa-stack">
+                                    <a href="#your-link">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- end of card -->
+    
+                        <!-- Card -->
+                        <div class="card">
+                            <div class="card-image">
+                                <img class="img-fluid" src="images/team-member-3.jpg" alt="alternative">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Daniele Romano</h5>
+                                <p class="card-text">Sviluppatore</p>
+                                <span class="fa-stack">
+                                    <a href="#your-link">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x"></i>
+                                    </a>
+                                </span>
+                                <span class="fa-stack">
+                                    <a href="#your-link">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- end of card -->
+    
+                        <!-- Card -->
+                        <div class="card">
+                            <div class="card-image">
+                                <img class="img-fluid" src="images/team-member-4.jpg" alt="alternative">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Alessando Ragnoli</h5>
+                                <p class="card-text">Sviluppatore</p>
+                                <span class="fa-stack">
+                                    <a href="#your-link">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x"></i>
+                                    </a>
+                                </span>
+                                <span class="fa-stack">
+                                    <a href="#your-link">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- end of card -->
+        
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of cards-2 -->
+        <!-- end of team -->
+    
+    
+        <!-- Contact -->
+        <div id="contact" class="form-1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="h2-heading">Contattaci qui</h2>
+                        <p class="p-heading">Puoi contattarci quando vuoi</p>
+                        <ul class="list-unstyled li-space-lg">
+                            <li><i class="fas fa-map-marker-alt"></i> &nbsp; Via Enzo Ferrari 16/18 Palazzo Beta, Roncadelle</li>
+                            <li><i class="fas fa-phone"></i> &nbsp;<a href="tel:+39 030 373 2579">+39 030 373 2579</a></li>
+                            <li><i class="fas fa-envelope"></i> &nbsp;<a href="mailto:info@xeos.it,">info@xeos.it,</a></li>
+                        </ul>
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        
+                        <!-- Contact Form -->
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control-input" placeholder="Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control-input" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control-textarea" placeholder="Message" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control-submit-button">Submit</button>
+                            </div>
+                        </form>
+                        <!-- end of contact form -->
+    
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of form-1 -->
+        <!-- end of contact -->
+    
+    
+        <!-- Footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer-col first">
+                            <h6>About Xeos</h6>
+                            <p class="p-small">Accresce e forma in modo costante, coerente e continuativi il proprio patrimonio “umano”, affiancando i clienti nella realizzazione di progetti innovativi in ambito ICT</p>
+                        </div> <!-- end of footer-col -->
+                        <div class="footer-col second">
+                            <h6>Links</h6>
+                            <ul class="list-unstyled li-space-lg p-small">
+                                <li>Important: <a href="terms.html">Terms & Conditions</a>, <a href="privacy.html">Privacy Policy</a></li>
+                                <li>Useful: <a href="#">Colorpicker</a>, <a href="#">Icon Library</a>, <a href="#">Illustrations</a></li>
+                                <li>Menu: <a class="page-scroll" href="#intro">Home</a>, <a class="page-scroll" href="#section">Projects</a>,  <a class="page-scroll" href="#contact">Contact</a></li>
+                            </ul>
+                        </div> <!-- end of footer-col -->
+                        <div class="footer-col third">
+                            <span class="fa-stack">
+                                <a href="#your-link">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-facebook-f fa-stack-1x"></i>
+                                </a>
+                            </span>
+                            <span class="fa-stack">
+                                <a href="#your-link">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-twitter fa-stack-1x"></i>
+                                </a>
+                            </span>
+                            <span class="fa-stack">
+                                <a href="#your-link">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-pinterest-p fa-stack-1x"></i>
+                                </a>
+                            </span>
+                            <span class="fa-stack">
+                                <a href="#your-link">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-instagram fa-stack-1x"></i>
+                                </a>
+                            </span>
+                            <p class="p-small">Facci sapere cosa ne pensi <a href="mailto:info@xeos.it,"><strong>info@xeos.it,</strong></a></p>
+                        </div> <!-- end of footer-col -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of footer -->  
+        <!-- end of footer -->
+    
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </body>
 
