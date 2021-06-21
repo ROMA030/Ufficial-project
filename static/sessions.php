@@ -1,5 +1,8 @@
 <?php
 	session_start();
+	if (!isset($_SESSION["username"])) {
+		header("location: pages-sign-in.php");
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -194,6 +197,8 @@
 	<script src="js/app.js"></script>
 
 	<?php
+		ini_set("post_max_size", "30M");
+
 		$conn = mysqli_connect("localhost","root","","xeos");
 
 		$user = $_SESSION['username'];

@@ -1,3 +1,9 @@
+<?php
+	session_start();
+	if (!isset($_SESSION["username"])) {
+		header("location: pages-sign-in.php");
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -171,17 +177,11 @@
 
 	<?php
 		$conn = mysqli_connect("localhost","root","","xeos");
-		$user = $_GET['user'];
-		$query = "SELECT * FROM users WHERE Username = '$user'";
-		$result = mysqli_query($conn, $query);
-		while ($row = $result->fetch_assoc()) 
-		{
-			$name = $row['Name'];
-			$surname = $row['Surname'];
-			$userType = $row['UserType'];
-			$avatar = $row['Avatar'];
-		}
-		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
+		$user = $_SESSION['username'];
+		$userName = $_SESSION['Name'];
+		$userSurname = $_SESSION['Surname'];
+		$userType = $_SESSION['UserType'];
+		$srcAvatar = $_SESSION['Avatar'];
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$name = $_POST["name"];
@@ -217,8 +217,8 @@
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
 			var user = "<?php echo $user; ?>";
-			var name = "<?php echo $name; ?>";
-			var surname = "<?php echo $surname; ?>";
+			var name = "<?php echo $userName; ?>";
+			var surname = "<?php echo $userSurname; ?>";
 			var userType = "<?php echo $userType; ?>";
 			var avatar = "<?php echo $srcAvatar; ?>";
 			var sidebarUl = document.getElementById("sidebarUl");

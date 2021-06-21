@@ -1,5 +1,8 @@
 <?php
 	session_start();
+	if (!isset($_SESSION["username"])) {
+		header("location: pages-sign-in.php");
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +84,7 @@
 								<a class="dropdown-item" href="Contact.php"><i class="align-middle me-1"
 										data-feather="help-circle"></i> Contact</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Log out</a>
+								<a class="dropdown-item" href="php/log_out.php">Log out</a>
 							</div>
 						</li>
 					</ul>

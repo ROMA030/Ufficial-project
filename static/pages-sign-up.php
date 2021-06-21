@@ -58,7 +58,7 @@
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Scegli un avatar: </label>
-											<input type="file" name="avatar" accept="image/*" class="form-control" required />
+											<input type="file" name="avatar" accept="image/*" class="form-control"/>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Scegli un ruolo:</label>
