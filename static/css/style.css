@@ -239,7 +239,6 @@
   -----------COVER----------
   ---------------------------*/
 
-
   /*-------------------------
   -----------CARDS----------
   ---------------------------*/
@@ -248,6 +247,8 @@
   {
     max-width: 1200px;
     margin: 40px auto;
+    background: url('../images/contact-background.jpg') center center no-repeat;
+	  background-size: cover;
   }
 
   .card1
@@ -255,7 +256,7 @@
     height: 520px;
     width: 30%;
     margin: 0 1.5%;
-    background: #fff;
+    background: transparent;
     float: left;
     text-align: justify;
   }
@@ -296,6 +297,11 @@
     display: flex;
   }
 
+  .registration__buttons:hover{
+	  background-color: transparent;
+	  color: #0a4ee0;
+  }
+
   .registration__button1
   {
       max-height: 100%;
@@ -308,6 +314,11 @@
       margin-bottom: 5px;
   }
 
+  .registration__button1:hover{
+	  background-color: transparent;
+	  color: #0a4ee0;
+  }
+
   .registration__button2
   {
     max-height: 100%;
@@ -318,6 +329,11 @@
       border-radius: 3px;
       margin-left: 5px;
       margin-bottom: 5px;
+  }
+
+  .registration__button2:hover{
+	  background-color: transparent;
+	  color: #0a4ee0;
   }
 
   .cards-2 {
@@ -367,7 +383,7 @@
   }
   
   .cards-2 .fa-stack-2x {
-    color: #7dc22b;
+    color: #0a4ee0;
     transition: all 0.2s ease;
   }
   
@@ -381,7 +397,7 @@
   }
   
   .cards-2 .fa-stack:hover .fa-stack-1x {
-    color: #7dc22b;
+    color: #0a4ee0;
   }
   
   
