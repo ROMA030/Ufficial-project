@@ -26,45 +26,45 @@
 					<div class="d-table-cell align-middle">
 
 						<div class="text-center mt-4">
-							<h1 class="h2">Get started</h1>
+							<h1 class="h2">Register</h1>
 							<p class="lead">
-								Start creating the best possible user experience for you customers.
+								Start creating your profile.
 							</p>
 						</div>
 
 						<div class="card">
 							<div class="card-body">
 								<div class="m-sm-4">
-									<form method="post">
+									<form method="post" enctype="multipart/form-data" action="php/register_user.php">
 										<div class="mb-3">
-											<label class="form-label">Name</label>
-											<input class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name" />
+											<label class="form-label">Nome</label>
+											<input class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name" required/>
 										</div>
 										<div class="mb-3">
-											<label class="form-label">Surname</label>
-											<input class="form-control form-control-lg" type="text" name="surname" placeholder="Enter your surname name" />
+											<label class="form-label">Cognome</label>
+											<input class="form-control form-control-lg" type="text" name="surname" placeholder="Enter your surnname" required/>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Email</label>
-											<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" />
+											<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" required/>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Username</label>
-											<input class="form-control form-control-lg" type="username" name="username" placeholder="Enter username" />
+											<input class="form-control form-control-lg" type="text" name="username" placeholder="Enter username" required/>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Password</label>
-											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" />
+											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" required/>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Scegli un avatar: </label>
-											<input type="file" name="avatar" accept="image/*" required />
+											<input type="file" name="avatar" accept="image/*" class="form-control" required />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Scegli un ruolo:</label>
 											<select name="role" id="role" class="form-select mb-3">
-												<option value="Allenatore">Allenatore</option>
-												<option value="Manager">Club Manager</option>
+												<option value="coach">Allenatore</option>
+												<option value="manager">Club Manager</option>
 											</select>
 										</div>
 										<div class="text-center mt-3">
@@ -72,62 +72,20 @@
 											<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Sign up</button>
 										</div>
 									</form>
-
-									<?php
-										$name = $surname = $email = $username = $password = $avatar = $usertype = "";
-										// Used for connect to the database called "xeos"
-										$conn = mysqli_connect("localhost","root","","xeos");
-
-										// If there is an error connecting to database, exit 
-										if (mysqli_connect_errno()) {
-											echo "Failed to connect to MySQL: " . mysqli_connect_error();
-											exit();
-										}
-
-										// When submit is pressed, it assigne to username and password variables what you have written in form inputs
-										if ($_SERVER["REQUEST_METHOD"] == "POST") {
-											$name = $_POST["name"];
-											$surname = $_POST["surname"];
-											$email = $_POST["email"];
-											$username = $_POST["username"];
-											$password = $_POST["password"];
-											$avatar = $_POST["avatar"];
-											$usertype = $_POST['role'];
-
-											// If forum inputs aren't empty
-											if (!empty($name) && !empty($surname) && !empty($email) && !empty($username) && !empty($password)) {
-												
-												$checkUser = "SELECT * FROM users WHERE Username = '$username'";
-												$checkResult = mysqli_query($conn, $checkUser);
-
-												// If number of rows in result variable is major than 0
-												if (mysqli_num_rows($checkResult) > 0) {
-													echo "<h2 class='notification'>Username already exists</h2>";
-												}else {
-													$users = "INSERT INTO users(Name, Surname, Email, Username, Password , Avatar, UserType) VALUES ('$name', '$surname', '$email', '$username', '$password' , '$avatar', '$usertype')";
-													$result = mysqli_query($conn, $users);
-													echo "<h2 class='notification'>Successfully registered</h2>";
-													header("location: dashboard.php?type=". $userType);
-													exit();
-												}
-												mysqli_close($conn);
-											}else {
-												echo "<h2 class='notification'>Don't leave blank input</h2>";
-											}
-										}
-									?>
-
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</main>
 
-	<script src="js/app.js"></script>
 
-</body>
+
+		
+		</main>
+
+		<script src="js/app.js"></script>
+
+	</body>
 
 </html>

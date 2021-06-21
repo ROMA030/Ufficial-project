@@ -31,11 +31,11 @@
 									<form method="post">
 										<div class="mb-3">
 											<label class="form-label">Username</label>
-											<input class="form-control form-control-lg" type="username" name="username" placeholder="Enter your username" />
+											<input class="form-control form-control-lg" type="username" name="username" placeholder="Enter your username" required/>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Password</label>
-											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
+											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" required/>
 											<small>
 												<a href="pages-reset-password.html">Forgot password?</a>
 											</small>
@@ -70,23 +70,16 @@
 												$users = "SELECT * FROM users WHERE Username = '$username' and Password = '$password'";
 												$result = mysqli_query($conn, $users);
 
-												$type = "SELECT UserType FROM users WHERE Username = '$username' and Password = '$password'";
-												$userTypeResult = mysqli_query($conn, $type);
-
 												if (mysqli_num_rows($result) > 0) {
-													while ($row = $result->fetch_assoc()) 
-													{
-														$userType = $row['UserType'];
-													}
 
-													header("Location: dashboard.php?type=". $userType); 
+													header("Location: dashboard.php?user=". $username); 
 													exit();
 												}else {
-													echo "<h2>Username or password incorrect</h2>";
+													echo "<p class='text-danger text-center mt-3'>Username or password incorrect</p>";
 												}
 												mysqli_close($conn);
 											}else {
-												echo "<h2>Don't leave blank input</h2>";
+												echo "<p class='text-danger text-center mt-3'>Please compile all inputs</p>";
 												mysqli_close($conn);
 											}
 										}

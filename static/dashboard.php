@@ -29,7 +29,7 @@
 					</span>
 				</a>
 
-				<ul class="sidebar-nav">
+				<ul class="sidebar-nav" id="sidebarUl">
 					<li class="sidebar-header">
 						Pages
 					</li>
@@ -47,77 +47,6 @@
 						</a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-sign-in.php">
-							<i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-sign-up.php">
-							<i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign
-								Up</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="pages-blank.php">
-							<i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
-						</a>
-					</li>
-
-					<li class="sidebar-header">
-						Tools & Components
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-buttons.php">
-							<i class="align-middle" data-feather="square"></i> <span class="align-middle">Buttons</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-forms.php">
-							<i class="align-middle" data-feather="check-square"></i> <span
-								class="align-middle">Forms</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-cards.php">
-							<i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="ui-typography.php">
-							<i class="align-middle" data-feather="align-left"></i> <span
-								class="align-middle">Typography</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="icons-feather.php">
-							<i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
-						</a>
-					</li>
-
-					<li class="sidebar-header">
-						Plugins & Addons
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="charts-chartjs.php">
-							<i class="align-middle" data-feather="bar-chart-2"></i> <span
-								class="align-middle">Charts</span>
-						</a>
-					</li>
-
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="maps-google.php">
-							<i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
-						</a>
-					</li>
 				</ul>
 			</div>
 		</nav>
@@ -138,8 +67,7 @@
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 								data-bs-toggle="dropdown">
-								<img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"
-									alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
+								<img src="" id="avatarImage" class="avatar img-fluid rounded me-1"/> <span class="text-dark" id="nameSurname">Charles Hall</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
@@ -415,17 +343,13 @@
 					<div class="row text-muted">
 						<div class="col-6 text-start">
 							<p class="mb-0">
-								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit
-										Demo</strong></a> &copy;
+								<a class="text-muted" target="_blank"><strong>Xeos</strong></a> &copy;
 							</p>
 						</div>
 						<div class="col-6 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
+									<a class="text-muted" target="_blank" href="contact.php">Contact</a>
 								</li>
 								<li class="list-inline-item">
 									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
@@ -442,29 +366,86 @@
 	</div>
 
 	<?php
-		$type = $_GET['type'];
-		echo $type;
+		$conn = mysqli_connect("localhost","root","","xeos");
+
+		$user = $_GET['user'];
+
+		$query = "SELECT * FROM users WHERE Username = '$user'";
+		$result = mysqli_query($conn, $query);
 		
-		switch ($type) {
-			case "player":
-				
-
-
-				
-				break;
-			case 1:
-				echo "i equals 1";
-				break;
-			case 2:
-				echo "i equals 2";
-				break;
+		while ($row = $result->fetch_assoc()) 
+		{
+			$name = $row['Name'];
+			$surname = $row['Surname'];
+			$userType = $row['UserType'];
+			$avatar = $row['Avatar'];
 		}
+
+		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
 	?>
 
 	<script src="js/app.js"></script>
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
+			var user = "<?php echo $user; ?>";
+			var name = "<?php echo $name; ?>";
+			var surname = "<?php echo $surname; ?>";
+			var userType = "<?php echo $userType; ?>";
+			var avatar = "<?php echo $srcAvatar; ?>";
+			var sidebarUl = document.getElementById("sidebarUl");
+
+			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
+			var image = document.getElementById('avatarImage');
+            image.src = avatar;
+
+			switch (userType) {
+				case 'player':
+					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+					break;
+				case 'coach':
+					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+					CreateSidebarElement("sessions.php?user=" + user, "book", "Sessions");
+					break;
+				case 'manager':
+					
+					break;
+				case 'admin':
+					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+					break;
+				default:
+					console.log(`Sorry, we are out of ${expr}.`);
+			}
+
+			function  CreateSidebarElement(href, icon, name){
+				var liElement = document.createElement("li");
+				liElement.className += "sidebar-item";
+				var aElement = document.createElement("a");
+				aElement.className += "sidebar-link";
+				aElement.href = href;
+				var divElement = document.createElement("div");
+				var iElement = document.createElement("i");
+				//iElement.className += "align-middle";
+				//iElement.setAttribute("data-feather", icon);
+				
+				//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
+				//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
+				var spanElement = document.createElement("span");
+				spanElement.className += name;
+				spanElement.textContent = "Graphics";
+
+				aElement.appendChild(iElement);
+				aElement.appendChild(spanElement);
+				aElement.appendChild(divElement);
+				
+				liElement.appendChild(aElement);
+				sidebarUl.appendChild(liElement);
+			}
+
+
+
+
+
 			var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
 			var gradient = ctx.createLinearGradient(0, 0, 0, 225);
 			gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
@@ -684,7 +665,7 @@
 			});
 		});
 	</script>
-
+	<script src="js/app.js"></script>
 </body>
 
 </html>
