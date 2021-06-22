@@ -92,7 +92,6 @@
 
 			<main class="content">
                 <div class="mb-3">
-					</div>
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="card">
@@ -106,7 +105,8 @@
                         <div class="col-12 col-md-6">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title mb-0">NOME1</h5>
+									<div>
+                                   		<h5 class="card-title mb-0">NOME1</h5>
                                     </div>
                                     <div class="card-body"><p>Primo elemento</p>
                                     </div>
@@ -145,21 +145,22 @@
 			<footer class="footer">
 				<div class="container-fluid">
 					<div class="row text-muted">
-						<div class="col-6 text-start">							
-							<a class="text-muted" target="_blank"><strong>Xeos</strong></a> &copy;
-						</div>
-						<div class="col-6 text-end">
-							<ul class="list-inline">
-								<li class="list-inline-item">
-									<a class="text-muted" target="_blank" href="contact.php">Contact</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-								</li>
-							</ul>
+						<div class="col-6 text-start">
+							<a class="text-muted" target="_blank"><strong>Xeos</strong></a> &copy;	
+							</div>
+							<div class="col-6 text-end">
+								<ul class="list-inline">
+									<li class="list-inline-item">
+										<a class="text-muted" target="_blank" href="contact.php">Contact</a>
+									</li>
+									<li class="list-inline-item">
+										<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
+									</li>
+									<li class="list-inline-item">
+										<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -248,3 +249,5 @@
 </body>
 
 </html>
+
+
