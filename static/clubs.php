@@ -147,6 +147,10 @@
 	<script src="js/app.js"></script>
 
     <script>
+		function AddSessionButton(){
+			window.location.replace("sessions.php")
+		}
+
         var addCols = function (id, name, src, addCard){
             var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');
             if (addCard == true) {
@@ -164,7 +168,7 @@
             if (addCard == true) {
                 var myPanel = $('<div class="" id="AddPlayer"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user-plus"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Add a player</h3></div><div class="text-center mt-3"><button type="submit" name="addPlayer" class="btn btn-lg btn-primary">Add</button></div></div></div></div>');
             } else {
-                var myPanel = $('<div class="" id="'+id+'Player"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "playerAvatarImage'+ id +'"/><h3 class="mt-1 mb-3" id="">'+ name +'</h3></div><div class="text-center mt-3"><div class="row"><div class="col mt-0"><button type="submit" name="AddSessionButton'+ id +'" class="btn btn-lg btn-primary">Add Session</button></div><div class="col mt-0"><button type="submit" name="ShowSessionButton'+ id +'" class="btn btn-lg btn-primary">Show Session</button></div></div></div></div></div></div>');
+                var myPanel = $('<div class="" id="'+id+'Player"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "playerAvatarImage'+ id +'"/><h3 class="mt-1 mb-3" id="">'+ name +'</h3></div><div class="text-center mt-3"><div class="row"><div class="col mt-0"><button action="sessions.php" name="AddSessionButton'+ id +'" class="btn btn-lg btn-primary">Add Session</button></div><div class="col mt-0"><button type="submit" name="ShowSessionButton'+ id +'" class="btn btn-lg btn-primary">Show Session</button></div></div></div></div></div></div>');
             }
             
             myPanel.appendTo(myCol);
@@ -266,7 +270,7 @@
                 }
 
                 $playersData = array();
-                $playerNumber = mysqli_num_rows($result3);
+                $playerNumber = count($finalPlayer);
                 $x = 0;
                 foreach($finalPlayer as $pla){
                     $query4 = "SELECT * FROM users WHERE Username = '$pla'";
@@ -286,30 +290,22 @@
 
                         $playerFullName = $playerName . ' ' . $playerSurname;
                         echo '<script type="text/javascript">addPlayers("' . $x . '", "' . $playerFullName . '", "' . $playerSrcAvatar . '", false);</script>';
-                        $x = $x + 1;
-    
-                        if ($x == $playerNumber) {
-                            echo '<script type="text/javascript">addPlayers("", "", "", true);</script>';
-                        }
+                        
                     }
+					$x = $x + 1;
+    
+					if ($x == $playerNumber) {
+						echo '<script type="text/javascript">addPlayers("", "", "", true);</script>';
+					}
                 }
             }
         }
 
-        if(isset($_POST['add'])) {
-            echo "add";
-        }
-
-		for ($y=0; $y < $playerNumber; $y++) { 
-			if(isset($_POST["AddSessionButton".$y.""])) {
-				header("location: register-player.php");
-				ob_end_flush();
-			}
+		
+		if(isset($_POST["addPlayer"])) {
+			header("location: register-player.php",false);
 		}
-        
-        
-
-        
+	    
 	?>
 
 	<script>

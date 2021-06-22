@@ -297,6 +297,7 @@
 					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				case 'coach':
+					CreateSidebarElement("clubs.php", "users", "Clubs", false);
 					break;
 				case 'manager':
 					
