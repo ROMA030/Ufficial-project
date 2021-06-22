@@ -8,6 +8,13 @@
 <html lang="en">
 
 <head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -136,15 +143,33 @@
 									</div>
 									<div class="col-sm-6">
 										<div class="card">
-											<div class="card-body">
-												<div class="row">													
+										<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Benvenuto!</h5>
+													</div>
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="bell"></i>
+														</div>
+													</div>
 												</div>
+											<h1 class="mt-1 mb-3">Felice di rivederti! &#128540</h1>
 											</div>
 										</div>
 										<div class="card">
-											<div class="card-body">
+										<div class="card-body">
 												<div class="row">
-												</div>												
+													<div class="col mt-0">
+														<h5 class="card-title">Benvenuto!</h5>
+													</div>
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="bell"></i>
+														</div>
+													</div>
+												</div>
+											<h1 class="mt-1 mb-3">Felice di rivederti! &#128540</h1>
 											</div>
 										</div>
 									</div>
@@ -152,20 +177,53 @@
 							</div>
 						</div>
 
-						<div class="col-xl-6 col-xxl-7">
+						<div class="center col-xl-2 col-xxl-3" justify="center">
 							<div class="card flex-fill w-100">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Miglioramento (?)</h5>
+									<h5 class="card-title mb-0">I tuoi club!</h5>
 								</div>
-								<div class="card-body py-3">
-									<div class="chart chart-sm">
-										<canvas id="chartjs-dashboard-line"></canvas>
+								<div class="card-body py-3">	
+									<div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+											<img class="center img-fluid rounded-circle mb-2" width="250" height="250" src="img/avatars/avatar-2.jpg" alt="Squad">
+											<div class="carousel-caption">
+												<h3>Nome Squadra</h3>
+											</div>
+											</div>
+											<div class="carousel-item">
+											<img class="center img-fluid rounded-circle mb-2 center" width="250" height="250" src="img/avatars/avatar-3.jpg" alt="...">
+											<div class="carousel-caption">
+												<h3>Nome Squadra</h3>
+											</div>
+											</div>
+											<div class="carousel-item">
+											<img src="img/avatars/avatar-4.jpg" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" alt="...">
+											<div class="carousel-caption">
+												<h3>Nome Squadra</h3>
+											</div>
+											</div>
+										</div>
+										<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Previous</span>
+										</button>
+										<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Next</span>
+										</button>
 									</div>
 								</div>
 							</div>
+							<style>
+								.center {
+								display: block;
+								margin-left: auto;
+								margin-right: auto;
+								}
+							</style>
 						</div>
 					</div>
-
 					<div class="row">
 						<div class="col-12 col-lg-4 col-xxl-3 d-flex">
 							<div class="card flex-fill">
@@ -576,6 +634,17 @@
 		});
 	</script>
 	<script src="js/app.js"></script>
+
+	 <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
 </body>
 
 </html>
