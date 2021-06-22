@@ -17,24 +17,36 @@
 
         $avatar = addslashes(file_get_contents($_FILES['avatar']['tmp_name']));
 
-        // If forum inputs aren't empty
+        // If forum inputs aren't empty 
         if (!empty($name) && !empty($surname) && !empty($email) && !empty($username) && !empty($password)) {
-            
-            $checkUser = "SELECT * FROM users WHERE Username = '$username'";
-            $checkResult = mysqli_query($conn, $checkUser);
+                                            
+            // Validate password strength
+            $uppercase = preg_match('@[A-Z]@', $password);
+            $lowercase = preg_match('@[a-z]@', $password);
+            $number = preg_match('@[0-9]@', $password);
+            $specialChars = preg_match('@[^\w]@', $password);
 
-            // If number of rows in result variable is major than 0
-            if (mysqli_num_rows($checkResult) > 0) {
+            if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
                 header("location: ../pages-sign-up.php");
-                echo "<p class='text-danger text-center mt-3'>Username already exists</p>";
-                exit();
-            }else {
-                $users = "INSERT INTO users(Name, Surname, Email, Username, Password , Avatar, UserType) VALUES ('$name', '$surname', '$email', '$username', '$password' , '$avatar', '$usertype')";
-                $result = mysqli_query($conn, $users);
-                header("location: ../pages-sign-in.php");
-                exit();
+                echo "<p class='text-danger text-center mt-3'>Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character</p>";
+                exit();												
+            }else{
+                $checkUser = "SELECT * FROM users WHERE Username = '$username'";
+                $checkResult = mysqli_query($conn, $checkUser);
+
+                // If number of rows in result variable is major than 0
+                if (mysqli_num_rows($checkResult) > 0) {
+                    header("location: ../pages-sign-up.php");
+                    echo "<p class='text-danger text-center mt-3'>Username already exists</p>";
+                    exit();
+                }else {
+                    $users = "INSERT INTO users(Name, Surname, Email, Username, Password , Avatar, UserType) VALUES ('$name', '$surname', '$email', '$username', '$password' , '$avatar', '$usertype')";
+                    $result = mysqli_query($conn, $users);
+                    header("location: ../pages-sign-in.php");
+                    exit();
+                }
+                mysqli_close($conn);
             }
-            mysqli_close($conn);
-        }
+        }                
     }
 ?>
