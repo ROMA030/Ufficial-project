@@ -2,7 +2,9 @@
 	session_start();
 	if (!isset($_SESSION["username"])) {
 		header("location: pages-sign-in.php");
-	}
+	}elseif ($_SESSION["UserType"] == "player") {
+        header("location: not-here.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -145,23 +147,6 @@
 											</form>
 										</div>
 									</form>
-
-									<div style="padding-bottom: 25px"></div>
-
-									<div class="row">
-										<div class="col-12 col-lg-12 col-xxl-12 d-flex">
-											<div class="card flex-fill">
-												<div class="card-header">
-													<h5 class="card-title mb-0">Latest Sessions</h5>
-												</div>
-												
-												<div class="card-body" id="grapihcDiv">
-													
-												</div>
-											</div>
-										</div>
-									</div>
-
 								</div>
 							</div>
 						</div>
@@ -312,8 +297,6 @@
 					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				case 'coach':
-					CreateSidebarElement("graphic.php", "book", "Graphics", false);
-					CreateSidebarElement("sessions.php", "book", "Sessions", true);
 					break;
 				case 'manager':
 					

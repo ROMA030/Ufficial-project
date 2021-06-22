@@ -2,7 +2,9 @@
 	session_start();
 	if (!isset($_SESSION["username"])) {
 		header("location: pages-sign-in.php");
-	}
+	}elseif ($_SESSION["UserType"] == "player") {
+        header("location: not-here.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -260,10 +262,10 @@
 				var date = new Date(parseInt(dataJSON[j]["timestamp"]));
 				
 				if (fileType == "acc") {
-					finalArray.push({ x : date, y : parseInt(dataJSON[j]["accX"])});
+					finalArray.push({ x : date.toISOString(), y : parseInt(dataJSON[j]["accX"])});
 					chartTitle = "accX";
 				} else if (fileType == "ecg") {
-					finalArray.push({ x : date, y : parseInt(dataJSON[j]["respiration"])});
+					finalArray.push({ x : date.toISOString(), y : parseInt(dataJSON[j]["respiration"])});
 					chartTitle = "Respiration";
 				} else if (fileType == "gyro") {
 					finalArray.push({ x : date.toISOString(), y : parseInt(dataJSON[j]["gyroX"])});
@@ -341,59 +343,6 @@
 		while ($row = $result2->fetch_assoc()) {
             array_push($playersOfCoach, $row["Player"]);
         }
-
-		/*
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			$selectedPlayer = $_POST['playerOfSession'];
-			$query3 = "SELECT DISTINCT  date FROM other WHERE player = '$selectedPlayer'";
-			$result3 = mysqli_query($conn, $query3);
-
-			while ($row = $result3->fetch_assoc()) {
-				array_push($playerDates, $row["date"]);
-			}
-
-			echo '<script type="text/javascript">InsertDates(' . json_encode($playerDates) . ');</script>';
-		}
-
-		if ($_SERVER["REQUEST_METHOD"] == "GET") {
-			$selectedDate = $_GET['dateOfSession'];
-			//$fileTypes = array("acc", "ecg", "gyro", "other");
-			$fileTypes = array("acc", "gyro", "other");
-			for ($i=0; $i < 4; $i++) { 
-				$temp = $fileTypes[$i];
-				$selectedPlayer = "giocatore1";
-				/*
-				$query4 = "SELECT `session` FROM " . $temp . " WHERE player = '$selectedPlayer' ORDER BY `session` DESC LIMIT 1";
-				$result4 = $conn->query($query4) or die($conn->error);
-				*/
-				/*
-				switch ($temp) {
-					case "acc":
-						$query5 = "SELECT timestamp, accX, accY, accZ FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
-						break;
-					case "ecg":
-						$query5 = "SELECT timestamp, respiration, ecgLead1, ecgLead2, ecgLead3 FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
-						break;
-					case "gyro":
-						$query5 = "SELECT timestamp, gyroX, gyroY, gyroZ FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
-						break;
-					case "other":
-						$query5 = "SELECT timestamp, battery, skinTemp, ambientTemp, occupiedMemory, respirationRate, heartRate, gainCH0, gainCH1, gainCH2, gainCH3 FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
-						break;
-				}
-				//$query5 = "SELECT * FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
-				$result5 = mysqli_query($conn, $query5);
-
-				$dataArray = array();
-				while ($row = mysqli_fetch_assoc($result5)) {
-					$dataArray[] = $row;
-				}
-				echo '<script type="text/javascript">DrawGraphic(' . json_encode($dataArray) . ', "' . $temp . '");</script>';
-
-			}
-
-		}
-		*/
 
 		if (isset($_POST['Search'])) {
 			$selectedPlayer = $_POST['playerOfSession'];
@@ -500,17 +449,15 @@
 
 			switch (userType) {
 				case 'player':
-					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				case 'coach':
-					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics", true);
-					CreateSidebarElement("sessions.php?user=" + user, "book", "Sessions", false);
 					break;
 				case 'manager':
 					
 					break;
 				case 'admin':
-					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics");
+					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				default:
 					console.log("UserType not found");
