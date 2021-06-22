@@ -11566,12 +11566,12 @@ span.flatpickr-weekday {
     outline: 0;
 }
 .flatpickr-day.today {
-    border-color: #959ea9;
+    border-color: #a99595;
 }
 .flatpickr-day.today:focus,
 .flatpickr-day.today:hover {
-    background: #959ea9;
-    border-color: #959ea9;
+    background: #a99595;
+    border-color: #a99595;
     color: #fff;
 }
 .flatpickr-day.endRange,
@@ -11592,8 +11592,8 @@ span.flatpickr-weekday {
 .flatpickr-day.startRange.prevMonthDay,
 .flatpickr-day.startRange:focus,
 .flatpickr-day.startRange:hover {
-    background: #569ff7;
-    border-color: #569ff7;
+    background: #f75656;
+    border-color: #f75656;
     box-shadow: none;
     color: #fff;
 }
@@ -11610,7 +11610,7 @@ span.flatpickr-weekday {
 .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)) {
-    box-shadow: -10px 0 0 #569ff7;
+    box-shadow: -10px 0 0 #f75656;
 }
 .flatpickr-day.endRange.startRange.endRange,
 .flatpickr-day.selected.startRange.endRange,
@@ -11640,7 +11640,7 @@ span.flatpickr-weekday {
 }
 .flatpickr-day.week.selected {
     border-radius: 0;
-    box-shadow: -5px 0 0 #569ff7, 5px 0 0 #569ff7;
+    box-shadow: -5px 0 0 #f75656, 5px 0 0 #f75656;
 }
 .flatpickr-day.hidden {
     visibility: hidden;
@@ -11804,7 +11804,7 @@ span.flatpickr-weekday {
     border: 0;
 }
 .flatpickr-calendar.inline .flatpickr-day.today:before {
-    border-color: rgba(0, 0, 0, 0.2) transparent #3b7ddd;
+    border-color: rgba(0, 0, 0, 0.2) transparent #dd3b3b;
     border-style: solid;
     border-width: 0 0 7px 7px;
     bottom: 4px;

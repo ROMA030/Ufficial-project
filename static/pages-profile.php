@@ -15,13 +15,12 @@
 	<meta name="author" content="AdminKit">
 	<meta name="keywords"
 		content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
-
+		<link rel="stylesheet" type="text/css" href='css/app.css?v=<%= DateTime.Now.Ticks %>'/>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
 	<title>Profile | AdminKit Demo</title>
 
-	<link href="css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -84,7 +83,7 @@
 								<a class="dropdown-item" href="Contact.php"><i class="align-middle me-1"
 										data-feather="help-circle"></i> Contact</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="php/log_out.php">Log out</a>
+								<a class="dropdown-item" href="index.html">Log out</a>
 							</div>
 						</li>
 					</ul>
