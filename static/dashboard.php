@@ -236,45 +236,10 @@
 							</style>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-12 col-lg-4 col-xxl-3 d-flex">
-							<div class="card flex-fill">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Calendar</h5>
-								</div>
-								<div class="card-body d-flex">
-									<div class="align-self-center w-100">
-										<div class="chart">
-											<div id="datetimepicker-dashboard"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 
-						<div class="col-12 col-lg-8 col-xxl-9 d-flex">
-							<div class="card flex-fill">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Upcoming Events</h5>
-								</div>
-								<div>
-									<div class="align-self-center w-100">
-										<div class="row">
-											<div class="col-sm-3"></div>
-											<div class="col-sm-6">
-												<div class="card">
-													<div class="card-body">
-														<div class="row">
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-3"></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+
+					<div class="row">
+						
 					</div>
 
 					<div class="row">
