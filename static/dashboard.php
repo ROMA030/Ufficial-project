@@ -381,8 +381,7 @@
 					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				case 'coach':
-					CreateSidebarElement("graphic.php", "book", "Graphics", false);
-					CreateSidebarElement("sessions.php", "book", "Sessions", false);
+                    CreateSidebarElement("clubs.php", "users", "Clubs", false);
 					break;
 				case 'manager':
 					

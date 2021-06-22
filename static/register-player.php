@@ -2,7 +2,9 @@
 	session_start();
 	if (!isset($_SESSION["username"])) {
 		header("location: pages-sign-in.php");
-	}
+	}elseif ($_SESSION["UserType"] == "player") {
+        header("location: not-here.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -217,8 +219,8 @@
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
 			var user = "<?php echo $user; ?>";
-			var name = "<?php echo $userName; ?>";
-			var surname = "<?php echo $userSurname; ?>";
+			var name = "<?php echo $name; ?>";
+			var surname = "<?php echo $surname; ?>";
 			var userType = "<?php echo $userType; ?>";
 			var avatar = "<?php echo $srcAvatar; ?>";
 			var sidebarUl = document.getElementById("sidebarUl");
@@ -226,14 +228,23 @@
 			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
 			var image = document.getElementById('avatarImage');
             image.src = avatar;
+			document.getElementById("dashRole").innerHTML =userType;
 
 			switch (userType) {
 				case 'player':
-					CreateSidebarElement("graphic.php?user=" + user, "book", "Graphics", true);
-
+					CreateSidebarElement("graphic.php", "book", "Graphics");
+					break;
+				case 'coach':
+					CreateSidebarElement("clubs.php", "users", "Clubs", false);
+					break;
+				case 'manager':
+					
+					break;
+				case 'admin':
+					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				default:
-					console.log(`Sorry, we are out of ${expr}.`);
+					console.log("UserType not found");
 			}
 
 			function  CreateSidebarElement(href, icon, name, active){

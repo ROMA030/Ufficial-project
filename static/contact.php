@@ -26,7 +26,7 @@
 
 <body>
 	<div class="wrapper">
-		<nav id="sidebar" class="sidebar js-sidebar">
+	<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="index.html">
 					<span class="align-middle">
@@ -34,20 +34,24 @@
 					</span>
 				</a>
 
-				<ul class="sidebar-nav">
+				<ul class="sidebar-nav" id="sidebarUl">
 					<li class="sidebar-header">
 						Pages
 					</li>
-					<li class="sidebar-item">
-				<a class="sidebar-link" href="dashboard.php">
-              		<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-           		</a>
+
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="dashboard.php">
+							<i class="align-middle" data-feather="sliders"></i>
+							<span class="align-middle">Dashboard</span>
+						</a>
 					</li>
+
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="pages-profile.php">
-              	<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-            	</a>
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+						</a>
 					</li>
+
 				</ul>
 			</div>
 		</nav>
@@ -172,66 +176,74 @@
 		$surname = $_SESSION['Surname'];
 		$userType = $_SESSION['UserType'];
 		$srcAvatar = $_SESSION['Avatar'];
+		$email = $_SESSION['Email'];
 	?>
 
 	<script>
-		var user = "<?php echo $user; ?>";
-		var name = "<?php echo $name; ?>";
-		var surname = "<?php echo $surname; ?>";
-		var userType = "<?php echo $userType; ?>";
-		var avatar = "<?php echo $srcAvatar; ?>";
-		var sidebarUl = document.getElementById("sidebarUl");
 
-		document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
-		var image = document.getElementById('avatarImage');
-		image.src = avatar;
-		document.getElementById("dashRole").innerHTML =userType;
+		document.addEventListener("DOMContentLoaded", function () {
+			var user = "<?php echo $user; ?>";
+			var name = "<?php echo $name; ?>";
+			var surname = "<?php echo $surname; ?>";
+			var userType = "<?php echo $userType; ?>";
+			var avatar = "<?php echo $srcAvatar; ?>";
+			var email = "<?php echo $email; ?>"; 
+			var sidebarUl = document.getElementById("sidebarUl");
+			console.log(userType);
+			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
+			document.getElementById("userTypeAnchor").innerHTML = userType;
+			var image = document.getElementById('avatarImage');
+			var bigImage = document.getElementById('bigAvatarImage');
+			bigImage.src = avatar;
+            image.src = avatar;
 
-		switch (userType) {
-			case 'player':
-				CreateSidebarElement("graphic.php", "book", "Graphics");
-				break;
-			case 'coach':
-				CreateSidebarElement("graphic.php", "book", "Graphics", false);
-				CreateSidebarElement("sessions.php", "book", "Sessions", false);
-				break;
-			case 'manager':
-				
-				break;
-			case 'admin':
-				CreateSidebarElement("graphic.php", "book", "Graphics");
-				break;
-			default:
-				console.log("UserType not found");
-		}
-
-		function  CreateSidebarElement(href, icon, name, active){
-			var liElement = document.createElement("li");
-			liElement.className += "sidebar-item";
-			if (active == true) {
-				liElement.className += " active";
+			switch (userType) {
+				case 'player':
+					CreateSidebarElement("graphic.php", "book", "Graphics");
+					break;
+				case 'coach':
+					CreateSidebarElement("graphic.php", "book", "Graphics", false);
+					CreateSidebarElement("sessions.php", "book", "Sessions", false);
+					break;
+				case 'manager':
+					
+					break;
+				case 'admin':
+					CreateSidebarElement("graphic.php", "book", "Graphics");
+					break;
+				default:
+					console.log("UserType not found");
 			}
-			var aElement = document.createElement("a");
-			aElement.className += "sidebar-link";
-			aElement.href = href;
-			var divElement = document.createElement("div");
-			var iElement = document.createElement("i");
-			//iElement.className += "align-middle";
-			//iElement.setAttribute("data-feather", icon);
-			
-			//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
-			//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
-			var spanElement = document.createElement("span");
-			spanElement.className += " align-middle";
-			spanElement.textContent = name;
 
-			aElement.appendChild(iElement);
-			aElement.appendChild(spanElement);
-			aElement.appendChild(divElement);
-			
-			liElement.appendChild(aElement);
-			sidebarUl.appendChild(liElement);
-		}
+			function  CreateSidebarElement(href, icon, name, active){
+				var liElement = document.createElement("li");
+				liElement.className += "sidebar-item";
+				if (active == true) {
+					liElement.className += " active";
+				}
+				var aElement = document.createElement("a");
+				aElement.className += "sidebar-link";
+				aElement.href = href;
+				var divElement = document.createElement("div");
+				var iElement = document.createElement("i");
+				//iElement.className += "align-middle";
+				//iElement.setAttribute("data-feather", icon);
+				
+				//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
+				//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
+				var spanElement = document.createElement("span");
+				spanElement.className += " align-middle";
+				spanElement.textContent = name;
+
+				aElement.appendChild(iElement);
+				aElement.appendChild(spanElement);
+				aElement.appendChild(divElement);
+				
+				liElement.appendChild(aElement);
+				sidebarUl.appendChild(liElement);
+			}
+		});
+		
 	</script>
 
 </body>

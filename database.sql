@@ -42,9 +42,16 @@ CREATE TABLE IF NOT EXISTS `users` (
 );
 
 CREATE TABLE IF NOT EXISTS `club` (
+    `ClubID` int NOT NULL AUTO_INCREMENT,
     `ClubName` varchar(40),
     `RandomKey` varchar(40),
-    `Avatar` longblob DEFAULT NULL
+    `Avatar` longblob DEFAULT NULL,
+    PRIMARY KEY (`ClubID`)
+);
+
+CREATE TABLE IF NOT EXISTS `clubCoach` (
+    `Club` varchar(40),
+    `Coach` varchar(40)
 );
 
 CREATE TABLE IF NOT EXISTS `coachPlayer` (
