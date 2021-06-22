@@ -93,10 +93,6 @@
 
 			<main class="content">
 				<div class="container-fluid p-0">
-
-					<div class="mb-3">
-						<h1 class="h3 d-inline align-middle">Profile</h1>
-					</div>
 					<div class="row">
 						<div class="col-md-3 col-xl-3">
 						</div>
@@ -147,7 +143,7 @@
 														<h6 class="mb-0">Username</h6>
 														</div>
 														<div class="col-sm-9 text-secondary" id="userP"></div>
-													</div>																					
+													</div>	
 												</div>
 											</div>
 										</div>
