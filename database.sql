@@ -38,7 +38,8 @@ CREATE TABLE IF NOT EXISTS `users` (
     `Username` varchar(30),
     `Password` varchar(40),
     `Avatar` longblob DEFAULT NULL,
-    `UserType` varchar(40)
+    `UserType` varchar(40),
+    `Risposta` varchar(40)
 );
 
 CREATE TABLE IF NOT EXISTS `club` (

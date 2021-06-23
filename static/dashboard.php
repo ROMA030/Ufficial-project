@@ -30,6 +30,7 @@
 
 	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/c9bd9ac924.js" crossorigin="anonymous"></script>
 
 	<script>
 		function collapseFunc()
@@ -43,7 +44,22 @@
 			
 		}
 	</script>
-	
+
+	<script>
+		function addEvent()
+		{
+			$("#calendar").evoCalendar('addCalendarEvent', [
+				{
+				  id: '09nk7Ts',
+				  name: "My Birthday",
+				  date: "February/15/2020",
+				  type: "allenamento",
+				  everyYear: true
+				}
+			  ]);
+			
+		}
+	</script>
 </head>
 
 <body>
@@ -238,102 +254,121 @@
 							</style>
 						</div>
 					</div>
+										
+										<a class="add_event_button" onclick="document.getElementById('id01').style.display='block'" style="text-decoration: none;" onmouseover = "this.style.background = '#fff'" onmouseout  = "this.style.background = '#8f0000'">Add event <i class="fas fa-plus-circle"></i></a>
+										
+										<div id="id01" class="modal">
+										  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+										  <form class="modal-content" >
+											<div class="container">
+											  <h1>Sign Up</h1>
+											  <p>Please fill in this form to create an account.</p>
+											  <hr>
+											  <label for="email"><b>Email</b></label>
+											  <input type="text" placeholder="Enter Email" name="email" required>
 
-				
-										<div class="container">
+											  <label for="psw"><b>Password</b></label>
+											  <input type="password" placeholder="Enter Password" name="psw" required>
 
-											<div class="calendar-base">
+											  <label for="psw-repeat"><b>Repeat Password</b></label>
+											  <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+      
+											  <label>
+												<input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+											  </label>
 
-												<div class="year">2017</div>
-												<!-- year -->
+											  <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
-												<div class="triangle-left"></div>
-												<!--triangle -->
-												<div class="triangle-right"></div>
-												<!--  triangle -->
-
-												<div class="months">
-													<span class="month-hover">Jan</span>
-													<span class="month-hover">Feb</span> 
-													<span class="month-hover">Mar</span> 
-													<strong class="month-color">Apr</strong>
-													<span class="month-hover">May</span>
-													<span class="month-hover">Jun</span>
-													<span class="month-hover">July</span> 
-													<span class="month-hover">Aug</span> 
-													<span class="month-hover">Sep</span> 
-													<span class="month-hover">Oct</span> 
-													<span class="month-hover">Nov</span> 
-													<span class="month-hover">Dec</span>
-												</div><!-- months -->
-												<hr class="month-line" />
-
-												<div class="days">SUN MON TUE WED THU FRI SAT</div>
-												<!-- days -->
-
-												<div class="num-dates">
-
-													<div class="first-week"><span class="grey">26 27 28 29 30 31</span> 01</div>
-													<!-- first week -->
-													<div class="second-week">02 03 04 05 06 07 08</div>
-													<!-- week -->
-													<div class="third-week"> 09 10 11 12 13 14 15</div>
-													<!-- week -->
-													<div class="fourth-week"> 16 17 18 19 20 21 22</div>
-													<!-- week -->
-													<div class="fifth-week"> 23 24 25 26 <strong class="white">27</strong> 28 29</div>
-													<!-- week -->
-													<div class="sixth-week"> 30 <span class="grey">01 02 03 04 05 06</span></div>
-													<!-- week -->
-												</div>
-												<!-- num-dates -->
-												<div class="event-indicator"></div>
-												<!-- event-indicator -->
-												<div class="active-day"></div>
-												<!-- active-day -->
-												<div class="event-indicator two"></div>
-												<!-- event-indicator -->
-
+											  <div>
+												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+												<button type="button" class="signupbtn"  onclick="addEvent(); document.getElementById('id01').style.display='none'">Add event</button>
+											  </div>
 											</div>
-											<!-- calendar-base -->
-											<div class="calendar-left">
-
-												<div class="hamburger">
-													<div class="burger-line"></div>
-													<!-- burger-line -->
-													<div class="burger-line"></div>
-													<!-- burger-line -->
-													<div class="burger-line"></div>
-													<!-- burger-line -->
-												</div>
-												<!-- hamburger -->
-
-
-												<div class="num-date">27</div>
-												<!--num-date -->
-												<div class="day">THURSDAY</div>
-												<!--day -->
-												<div class="current-events">Current Events
-													<br/>
-													<ul>
-														<li>Day 09 Daily CSS Image</li>
-													</ul>
-													<span class="posts">See post events</span></div>
-												<!--current-events -->
-
-												<div class="create-event">Create an Event</div>
-												<!-- create-event -->
-												<hr class="event-line" />
-												<div class="add-event"><span class="add">+</span></div>
-												<!-- add-event -->
-
-											</div>
-											<!-- calendar-left -->
-
+										  </form>
 										</div>
-											<!-- container prendi versione precedente e controlla meglio il sito che hai guardato te-->
-											
-								
+
+										<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+										
+										<script>
+										// Get the modal
+										var modal = document.getElementById('id01');
+
+										// When the user clicks anywhere outside of the modal, close it
+										window.onclick = function(event) {
+										  if (event.target == modal) {
+											modal.style.display = "none";
+										  }
+										}
+										</script>
+										
+										
+										<div class="row" id="calendar"></div>
+										
+										<script src="js/evo-calendar.min.js"></script>
+
+										<script>
+
+										$(document).ready(function() {
+															$('#calendar').evoCalendar({
+																theme:"Orange coral",
+																calendarEvents: [
+																	{
+																		id: 'Evento', // Event's ID (required)
+																		name: "New Year", // Event name (required)
+																		date: "January/1/2020", // Event date (required)
+																		description:"Buon anno",
+																		type: "holiday", // Event type (required)
+																		everyYear: true // Same event every year (optional)
+																	},
+																	{
+																		name: "Vacation Leave",
+																		badge: "02/13 - 02/15", // Event badge (optional)
+																		date: ["February/13/2020", "February/15/2020"], // Date range
+																		description: "Vacation leave for 3 days.", // Event description (optional)
+																		type: "event",
+																		color: "#63d867" // Event custom color (optional)
+																	},
+																	{
+																		name: "Vacation Leave",
+																		badge: "02/13 - 02/15", // Event badge (optional)
+																		date: ["February/13/2020", "February/15/2020"], // Date range
+																		description: "Vacation leave for 3 days.", // Event description (optional)
+																		type: "event",
+																		color: "#63d867" // Event custom color (optional)
+																	},
+																	{
+																		name: "Vacation Leave",
+																		badge: "02/13 - 02/15", // Event badge (optional)
+																		date: ["February/13/2020", "February/15/2020"], // Date range
+																		description: "Vacation leave for 3 days.", // Event description (optional)
+																		type: "event",
+																		color: "#63d867" // Event custom color (optional)
+																	},
+																	{
+																		name: "Vacation Leave",
+																		badge: "02/13 - 02/15", // Event badge (optional)
+																		date: ["February/13/2020", "February/15/2020"], // Date range
+																		description: "Vacation leave for 3 days.", // Event description (optional)
+																		type: "event",
+																		color: "#63d867" // Event custom color (optional)
+																	},
+																	{
+																		name: "Vacation Leave",
+																		badge: "02/13 - 02/15", // Event badge (optional)
+																		date: ["February/13/2020", "February/15/2020"], // Date range
+																		description: "Vacation leave for 3 days.", // Event description (optional)
+																		type: "event",
+																		color: "#63d867" // Event custom color (optional)
+																	},
+																	
+																]
+
+															})
+													})
+
+
+											</script>
+
 					
 
 					<div class="row">
@@ -440,10 +475,10 @@
 					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				case 'coach':
-                    CreateSidebarElement("clubs.php", "users", "Clubs", false);
+					CreateSidebarElement("clubs.php", "users", "Club", false);
 					break;
 				case 'manager':
-					
+					CreateSidebarElement("clubs.php", "users", "Club", false);
 					break;
 				case 'admin':
 					CreateSidebarElement("graphic.php", "book", "Graphics");
@@ -453,31 +488,14 @@
 			}
 
 			function  CreateSidebarElement(href, icon, name, active){
-				var liElement = document.createElement("li");
-				liElement.className += "sidebar-item";
 				if (active == true) {
-					liElement.className += " active";
+					var iconOnSide = $('<li class="sidebar-item active"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
+				} else {
+				var iconOnSide = $('<li class="sidebar-item"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
 				}
-				var aElement = document.createElement("a");
-				aElement.className += "sidebar-link";
-				aElement.href = href;
-				var divElement = document.createElement("div");
-				var iElement = document.createElement("i");
-				//iElement.className += "align-middle";
-				//iElement.setAttribute("data-feather", icon);
-				
-				//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
-				//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
-				var spanElement = document.createElement("span");
-				spanElement.className += " align-middle";
-				spanElement.textContent = name;
 
-				aElement.appendChild(iElement);
-				aElement.appendChild(spanElement);
-				aElement.appendChild(divElement);
-				
-				liElement.appendChild(aElement);
-				sidebarUl.appendChild(liElement);
+				iconOnSide.appendTo('#sidebarUl');
+				feather.replace()
 			}
 		});
 	</script>

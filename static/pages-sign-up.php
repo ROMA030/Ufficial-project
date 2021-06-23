@@ -36,23 +36,23 @@
 								<div class="m-sm-4">
 									<form method="post" enctype="multipart/form-data" action="php/register_user.php">
 										<div class="mb-3">
-											<label class="form-label">Nome</label>
+											<label class="form-label">Nome:</label>
 											<input class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name" required/>
 										</div>
 										<div class="mb-3">
-											<label class="form-label">Cognome</label>
+											<label class="form-label">Cognome:</label>
 											<input class="form-control form-control-lg" type="text" name="surname" placeholder="Enter your surnname" required/>
 										</div>
 										<div class="mb-3">
-											<label class="form-label">Email</label>
+											<label class="form-label">Email:</label>
 											<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" required/>
 										</div>
 										<div class="mb-3">
-											<label class="form-label">Username</label>
+											<label class="form-label">Username:</label>
 											<input class="form-control form-control-lg" type="text" name="username" placeholder="Enter username" required/>
 										</div>
 										<div class="mb-3">
-											<label class="form-label">Password</label>
+											<label class="form-label">Password:</label>
 											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" required/>
 										</div>
 										<div class="mb-3">
@@ -65,6 +65,10 @@
 												<option value="coach">Allenatore</option>
 												<option value="manager">Club Manager</option>
 											</select>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">Scrivi una parola che ti piace: (domanda di sicurezza)</label>
+											<input class="form-control form-control-lg" type="text" name="securityAnswer" placeholder="Enter answer" required/>
 										</div>
 										<div class="text-center mt-3">
 											<!--<a href="dashboard.php" class="btn btn-lg btn-primary">Sign up</a>!-->
