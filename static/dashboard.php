@@ -239,7 +239,6 @@
 						</div>
 					</div>
 
-					<div>
 										<div class="row" id="calendar"></div>
 										<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 										<script src="js/evo-calendar.min.js"></script>
@@ -273,7 +272,7 @@
 
 
 											</script>
-					</div>
+
 					
 
 					<div class="row">
