@@ -39,7 +39,7 @@
 											<label class="form-label">Password</label>
 											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" required/>
 											<small>
-												<a href="forgotPasswordRecovery.php">Forgot password?</a>
+												<a href="forgot-password-recovery.php">Forgot password?</a>
 											</small>
 										</div>
 										<div>

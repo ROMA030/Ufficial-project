@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	session_start();	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,41 +28,52 @@
 					<div class="d-table-cell align-middle">
 
 						<div class="card">
-							<div class="card-body">
+							<div class="card-body" >
 								<div class="m-sm-4">
 									<form method="post">
 										<div class="mb-3">
-											<label class="form-label">Email</label>
+											<label class="form-label">Email:</label>
 											<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" required/>
 										</div>
+										<div class="mb-3">
+											<label class="form-label">Scrivi una parola che ti piace: (domanda di sicurezza)</label>
+											<input class="form-control form-control-lg" type="text" name="conferma" placeholder="Enter your answer" required/>
+										</div>
 										<div class="text-center mt-3">
-											<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary" href="resetpassword.php">Reset</button>
+											<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Conferma</button>
 											<!--
 											<a href="index.html" class="btn btn-lg btn-primary">Sign in</a>
 											<button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
 										</div>
 									</form>
 
+									<script>
+										function ErroriFormattazione() {
+										var form = document.getElementById("form");
+										var panel1 = $('</br><h4 class="text-danger text-center mt-5">Email or answer are incorrect</h4>');											
+										panel1.appendTo(form);
+										}
+									</script>
 									<?php
-										$email = "";
 										// Used for connect to the database called "sito"
 										$conn = mysqli_connect("localhost","root","","xeos");
 
 										// When submit is pressed, it assigne to username and password variables what you have written in form inputs
 										if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-											$username = $_POST["email"];																		
-											$users = "SELECT * FROM users WHERE Email = '$email'";
+											$email = $_POST['email'];		
+											$securityAnswer	= $_POST['conferma'];	 														
+											$users = "SELECT * FROM users WHERE Email = '$email' and Risposta = '$securityAnswer'";
 											$result = mysqli_query($conn, $users);
 
 											if (mysqli_num_rows($result) > 0) {
-												$_SESSION['username']=$username;
-												header("Location: dashboard.php"); 
+												$_SESSION['email']=$email;
+												header("Location: reset-password.php"); 
 												exit();
-											}else {
-												echo "<p class='text-danger text-center mt-3'>Username or password incorrect</p>";
-											}
-											mysqli_close($conn);										
+											}else {									
+												echo "<script type='text/javascript'>ErroriFormattazione()</script>";
+											}	
+											mysqli_close($conn);								
 										}
 
 										// If there is an error connecting to database, exit 
@@ -71,8 +82,6 @@
 											exit();
 										}
 									?>
-
-
 								</div>
 							</div>
 						</div>
