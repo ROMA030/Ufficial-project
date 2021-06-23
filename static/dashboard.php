@@ -25,9 +25,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-	<link rel="stylesheet" href="static\css\app.css">
-	<link rel="stylesheet" href="static\css\evo-calendar.min.css">
-	<link rel="stylesheet" href="static\css\evo-calendar.orange-coral.min.css">
+	<link rel="stylesheet" href="css/evo-calendar.min.css">
+	<link rel="stylesheet" href="css/evo-calendar.orange-coral.min.css"> 
 
 	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -240,42 +239,42 @@
 						</div>
 					</div>
 
+					<div>
+										<div class="row" id="calendar"></div>
+										<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+										<script src="js/evo-calendar.min.js"></script>
 
-					<div class="row" id="calendar">
-					<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-					<script src="static\js\evo-calendar.min.js"></script>
+										<script>
 
-					<script>
+										$(document).ready(function() {
+															$('#calendar').evoCalendar({
+																theme:"Orange coral",
+																calendarEvents: [
+																	{
+																		id: 'Evento', // Event's ID (required)
+																		name: "New Year", // Event name (required)
+																		date: "January/1/2020", // Event date (required)
+																		description:"Buon anno",
+																		type: "holiday", // Event type (required)
+																		everyYear: true // Same event every year (optional)
+																	},
+																	{
+																		name: "Vacation Leave",
+																		badge: "02/13 - 02/15", // Event badge (optional)
+																		date: ["February/13/2020", "February/15/2020"], // Date range
+																		description: "Vacation leave for 3 days.", // Event description (optional)
+																		type: "event",
+																		color: "#63d867" // Event custom color (optional)
+																	}
+																]
 
-					$(document).ready(function() {
-										$('#calendar').evoCalendar({
-											theme:"Orange coral",
-											calendarEvents: [
-												{
-													id: 'Evento', // Event's ID (required)
-													name: "New Year", // Event name (required)
-													date: "January/1/2020", // Event date (required)
-													description:"Buon anno",
-													type: "holiday", // Event type (required)
-													everyYear: true // Same event every year (optional)
-												},
-												{
-													name: "Vacation Leave",
-													badge: "02/13 - 02/15", // Event badge (optional)
-													date: ["February/13/2020", "February/15/2020"], // Date range
-													description: "Vacation leave for 3 days.", // Event description (optional)
-													type: "event",
-													color: "#63d867" // Event custom color (optional)
-												}
-											]
-
-										})
-								})
+															})
+													})
 
 
-						</script>
-
+											</script>
 					</div>
+					
 
 					<div class="row">
 						<div class="col-12 col-lg-12 col-xxl-12 d-flex">
