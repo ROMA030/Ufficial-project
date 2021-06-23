@@ -30,6 +30,7 @@
 
 	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/c9bd9ac924.js" crossorigin="anonymous"></script>
 
 	<script>
 		function collapseFunc()
@@ -52,7 +53,7 @@
 				  id: '09nk7Ts',
 				  name: "My Birthday",
 				  date: "February/15/2020",
-				  type: "birthday",
+				  type: "allenamento",
 				  everyYear: true
 				}
 			  ]);
@@ -253,9 +254,56 @@
 							</style>
 						</div>
 					</div>
-										<a class="add_event_button" onclick="addEvent()">Add event</a>
-										<div class="row" id="calendar"></div>
+										
+										<a class="add_event_button" onclick="document.getElementById('id01').style.display='block'" style="text-decoration: none;" onmouseover = "this.style.background = '#fff'" onmouseout  = "this.style.background = '#8f0000'">Add event <i class="fas fa-plus-circle"></i></a>
+										
+										<div id="id01" class="modal">
+										  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+										  <form class="modal-content" >
+											<div class="container">
+											  <h1>Sign Up</h1>
+											  <p>Please fill in this form to create an account.</p>
+											  <hr>
+											  <label for="email"><b>Email</b></label>
+											  <input type="text" placeholder="Enter Email" name="email" required>
+
+											  <label for="psw"><b>Password</b></label>
+											  <input type="password" placeholder="Enter Password" name="psw" required>
+
+											  <label for="psw-repeat"><b>Repeat Password</b></label>
+											  <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+      
+											  <label>
+												<input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+											  </label>
+
+											  <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+											  <div>
+												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+												<button type="button" class="signupbtn"  onclick="addEvent(); document.getElementById('id01').style.display='none'">Add event</button>
+											  </div>
+											</div>
+										  </form>
+										</div>
+
 										<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+										
+										<script>
+										// Get the modal
+										var modal = document.getElementById('id01');
+
+										// When the user clicks anywhere outside of the modal, close it
+										window.onclick = function(event) {
+										  if (event.target == modal) {
+											modal.style.display = "none";
+										  }
+										}
+										</script>
+										
+										
+										<div class="row" id="calendar"></div>
+										
 										<script src="js/evo-calendar.min.js"></script>
 
 										<script>
