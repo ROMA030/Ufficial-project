@@ -30,6 +30,7 @@
 
 	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/c9bd9ac924.js" crossorigin="anonymous"></script>
 
 	<script>
 		function collapseFunc()
@@ -52,7 +53,7 @@
 				  id: '09nk7Ts',
 				  name: "My Birthday",
 				  date: "February/15/2020",
-				  type: "birthday",
+				  type: "allenamento",
 				  everyYear: true
 				}
 			  ]);
@@ -254,11 +255,11 @@
 						</div>
 					</div>
 										
-										<a class="add_event_button" onclick="document.getElementById('id01').style.display='block'" style="text-decoration: none;" onmouseover = "this.style.background = '#fff'" onmouseout  = "this.style.background = '#8f0000'">Add event</a>
+										<a class="add_event_button" onclick="document.getElementById('id01').style.display='block'" style="text-decoration: none;" onmouseover = "this.style.background = '#fff'" onmouseout  = "this.style.background = '#8f0000'">Add event <i class="fas fa-plus-circle"></i></a>
 										
 										<div id="id01" class="modal">
 										  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-										  <form class="modal-content" action="/action_page.php">
+										  <form class="modal-content" >
 											<div class="container">
 											  <h1>Sign Up</h1>
 											  <p>Please fill in this form to create an account.</p>
@@ -278,9 +279,9 @@
 
 											  <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
-											  <div class="clearfix">
+											  <div>
 												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-												<button type="submit" class="signupbtn">Sign Up</button>
+												<button type="button" class="signupbtn"  onclick="addEvent(); document.getElementById('id01').style.display='none'">Add event</button>
 											  </div>
 											</div>
 										  </form>
