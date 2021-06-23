@@ -200,21 +200,21 @@
 									<div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
-											<img style="opacity: 0.7;" class="center img-fluid rounded-circle mb-2" width="250" height="250" src="img/avatars/avatar-2.jpg" alt="Squad">
-											<div class="carousel-caption d-none d-md-block mb-0">
-												<h3 style="color:Black;">Nome Squadra</h3>
+											<img class="center img-fluid rounded-circle mb-2" width="250" height="250" src="img/avatars/avatar-2.jpg" alt="Squad">
+											<div class="carousel-caption">
+												<h3>Nome Squadra</h3>
 											</div>
 											</div>
 											<div class="carousel-item">
-											<img style="opacity: 0.7;" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" src="img/avatars/avatar-3.jpg" alt="...">
-											<div class="carousel-caption d-none d-md-block mb-0">
-												<h3 style="color:Black;">Nome Squadra</h3>
+											<img class="center img-fluid rounded-circle mb-2 center" width="250" height="250" src="img/avatars/avatar-3.jpg" alt="...">
+											<div class="carousel-caption">
+												<h3>Nome Squadra</h3>
 											</div>
 											</div>
 											<div class="carousel-item">
-											<img style="opacity: 0.7;" src="img/avatars/avatar-4.jpg" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" alt="...">
-											<div class="carousel-caption d-none d-md-block mb-0">
-												<h3 style="color:Black;">Nome Squadra</h3>
+											<img src="img/avatars/avatar-4.jpg" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" alt="...">
+											<div class="carousel-caption">
+												<h3>Nome Squadra</h3>
 											</div>
 											</div>
 										</div>
@@ -235,22 +235,6 @@
 								margin-left: auto;
 								margin-right: auto;
 								}
-
-								.carousel-control-prev-icon {
-									background-color: #c593d8;
-									border-radius: 50%;
-								}
-							
-								.carousel-control-next-icon {
-									background-color: #c593d8;
-									border-radius: 50%;
-								}
-
-								/*img {
-									opacity: 0.4;
-									filter: alpha(opacity=40);
-								}*/	
-										
 							</style>
 						</div>
 					</div>
