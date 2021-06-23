@@ -67,21 +67,21 @@
                                             $specialChars = preg_match('@[^\w]@', $newpassword);
                                 
                                             if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($newpassword) < 8) { 
-                                                if($newpassword == $confpassword){      
+                                                header("Location: reset-password.php"); 
+												echo "<p class='text-danger text-center mt-3'>Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character</p>";
+												mysqli_close($conn);
+											}else {                                             
+												if($newpassword == $confpassword){      
                                                     $users = "UPDATE users SET Password = '$newpassword' WHERE Email = '$email'";
 												    $result = mysqli_query($conn, $users);                                                                  
                                                     header("Location: pages-sign-in.php"); 
                                                     exit();                                            
                                                     mysqli_close($conn);
                                                 }else  {
-                                                    header("Location: resetpassword.php"); 
+                                                    header("Location: reset-password.php"); 
                                                     echo "<p class='text-danger text-center mt-3'>Passwords must be the same.</p>";
 												    mysqli_close($conn);
                                                 }   
-											}else {
-                                                //header("Location: resetpassword.php"); 
-												echo "<p class='text-danger text-center mt-3'>Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character</p>";
-												mysqli_close($conn);
 											}
 										}
 
