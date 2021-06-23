@@ -104,33 +104,30 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					
-
-					<h1 class="h3 mb-3">Create a club</h1>
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<h1 class="h3 mb-3">Create a club</h1>
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<button id="backButton" class="btn btn-lg btn-primary">Back</button>
+								</li>
+							</ul>
+						</div>
+					</div>
 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<div class="row text-muted">
-										<div class="col-6 text-start">
-											<p class="mb-0">
-												<h5 class="card-title mb-0">Complete the form</h5>
-											</p>
-										</div>
-										<div class="col-6 text-end">
-											<ul class="list-inline">
-												<li class="list-inline-item">
-													<button id="backButton" class="btn btn-lg btn-primary">Back</button>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!--
+
 									<div class="row">
 										<h5 class="card-title mb-0">Complete the form</h5>
 									</div>
-									-->
+									
 								</div>
 								<div class="card-body">
 									<div class="m-sm-4" id="show">
@@ -310,44 +307,31 @@
 
 			switch (userType) {
 				case 'player':
-
+					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				case 'coach':
-					CreateSidebarElement("clubs.php", "users", "Clubs", false);
+                    CreateSidebarElement("clubs.php", "users", "Club", false);
 					break;
 				case 'manager':
-					CreateSidebarElement("clubs.php", "users", "Clubs", false);
+					CreateSidebarElement("clubs.php", "users", "Club", false);
 					break;
 				case 'admin':
-					CreateSidebarElement("clubs.php", "book", "Clubs", false);
+					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				default:
 					console.log("UserType not found");
 			}
 
-			function  CreateSidebarElement(href, icon, name, active){
-				var liElement = document.createElement("li");
-				liElement.className += "sidebar-item";
-				var aElement = document.createElement("a");
-				aElement.className += "sidebar-link";
-				aElement.href = href;
-				var divElement = document.createElement("div");
-				var iElement = document.createElement("i");
-				//iElement.className += "align-middle";
-				//iElement.setAttribute("data-feather", icon);
-				
-				//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
-				//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
-				var spanElement = document.createElement("span");
-				spanElement.className += name;
-				spanElement.textContent = "Graphics";
 
-				aElement.appendChild(iElement);
-				aElement.appendChild(spanElement);
-				aElement.appendChild(divElement);
-				
-				liElement.appendChild(aElement);
-				sidebarUl.appendChild(liElement);
+			function  CreateSidebarElement(href, icon, name, active){
+				if (active == true) {
+					var iconOnSide = $('<li class="sidebar-item active"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
+				} else {
+					var iconOnSide = $('<li class="sidebar-item"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
+				}
+
+				iconOnSide.appendTo('#sidebarUl');
+				feather.replace()
 			}
 		});
 	</script>

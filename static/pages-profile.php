@@ -221,11 +221,10 @@
 					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				case 'coach':
-					CreateSidebarElement("graphic.php", "book", "Graphics", false);
-					CreateSidebarElement("sessions.php", "book", "Sessions", false);
+                    CreateSidebarElement("clubs.php", "users", "Club", false);
 					break;
 				case 'manager':
-					
+					CreateSidebarElement("clubs.php", "users", "Club", false);
 					break;
 				case 'admin':
 					CreateSidebarElement("graphic.php", "book", "Graphics");
@@ -234,32 +233,16 @@
 					console.log("UserType not found");
 			}
 
-			function  CreateSidebarElement(href, icon, name, active){
-				var liElement = document.createElement("li");
-				liElement.className += "sidebar-item";
-				if (active == true) {
-					liElement.className += " active";
-				}
-				var aElement = document.createElement("a");
-				aElement.className += "sidebar-link";
-				aElement.href = href;
-				var divElement = document.createElement("div");
-				var iElement = document.createElement("i");
-				//iElement.className += "align-middle";
-				//iElement.setAttribute("data-feather", icon);
-				
-				//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
-				//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
-				var spanElement = document.createElement("span");
-				spanElement.className += " align-middle";
-				spanElement.textContent = name;
 
-				aElement.appendChild(iElement);
-				aElement.appendChild(spanElement);
-				aElement.appendChild(divElement);
-				
-				liElement.appendChild(aElement);
-				sidebarUl.appendChild(liElement);
+			function  CreateSidebarElement(href, icon, name, active){
+				if (active == true) {
+					var iconOnSide = $('<li class="sidebar-item active"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
+				} else {
+					var iconOnSide = $('<li class="sidebar-item"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
+				}
+
+				iconOnSide.appendTo('#sidebarUl');
+				feather.replace()
 			}
 		});
 		

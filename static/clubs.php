@@ -99,18 +99,37 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Your Clubs</h1>
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<h1 class="h3 mb-3" id="pageTitle">Your Clubs</h1>
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item" id="addBackButton">
+									<button hidden id="backButton" class="btn btn-lg btn-primary">Back</button>
+								</li>
+							</ul>
+						</div>
+					</div>
 
 					<div class="row">
                         <div class="col-xxl-2 d-flex"></div>
                         <div class="col-xxl-8 d-flex">
                             <div class="w-100">
                                 <div class="container">
-                                    <form method="post">
+									<div class="row" id="contentPanel">
+										
+									</div>
+									<!--
+									<form method="post">
                                         <div class="row" id="contentPanel">
 
                                         </div>
                                     </form>
+									-->
+                                    
                                 </div>
                             </div>
                         </div>
@@ -146,17 +165,24 @@
 	<script src="js/app.js"></script>
 
     <script>
-		function cardClub(createClub){
+		var btn = document.getElementById('backButton');
+		btn.addEventListener('click', function() {
+			document.location.href = 'clubs.php';
+		});
+
+		function cardClub(){
 			var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');
-			if (createClub == true) {
-				var myPanel = $('<div class="" id="CreateClub"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Create your club</h3></div><div class="text-center mt-3"><button type="submit" name="createClub" class="btn btn-lg btn-primary">Create</button></div></div></div></div>');
-			} else {
-				var myPanel = $('<div class="" id="ShowClub"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">See your club</h3></div><div class="text-center mt-3"><button type="submit" name="seeClub" class="btn btn-lg btn-primary">See</button></div></div></div></div>');
-			}
-			
+			var myPanel = $('<div class="" id="CreateClub"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Create your club</h3></div><div class="text-center mt-3"><button type="submit" name="createClub" class="btn btn-lg btn-primary">Create</button></div></div></div></div>');
 			myPanel.appendTo(myCol);
             myCol.appendTo('#contentPanel');
 		}
+
+		var addCoachs = function (id, name, src, username){
+            var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');            
+            var myPanel = $('<div class="" id="'+id+'Coach"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "playerAvatarImage'+ id +'"/><h3 class="mt-1 mb-3" id="">'+ name +'</h3></div><div class="text-center mt-3"><div class="row"><div class="col mt-0"><button name="DeleteButton'+ id +'" value = "'+ username +'" onclick="DeleteCoach(this, '+ id +')" class="btn btn-lg btn-primary">Delete</button></div><div class="col mt-0"><button type="submit" name="ShowSessionButton'+ id +'" class="btn btn-lg btn-primary">Modify</button></div></div></div></div></div></div>');
+            myPanel.appendTo(myCol);
+            myCol.appendTo('#contentPanel');
+        };
 		
         var addCols = function (id, name, src, addCard, userType){
             var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');
@@ -195,6 +221,13 @@
             const contentClubs = document.getElementById("contentPanel");
             contentClubs.innerHTML = '';
         }
+
+		function DeleteCoach(elem, id) {
+			var coachUsername = elem.value;
+			var divToClear = document.getElementById(id + 'Coach');
+			divToClear.innerHTML = '';
+			document.location.href = 'php/delete_coach.php?user=' + coachUsername;
+		}
     
     </script>
     
@@ -216,9 +249,7 @@
         while ($row = mysqli_fetch_assoc($result2)) {
             $coachClubID = $row["Club"];
             $coach = $row["Coach"];
-
             //$coachsArray = explode(";", $coachs);
-            
             //foreach($coachsArray as $coach){
 			if ($user == $coach) {
 				array_push($clubsOfCoach, $coachClubID);
@@ -226,106 +257,141 @@
             //}
         }
 
-        $createClub = true;
+		$playerNumber = $coachNumber = 0;
+
 		if ($userType == "manager") {
 			$checkManager = "SELECT Club FROM clubmanager WHERE Manager = '$user'";
 			$managerResult = mysqli_query($conn, $checkManager);
 
 			if (mysqli_num_rows($managerResult) > 0) {
-				$createClub = false;
+				while ($row = mysqli_fetch_assoc($managerResult)) {
+					$clubManagerID = $row["Club"];
+
+					$coachOfThisClub = "SELECT Coach FROM clubcoach WHERE Club = '$clubManagerID'";
+					$coachResult = mysqli_query($conn, $coachOfThisClub);
+					while ($row2 = mysqli_fetch_assoc($coachResult)) {
+						$coachUsername = $row2["Coach"];
+
+						$coachInfo = "SELECT * FROM users WHERE Username = '$coachUsername'";
+						$coachInfoResult = mysqli_query($conn, $coachInfo);
+						
+						$coachNumber = 0;
+						while ($row3 = mysqli_fetch_assoc($coachInfoResult)) {
+							$coachUserName = $row3["Username"];
+							$coachName = $row3["Name"];
+							$coachSurname = $row3["Surname"];
+							$coachAvatar = $row3["Avatar"];
+							$coachFullName = $coachName . ' ' . $coachSurname;
+							if ($coachAvatar == "") {
+								$coachSrcAvatar = "img/avatars/default-avatar.png";
+							} else {
+								$coachSrcAvatar = "data:image/jpeg;base64,".base64_encode( $coachAvatar )."";
+							}
+
+							echo '<script type="text/javascript">addCoachs("' . $coachNumber . '", "' . $coachFullName . '", "' . $coachSrcAvatar . '", "' . $coachUserName . '");</script>';
+							$coachNumber += 1;
+						}
+					}
+				}
+			}else {
+				echo '<script type="text/javascript">cardClub();</script>';
+			}
+		}elseif ($userType == "coach") {
+			$query = "SELECT * FROM club";
+			$result = mysqli_query($conn, $query);
+
+			$clubsData = array();
+			$number = mysqli_num_rows($result);
+			$i = 0;
+
+			$playersOfClub = array();
+			while ($row = mysqli_fetch_assoc($result)) {
+				$clubsData[] = $row;
+				$clubID = $row["ClubID"];
+				foreach($clubsOfCoach as $id){
+					if ($clubID == $id) {
+						array_push($playersOfClub, $clubID);
+						$clubName = $row["ClubName"];
+						$clubAvatar = $row["Avatar"];
+						if ($clubAvatar == "") {
+							$clubSrcAvatar = "img/avatars/default-avatar.png";
+						} else {
+							$clubSrcAvatar = "data:image/jpeg;base64,".base64_encode( $clubAvatar )."";
+						}
+						echo '<script type="text/javascript">addCols("' . $clubID . '", "' . $clubName . '", "' . $clubSrcAvatar . '", false, "");</script>';
+						//$i = $i + 1;
+					}
+				}
+				$i = $i + 1;
+				if ($i == $number) {
+					/*
+					if ($userType == "manager") {
+						echo '<script type="text/javascript">cardClub('. $createClub .');</script>';
+					}else 
+					{} */
+					echo '<script type="text/javascript">addCols("", "", "", true, "'. $userType .'");</script>';
+					
+				}
+			}
+
+			
+			for ($j=0; $j <= $number; $j++) { 
+				if(isset($_POST["ClubButton".$j.""])) {
+					echo '<script type="text/javascript">RemoveClubs();</script>';
+					
+					$query3 = "SELECT Player FROM coachplayer WHERE Coach = '$user'";
+					$result3 = mysqli_query($conn, $query3);
+
+					$tempArray = array();
+					$query5 = "SELECT player FROM clubplayers WHERE Club = '$j'";
+					$result5 = mysqli_query($conn, $query5);
+					while ($row = mysqli_fetch_assoc($result5)) {
+						array_push($tempArray, $row["player"]);
+					}
+
+					$finalPlayer = array();
+					while ($row = mysqli_fetch_assoc($result3)) {
+						foreach($tempArray as $playerInClub){
+							if ($row["Player"] == $playerInClub) {
+								array_push($finalPlayer, $row["Player"]);	
+							}
+						}
+					}
+
+					$playersData = array();
+					$playerNumber = count($finalPlayer);
+					$x = 0;
+					foreach($finalPlayer as $pla){
+						$query4 = "SELECT * FROM users WHERE Username = '$pla'";
+						$result4 = mysqli_query($conn, $query4);
+
+						while ($row = mysqli_fetch_assoc($result4)) {
+							$playersData[] = $row;
+
+							$playerName = $row["Name"];
+							$playerSurname = $row["Surname"];
+							$playerAvatar = $row["Avatar"];
+							if ($playerAvatar == "") {
+								$playerSrcAvatar = "img/avatars/default-avatar.png";
+							} else {
+								$playerSrcAvatar = "data:image/jpeg;base64,".base64_encode( $playerAvatar )."";
+							}
+
+							$playerFullName = $playerName . ' ' . $playerSurname;
+							echo '<script type="text/javascript">addPlayers("' . $x . '", "' . $playerFullName . '", "' . $playerSrcAvatar . '", false);</script>';
+							
+						}
+						$x = $x + 1;
+		
+						if ($x == $playerNumber) {
+							echo '<script type="text/javascript">addPlayers("", "", "", true);</script>';
+						}
+					}
+				}
 			}
 		}
 
-		$query = "SELECT * FROM club";
-		$result = mysqli_query($conn, $query);
-
-		$clubsData = array();
-        $number = mysqli_num_rows($result);
-        $i = 0;
-
-		$playersOfClub = array();
-        while ($row = mysqli_fetch_assoc($result)) {
-            $clubsData[] = $row;
-            $clubID = $row["ClubID"];
-            foreach($clubsOfCoach as $id){
-                if ($clubID == $id) {
-					array_push($playersOfClub, $clubID);
-                    $clubName = $row["ClubName"];
-                    $clubAvatar = $row["Avatar"];
-                    if ($clubAvatar == "") {
-                        $clubSrcAvatar = "img/avatars/default-avatar.png";
-                    } else {
-                        $clubSrcAvatar = "data:image/jpeg;base64,".base64_encode( $clubAvatar )."";
-                    }
-                    echo '<script type="text/javascript">addCols("' . $clubID . '", "' . $clubName . '", "' . $clubSrcAvatar . '", false, "");</script>';
-                    //$i = $i + 1;
-                }
-            }
-            $i = $i + 1;
-            if ($i == $number) {
-				if ($userType == "manager") {
-					echo '<script type="text/javascript">cardClub('. $createClub .');</script>';
-				}else {
-					echo '<script type="text/javascript">addCols("", "", "", true, "'. $userType .'");</script>';
-				}
-            }
-        }
-
-        $playerNumber = 0;
-        for ($j=0; $j <= $number; $j++) { 
-            if(isset($_POST["ClubButton".$j.""])) {
-                echo '<script type="text/javascript">RemoveClubs();</script>';
-                
-                $query3 = "SELECT Player FROM coachplayer WHERE Coach = '$user'";
-                $result3 = mysqli_query($conn, $query3);
-
-				$tempArray = array();
-				$query5 = "SELECT player FROM clubplayers WHERE Club = '$j'";
-				$result5 = mysqli_query($conn, $query5);
-				while ($row = mysqli_fetch_assoc($result5)) {
-					array_push($tempArray, $row["player"]);
-				}
-
-                $finalPlayer = array();
-                while ($row = mysqli_fetch_assoc($result3)) {
-					foreach($tempArray as $playerInClub){
-						if ($row["Player"] == $playerInClub) {
-							array_push($finalPlayer, $row["Player"]);	
-						}
-					}
-                }
-
-                $playersData = array();
-                $playerNumber = count($finalPlayer);
-                $x = 0;
-                foreach($finalPlayer as $pla){
-                    $query4 = "SELECT * FROM users WHERE Username = '$pla'";
-                    $result4 = mysqli_query($conn, $query4);
-
-                    while ($row = mysqli_fetch_assoc($result4)) {
-                        $playersData[] = $row;
-
-                        $playerName = $row["Name"];
-                        $playerSurname = $row["Surname"];
-                        $playerAvatar = $row["Avatar"];
-                        if ($playerAvatar == "") {
-                            $playerSrcAvatar = "img/avatars/default-avatar.png";
-                        } else {
-                            $playerSrcAvatar = "data:image/jpeg;base64,".base64_encode( $playerAvatar )."";
-                        }
-
-                        $playerFullName = $playerName . ' ' . $playerSurname;
-                        echo '<script type="text/javascript">addPlayers("' . $x . '", "' . $playerFullName . '", "' . $playerSrcAvatar . '", false);</script>';
-                        
-                    }
-					$x = $x + 1;
-    
-					if ($x == $playerNumber) {
-						echo '<script type="text/javascript">addPlayers("", "", "", true);</script>';
-					}
-                }
-            }
-        }
+		
 
 		if(isset($_POST["createClub"])) {
 			header("location: register-club.php",false);
@@ -376,10 +442,11 @@
 					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				case 'coach':
-                    CreateSidebarElement("clubs.php", "users", "Clubs", true);
+                    CreateSidebarElement("clubs.php", "users", "Club", true);
 					break;
 				case 'manager':
-					
+					document.getElementById("pageTitle").innerHTML = "Coaches in your club";
+					CreateSidebarElement("clubs.php", "users", "Club", true);
 					break;
 				case 'admin':
 					CreateSidebarElement("graphic.php", "book", "Graphics");
@@ -389,31 +456,14 @@
 			}
 
 			function  CreateSidebarElement(href, icon, name, active){
-				var liElement = document.createElement("li");
-				liElement.className += "sidebar-item";
 				if (active == true) {
-					liElement.className += " active";
+					var iconOnSide = $('<li class="sidebar-item active"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
+				} else {
+					var iconOnSide = $('<li class="sidebar-item"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
 				}
-				var aElement = document.createElement("a");
-				aElement.className += "sidebar-link";
-				aElement.href = href;
-				var divElement = document.createElement("div");
-				var iElement = document.createElement("i");
-				//iElement.className += "align-middle";
-				//iElement.setAttribute("data-feather", icon);
-				
-				//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
-				iElement.innerHTML = `<i class="align-middle" data-feather="book"></i>`;
-				var spanElement = document.createElement("span");
-				spanElement.className += " align-middle";
-				spanElement.textContent = name;
 
-				aElement.appendChild(iElement);
-				aElement.appendChild(spanElement);
-				aElement.appendChild(divElement);
-				
-				liElement.appendChild(aElement);
-				sidebarUl.appendChild(liElement);
+				iconOnSide.appendTo('#sidebarUl');
+				feather.replace()
 			}
 		});
 
