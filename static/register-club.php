@@ -79,8 +79,7 @@
 								<i class="align-middle" data-feather="settings"></i>
 							</a>
 
-							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
-								data-bs-toggle="dropdown">
+							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
 								<img src="" id="avatarImage" class="avatar img-fluid rounded me-1"/> <span class="text-dark" id="nameSurname">Charles Hall</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
@@ -105,13 +104,33 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
+					
+
 					<h1 class="h3 mb-3">Create a club</h1>
 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Complete the form</h5>
+									<div class="row text-muted">
+										<div class="col-6 text-start">
+											<p class="mb-0">
+												<h5 class="card-title mb-0">Complete the form</h5>
+											</p>
+										</div>
+										<div class="col-6 text-end">
+											<ul class="list-inline">
+												<li class="list-inline-item">
+													<button id="backButton" class="btn btn-lg btn-primary">Back</button>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<!--
+									<div class="row">
+										<h5 class="card-title mb-0">Complete the form</h5>
+									</div>
+									-->
 								</div>
 								<div class="card-body">
 									<div class="m-sm-4" id="show">
@@ -168,6 +187,11 @@
 	<script src="js/app.js"></script>
 
     <script>
+		var btn = document.getElementById('backButton');
+		btn.addEventListener('click', function() {
+			document.location.href = 'clubs.php';
+		});
+
         function UsernameExist() {
             var p = document.createElement("p");
             p.className += "text-danger";
@@ -197,6 +221,14 @@
             panel2.appendTo(show);
             panel4.appendTo(show);
         }
+
+		function ErrorClub() {
+            var show = document.getElementById("show");
+            show.innerHTML = "";
+            var panel1 = $('</br><h4 class="text-danger text-center mt-5">You already have a club, please go back</h4>');
+            
+            panel1.appendTo(show);
+        }
     </script>
 
 	<?php
@@ -208,22 +240,27 @@
 		$userType = $_SESSION['UserType'];
 		$srcAvatar = $_SESSION['Avatar'];
 
+		$checkManager = "SELECT * FROM clubmanager WHERE Manager = '$user'";
+		$managerResult = mysqli_query($conn, $checkManager);
+		if (mysqli_num_rows($managerResult) > 0) {
+			echo "<script type='text/javascript'>ErrorClub()</script>";
+		}
+
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$clubName = $_POST["name"];
 
 			$avatar = addslashes(file_get_contents($_FILES['avatar']['tmp_name']));
-	
+			
+			
 			if (!empty($clubName)) {
-                $checkID = "SELECT ClubID FROM club ORDER BY ClubID DESC LIMIT 1";
+				$checkID = "SELECT ClubID FROM club ORDER BY ClubID DESC LIMIT 1";
 				$IDResult = mysqli_query($conn, $checkID);
-                $ID = 1;
-                if (mysqli_num_rows($IDResult) > 0) {
-                    while ($row = mysqli_fetch_assoc($IDResult)) {
-                        $ID = $row['ClubID'] + 1;
-                    }
-                }
-                
-
+				$ID = 1;
+				if (mysqli_num_rows($IDResult) > 0) {
+					while ($row = mysqli_fetch_assoc($IDResult)) {
+						$ID = $row['ClubID'] + 1;
+					}
+				}
 				$checkUser = "SELECT ClubName FROM club WHERE ClubName = '$clubName'";
 				$checkResult = mysqli_query($conn, $checkUser);
 	
@@ -231,19 +268,20 @@
 					echo "<script type='text/javascript'>UsernameExist()</script>";
 					//exit();
 				}else {
-                    $key = rand_key(20);
+					$key = rand_key(20);
 					$query = "INSERT INTO club(ClubName, RandomKey, Avatar) VALUES ('$clubName', '$key', '$avatar')";
 					$result = mysqli_query($conn, $query);
 
-                    $query2 = "INSERT INTO clubmanager(Club, Manager) VALUES ('$ID', '$user')";
+					$query2 = "INSERT INTO clubmanager(Club, Manager) VALUES ('$ID', '$user')";
 					$result2 = mysqli_query($conn, $query2);
 
-                    echo "<script type='text/javascript'>ShowKey('". $key ."')</script>";
+					echo "<script type='text/javascript'>ShowKey('". $key ."')</script>";
 					//header("location: ../register-player.php?user=". $user);
 					//exit();
 				}
-				//mysqli_close($conn);
 			}
+			
+			mysqli_close($conn);
 		}
 
         function rand_key($length) {
@@ -272,7 +310,7 @@
 
 			switch (userType) {
 				case 'player':
-					CreateSidebarElement("graphic.php", "book", "Graphics");
+
 					break;
 				case 'coach':
 					CreateSidebarElement("clubs.php", "users", "Clubs", false);
@@ -281,7 +319,7 @@
 					CreateSidebarElement("clubs.php", "users", "Clubs", false);
 					break;
 				case 'admin':
-					CreateSidebarElement("graphic.php", "book", "Graphics");
+					CreateSidebarElement("clubs.php", "book", "Clubs", false);
 					break;
 				default:
 					console.log("UserType not found");
@@ -298,7 +336,7 @@
 				//iElement.className += "align-middle";
 				//iElement.setAttribute("data-feather", icon);
 				
-				iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
+				//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
 				//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
 				var spanElement = document.createElement("span");
 				spanElement.className += name;
