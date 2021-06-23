@@ -43,7 +43,22 @@
 			
 		}
 	</script>
-	
+
+	<script>
+		function addEvent()
+		{
+			$("#calendar").evoCalendar('addCalendarEvent', [
+				{
+				  id: '09nk7Ts',
+				  name: "My Birthday",
+				  date: "February/15/2020",
+				  type: "birthday",
+				  everyYear: true
+				}
+			  ]);
+			
+		}
+	</script>
 </head>
 
 <body>
@@ -200,21 +215,21 @@
 									<div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
-											<img style="opacity: 0.7;" class="center img-fluid rounded-circle mb-2" width="250" height="250" src="img/avatars/avatar-2.jpg" alt="Squad">
-											<div class="carousel-caption d-none d-md-block mb-0">
-												<h3 style="color:Black;">Nome Squadra</h3>
+											<img class="center img-fluid rounded-circle mb-2" width="250" height="250" src="img/avatars/avatar-2.jpg" alt="Squad">
+											<div class="carousel-caption">
+												<h3>Nome Squadra</h3>
 											</div>
 											</div>
 											<div class="carousel-item">
-											<img style="opacity: 0.7;" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" src="img/avatars/avatar-3.jpg" alt="...">
-											<div class="carousel-caption d-none d-md-block mb-0">
-												<h3 style="color:Black;">Nome Squadra</h3>
+											<img class="center img-fluid rounded-circle mb-2 center" width="250" height="250" src="img/avatars/avatar-3.jpg" alt="...">
+											<div class="carousel-caption">
+												<h3>Nome Squadra</h3>
 											</div>
 											</div>
 											<div class="carousel-item">
-											<img style="opacity: 0.7;" src="img/avatars/avatar-4.jpg" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" alt="...">
-											<div class="carousel-caption d-none d-md-block mb-0">
-												<h3 style="color:Black;">Nome Squadra</h3>
+											<img src="img/avatars/avatar-4.jpg" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" alt="...">
+											<div class="carousel-caption">
+												<h3>Nome Squadra</h3>
 											</div>
 											</div>
 										</div>
@@ -235,26 +250,10 @@
 								margin-left: auto;
 								margin-right: auto;
 								}
-
-								.carousel-control-prev-icon {
-									background-color: #c593d8;
-									border-radius: 50%;
-								}
-							
-								.carousel-control-next-icon {
-									background-color: #c593d8;
-									border-radius: 50%;
-								}
-
-								/*img {
-									opacity: 0.4;
-									filter: alpha(opacity=40);
-								}*/	
-										
 							</style>
 						</div>
 					</div>
-
+										<a class="add_event_button" onclick="addEvent()">Add event</a>
 										<div class="row" id="calendar"></div>
 										<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 										<script src="js/evo-calendar.min.js"></script>
@@ -280,7 +279,40 @@
 																		description: "Vacation leave for 3 days.", // Event description (optional)
 																		type: "event",
 																		color: "#63d867" // Event custom color (optional)
-																	}
+																	},
+																	{
+																		name: "Vacation Leave",
+																		badge: "02/13 - 02/15", // Event badge (optional)
+																		date: ["February/13/2020", "February/15/2020"], // Date range
+																		description: "Vacation leave for 3 days.", // Event description (optional)
+																		type: "event",
+																		color: "#63d867" // Event custom color (optional)
+																	},
+																	{
+																		name: "Vacation Leave",
+																		badge: "02/13 - 02/15", // Event badge (optional)
+																		date: ["February/13/2020", "February/15/2020"], // Date range
+																		description: "Vacation leave for 3 days.", // Event description (optional)
+																		type: "event",
+																		color: "#63d867" // Event custom color (optional)
+																	},
+																	{
+																		name: "Vacation Leave",
+																		badge: "02/13 - 02/15", // Event badge (optional)
+																		date: ["February/13/2020", "February/15/2020"], // Date range
+																		description: "Vacation leave for 3 days.", // Event description (optional)
+																		type: "event",
+																		color: "#63d867" // Event custom color (optional)
+																	},
+																	{
+																		name: "Vacation Leave",
+																		badge: "02/13 - 02/15", // Event badge (optional)
+																		date: ["February/13/2020", "February/15/2020"], // Date range
+																		description: "Vacation leave for 3 days.", // Event description (optional)
+																		type: "event",
+																		color: "#63d867" // Event custom color (optional)
+																	},
+																	
 																]
 
 															})
@@ -289,6 +321,10 @@
 
 											</script>
 
+										</div>
+											<!-- container prendi versione precedente e controlla meglio il sito che hai guardato te-->
+											
+								
 					
 
 					<div class="row">
