@@ -11891,3 +11891,19 @@ span.flatpickr-weekday {
     margin-left: 100px;
   
   }
+  .add_event_button
+  {
+        display: inline-block;
+        padding: 0 10px;
+        line-height: 30px;
+        height: 30px;
+        background-color: #8f0000;
+        text-decoration: none;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
