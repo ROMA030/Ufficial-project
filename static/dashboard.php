@@ -321,6 +321,10 @@
 
 											</script>
 
+										</div>
+											<!-- container prendi versione precedente e controlla meglio il sito che hai guardato te-->
+											
+								
 					
 
 					<div class="row">
