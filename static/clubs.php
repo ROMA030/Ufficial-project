@@ -111,7 +111,6 @@
 
                                         </div>
                                     </form>
-                                    
                                 </div>
                             </div>
                         </div>
@@ -147,14 +146,31 @@
 	<script src="js/app.js"></script>
 
     <script>
-		function AddSessionButton(){
-			window.location.replace("sessions.php")
+		function cardClub(createClub){
+			var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');
+			if (createClub == true) {
+				var myPanel = $('<div class="" id="CreateClub"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Create your club</h3></div><div class="text-center mt-3"><button type="submit" name="createClub" class="btn btn-lg btn-primary">Create</button></div></div></div></div>');
+			} else {
+				var myPanel = $('<div class="" id="ShowClub"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">See your club</h3></div><div class="text-center mt-3"><button type="submit" name="seeClub" class="btn btn-lg btn-primary">See</button></div></div></div></div>');
+			}
+			
+			myPanel.appendTo(myCol);
+            myCol.appendTo('#contentPanel');
 		}
-
-        var addCols = function (id, name, src, addCard){
+		
+        var addCols = function (id, name, src, addCard, userType){
             var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');
             if (addCard == true) {
-                var myPanel = $('<div class="" id="AddClub"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Add a club</h3></div><div class="text-center mt-3"><button type="submit" name="add" class="btn btn-lg btn-primary">Add</button></div></div></div></div>');
+				switch (userType) {
+					case 'coach':
+						var myPanel = $('<div class="" id="JoinClub"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Join a club</h3></div><div class="text-center mt-3"><button type="submit" name="joinClub" class="btn btn-lg btn-primary">Join</button></div></div></div></div>');
+						break;
+					case 'admin':
+						
+						break;
+					default:
+						console.log("UserType not found");
+				}
             } else {
                 var myPanel = $('<div class="" id="'+id+'Club"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="users"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "clubAvatarImage"/><h3 class="mt-1 mb-3" id="">'+ name +'</h3></div><div class="text-center mt-3"><button type="submit" name="ClubButton'+ id +'" class="btn btn-lg btn-primary">Show Players</button></div></div></div></div>');
             }
@@ -168,7 +184,7 @@
             if (addCard == true) {
                 var myPanel = $('<div class="" id="AddPlayer"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user-plus"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Add a player</h3></div><div class="text-center mt-3"><button type="submit" name="addPlayer" class="btn btn-lg btn-primary">Add</button></div></div></div></div>');
             } else {
-                var myPanel = $('<div class="" id="'+id+'Player"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "playerAvatarImage'+ id +'"/><h3 class="mt-1 mb-3" id="">'+ name +'</h3></div><div class="text-center mt-3"><div class="row"><div class="col mt-0"><button action="sessions.php" name="AddSessionButton'+ id +'" class="btn btn-lg btn-primary">Add Session</button></div><div class="col mt-0"><button type="submit" name="ShowSessionButton'+ id +'" class="btn btn-lg btn-primary">Show Session</button></div></div></div></div></div></div>');
+                var myPanel = $('<div class="" id="'+id+'Player"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "playerAvatarImage'+ id +'"/><h3 class="mt-1 mb-3" id="">'+ name +'</h3></div><div class="text-center mt-3"><div class="row"><div class="col mt-0"><button name="AddSessionButton'+ id +'" class="btn btn-lg btn-primary">Add Session</button></div><div class="col mt-0"><button type="submit" name="ShowSessionButton'+ id +'" class="btn btn-lg btn-primary">Show Session</button></div></div></div></div></div></div>');
             }
             
             myPanel.appendTo(myCol);
@@ -199,17 +215,27 @@
         
         while ($row = mysqli_fetch_assoc($result2)) {
             $coachClubID = $row["Club"];
-            $coachs = $row["Coach"];
+            $coach = $row["Coach"];
 
-            $coachsArray = explode(";", $coachs);
+            //$coachsArray = explode(";", $coachs);
             
-            foreach($coachsArray as $coach){
-                if ($user == $coach) {
-                    array_push($clubsOfCoach, $coachClubID);
-                }
-            }
+            //foreach($coachsArray as $coach){
+			if ($user == $coach) {
+				array_push($clubsOfCoach, $coachClubID);
+			}
+            //}
         }
-        
+
+        $createClub = true;
+		if ($userType == "manager") {
+			$checkManager = "SELECT Club FROM clubmanager WHERE Manager = '$user'";
+			$managerResult = mysqli_query($conn, $checkManager);
+
+			if (mysqli_num_rows($managerResult) > 0) {
+				$createClub = false;
+			}
+		}
+
 		$query = "SELECT * FROM club";
 		$result = mysqli_query($conn, $query);
 
@@ -231,17 +257,17 @@
                     } else {
                         $clubSrcAvatar = "data:image/jpeg;base64,".base64_encode( $clubAvatar )."";
                     }
-                    
-                    echo '<script type="text/javascript">addCols("' . $clubID . '", "' . $clubName . '", "' . $clubSrcAvatar . '", false);</script>';
+                    echo '<script type="text/javascript">addCols("' . $clubID . '", "' . $clubName . '", "' . $clubSrcAvatar . '", false, "");</script>';
                     //$i = $i + 1;
                 }
-                
             }
-
             $i = $i + 1;
-
             if ($i == $number) {
-                echo '<script type="text/javascript">addCols("", "", "", true);</script>';
+				if ($userType == "manager") {
+					echo '<script type="text/javascript">cardClub('. $createClub .');</script>';
+				}else {
+					echo '<script type="text/javascript">addCols("", "", "", true, "'. $userType .'");</script>';
+				}
             }
         }
 
@@ -301,10 +327,33 @@
             }
         }
 
-		
+		if(isset($_POST["createClub"])) {
+			header("location: register-club.php",false);
+		}
+
+		if(isset($_POST["seeClub"])) {
+			header("location: my-club.php",false);
+		}
+
+		if(isset($_POST["add"])) {
+			header("location: register-player.php",false);
+		}
+
+		if(isset($_POST["joinClub"])) {
+			header("location: register-player.php",false);
+		}
+
 		if(isset($_POST["addPlayer"])) {
 			header("location: register-player.php",false);
 		}
+		
+		for ($k=0; $k < $playerNumber ; $k++) { 
+			if(isset($_POST["AddSessionButton". $k .""])) {
+				header("location: sessions.php",false);
+			}
+		}
+
+		
 	    
 	?>
 
