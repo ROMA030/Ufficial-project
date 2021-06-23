@@ -32,26 +32,11 @@
 								<div class="m-sm-4">
 									<form method="post">
 										<div class="mb-3">
-											<label class="form-label">Username</label>
-											<input class="form-control form-control-lg" type="username" name="username" placeholder="Enter your username" required/>
-										</div>
-										<div class="mb-3">
-											<label class="form-label">Password</label>
-											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" required/>
-											<small>
-												<a href="forgotPasswordRecovery.php">Forgot password?</a>
-											</small>
-										</div>
-										<div>
-											<label class="form-check">
-												<input class="form-check-input" type="checkbox" value="remember-me" name="remember-me" checked>
-												<span class="form-check-label">
-													Remember me next time
-												</span>
-											</label>
+											<label class="form-label">Email</label>
+											<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" required/>
 										</div>
 										<div class="text-center mt-3">
-											<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Login</button>
+											<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Reset</button>
 											<!--
 											<a href="index.html" class="btn btn-lg btn-primary">Sign in</a>
 											<button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
@@ -59,7 +44,7 @@
 									</form>
 
 									<?php
-										$username = $password = "";
+										$email = "";
 										// Used for connect to the database called "sito"
 										$conn = mysqli_connect("localhost","root","","xeos");
 
