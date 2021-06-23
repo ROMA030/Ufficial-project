@@ -11,17 +11,17 @@
  * 
 */
 .orange-coral {
-    -webkit-box-shadow: 0 10px 50px -20px rgb(255, 153, 102, 0.65);
-    box-shadow: 0 10px 50px -20px rgb(255, 153, 102, 0.65);
-    border: 2px solid #fc9567;
+    -webkit-box-shadow: 0 10px 50px -20px rgba(255, 102, 102, 0.65);
+    box-shadow: 0 10px 50px -20px rgba(255, 102, 102, 0.65);
+    border: 2px solid #fc6767;
 }
 .orange-coral .calendar-sidebar {
-    background: #fc9567;
-    background: -o-linear-gradient(left, #ff5e62, #ff9966);
-    background: -webkit-gradient(linear, left top, right top, from(#ff5e62), to(#ff9966));
-    background: linear-gradient(to right, #ff5e62, #ff9966);
-    -webkit-box-shadow: 5px 0 18px -3px rgb(255, 152, 101);
-    box-shadow: 5px 0 18px -3px rgb(255, 152, 101);
+    background: #fc6767;
+    background: -o-linear-gradient(left, #cc4d4d, #ff5e62);
+    background: -webkit-gradient(linear, left top, right top, from(#cc4d4d), to(#ff5e62));
+    background: linear-gradient(to right, #cc4d4d, #ff5e62);
+    -webkit-box-shadow: 5px 0 18px -3px rgb(255, 101, 101);
+    box-shadow: 5px 0 18px -3px rgb(255, 101, 101);
 }
 .orange-coral.sidebar-hide .calendar-sidebar {
     -webkit-box-shadow: none;
@@ -38,14 +38,14 @@
 }
 .orange-coral .calendar-sidebar > span#sidebarToggler,
 .orange-coral #eventListToggler {
-    background-color: #ff9665;
-    -webkit-box-shadow: 0 0 18px -3px rgb(255, 153, 102, 0.65);
-    box-shadow: 0 0 18px -3px rgb(255, 153, 102, 0.65);
+    background-color: #ff6565;
+    -webkit-box-shadow: 0 0 18px -3px rgba(255, 102, 102, 0.65);
+    box-shadow: 0 0 18px -3px rgba(255, 102, 102, 0.65);
 }
 .orange-coral th[colspan="7"] {
     position: relative;
     font-size: 30px;
-    color: #fc9567;
+    color: #fc6767;
 }
 .orange-coral th[colspan="7"]::after {
     content: "";
@@ -53,14 +53,14 @@
     width: 92%;
     height: 1px;
     margin: 0 auto;
-    background: #f96;
+    background: rgb(255, 102, 102);
 }
 .orange-coral tr.calendar-body .calendar-day .day:hover {
-    background-color: rgba(255, 153, 102, 0.32);
+    background-color: rgba(255, 102, 102, 0.32);
     color: #ff6363;
 }
 .orange-coral tr.calendar-body .calendar-day .day.calendar-today {
-    background: #f96;
+    background: rgb(255, 102, 102);
     background: -o-linear-gradient(left, #ff5e62, #ff9966);
     background: -webkit-gradient(linear, left top, right top, from(#ff5e62), to(#ff9966));
     background: linear-gradient(to right, #ff5e62, #ff9966);
