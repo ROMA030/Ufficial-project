@@ -253,7 +253,7 @@
 							</style>
 						</div>
 					</div>
-										<a class="add_event_button" onclick="addEvent()">Add event</a>
+										<a class="add_event_button" onclick="addEvent()" style="text-decoration: none;" onmouseover = "this.style.background = '#fff'" onmouseout  = "this.style.background = '#8f0000'">Add event</a>
 										<div class="row" id="calendar"></div>
 										<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
 										<script src="js/evo-calendar.min.js"></script>

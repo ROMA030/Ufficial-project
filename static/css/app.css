@@ -11894,6 +11894,7 @@ span.flatpickr-weekday {
   .add_event_button
   {
         display: inline-block;
+        border: 1px solid #8f0000;
         padding: 0 10px;
         line-height: 30px;
         height: 30px;
