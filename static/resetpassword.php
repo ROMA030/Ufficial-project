@@ -1,5 +1,8 @@
 <?php
 	session_start();
+    if (!isset($_SESSION["email"])) {
+		header("location: forgotPasswordRecovery.php");
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,8 +35,12 @@
 								<div class="m-sm-4">
 									<form method="post">
 										<div class="mb-3">
-											<label class="form-label">Email</label>
-											<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" required/>
+											<label class="form-label">Nuova password</label>
+											<input class="form-control form-control-lg" type="password" name="newpass" placeholder="Enter your password" required/>
+										</div>
+                                        <div class="mb-3">
+											<label class="form-label">Ripeti nuova password</label>
+											<input class="form-control form-control-lg" type="password" name="confnewpass" placeholder="Enter your password" required/>
 										</div>
 										<div class="text-center mt-3">
 											<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Reset</button>
@@ -41,32 +48,39 @@
 											<a href="index.html" class="btn btn-lg btn-primary">Sign in</a>
 											<button type="submit" class="btn btn-lg btn-primary">Sign in</button> -->
 										</div>
-									</form>
+									</form>                               
 
 									<?php
-										$email = "";
+                                        $email = $_SESSION['email'];
 										// Used for connect to the database called "sito"
 										$conn = mysqli_connect("localhost","root","","xeos");
 
 										// When submit is pressed, it assigne to username and password variables what you have written in form inputs
 										if ($_SERVER["REQUEST_METHOD"] == "POST") {
-											$username = $_POST["username"];
-											$password = $_POST["password"];
+											$newpassword = $_POST['newpass'];
+                                            $confpassword = $_POST['confnewpass'];
 
-											if (!empty($username) && !empty($password)) {
-												$users = "SELECT * FROM users WHERE Username = '$username' and Password = '$password'";
-												$result = mysqli_query($conn, $users);
 
-												if (mysqli_num_rows($result) > 0) {
-													$_SESSION['username']=$username;
-													header("Location: dashboard.php"); 
-													exit();
-												}else {
-													echo "<p class='text-danger text-center mt-3'>Username or password incorrect</p>";
-												}
-												mysqli_close($conn);
+                                            $uppercase = preg_match('@[A-Z]@', $newpassword);
+                                            $lowercase = preg_match('@[a-z]@', $newpassword);
+                                            $number = preg_match('@[0-9]@', $newpassword);
+                                            $specialChars = preg_match('@[^\w]@', $newpassword);
+                                
+                                            if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($newpassword) < 8) { 
+                                                if($newpassword == $confpassword){      
+                                                    $users = "UPDATE users SET Password = '$newpassword' WHERE Email = '$email'";
+												    $result = mysqli_query($conn, $users);                                                                  
+                                                    header("Location: pages-sign-in.php"); 
+                                                    exit();                                            
+                                                    mysqli_close($conn);
+                                                }else  {
+                                                    header("Location: resetpassword.php"); 
+                                                    echo "<p class='text-danger text-center mt-3'>Passwords must be the same.</p>";
+												    mysqli_close($conn);
+                                                }   
 											}else {
-												echo "<p class='text-danger text-center mt-3'>Please compile all inputs</p>";
+                                                //header("Location: resetpassword.php"); 
+												echo "<p class='text-danger text-center mt-3'>Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character</p>";
 												mysqli_close($conn);
 											}
 										}
