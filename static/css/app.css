@@ -11879,3 +11879,15 @@ span.flatpickr-weekday {
     top: 0;
     width: 260px;
 }
+
+#calendar{
+    width: 100%;
+
+    position: static;
+    top: 20px;
+    
+    transform: translate(-100px,+20px);
+    margin-bottom: 40px;
+    margin-left: 100px;
+  
+  }
