@@ -98,7 +98,7 @@
     background-color: rgba(255, 150, 101, 0.15);
     border: 1px solid #ff9665;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 2000px) {
     .orange-coral .calendar-inner::after {
         background-color: rgba(160, 131, 119, 0.5);
     }
@@ -111,18 +111,18 @@
         box-shadow: none;
     }
 }
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 2000px) {
     .orange-coral .calendar-sidebar > .calendar-year {
         background: #fc9567;
-        background: -o-linear-gradient(left, #ff7b64, #f96);
-        background: -webkit-gradient(linear, left top, right top, from(#ff7b64), to(#f96));
-        background: linear-gradient(to right, #ff7b64, #f96);
-        -webkit-box-shadow: 0 5px 18px -3px rgba(152, 91, 61, 0.65);
-        box-shadow: 0 3px 8px -3px rgba(152, 91, 61, 0.65);
+        background: -o-linear-gradient(left, #cc4d4d, #ff5e62);
+        background: -webkit-gradient(linear, left top, right top, from(#cc4d4d), to(#ff5e62));
+        background: linear-gradient(to right, #cc4d4d, #ff5e62);
+        -webkit-box-shadow: 0 5px 18px -3px rgba(152, 61, 61, 0.65);
+        box-shadow: 0 3px 8px -3px rgba(152, 61, 61, 0.65);
     }
     .orange-coral .calendar-sidebar > .month-list {
-        background: -o-linear-gradient(left, #ff5e62, #f96);
-        background: -webkit-gradient(linear, left top, right top, from(#ff5e62), to(#f96));
-        background: linear-gradient(to right, #ff5e62, #f96);
+        background: -o-linear-gradient(left, #cc4d4d, #ff5e62);
+        background: -webkit-gradient(linear, left top, right top, from(#cc4d4d), to(#ff5e62));
+        background: linear-gradient(to right, #cc4d4d, #ff5e62);
     }
 }
