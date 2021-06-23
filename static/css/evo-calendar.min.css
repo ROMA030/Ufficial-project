@@ -903,7 +903,7 @@ button.icon-button > span.chevron-arrow-right {
         -ms-transform: translate(0, -3px) rotate(45deg);
         transform: translate(0, -3px) rotate(45deg);
     }
-}*/
+}
 @media screen and (max-width: 2000px) {
     th[colspan="7"] {
         font-size: 20px;
