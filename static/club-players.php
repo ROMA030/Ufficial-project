@@ -176,9 +176,11 @@
         var addPlayers = function (id, name, src, addCard, username){
             var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');
             if (addCard == true) {
-                var myPanel = $('<div class="" id="AddPlayer"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user-plus"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Add a player</h3></div><div class="text-center mt-3"><button id="addPlayerButton" class="btn btn-lg btn-primary">Add</button></div></div></div></div>');
+                var myPanel = $('<div class="" id="AddPlayer"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user-plus"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Add a player</h3></div><div class="text-center mt-3"><button  onclick="addPlayer()" type="button" class="btn btn-lg btn-primary">Add</button></div></div></div></div>');
             } else {
-                var myPanel = $('<div class="" id="'+id+'Player"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "playerAvatarImage'+ id +'"/><h3 class="mt-1 mb-3" id="">'+ name +'</h3></div><div class="text-center mt-3"><div class="row"><div class="col mt-0"><button id="temp" onclick="setSession()" formavalue="'+username+'" type="button" class="btn btn-lg btn-primary addSessionSubmit">Add Session</button></div><div class="col mt-0"><button type="submit" name="ShowSessionButton'+ id +'" class="btn btn-lg btn-primary">Show Session</button></div></div></div></div></div></div>');
+                var temp = "setSession('"+username+"')";
+                var temp2 = "showSession('"+username+"')";
+                var myPanel = $('<div class="" id="'+id+'Player"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "playerAvatarImage'+ id +'"/><h3 class="mt-1 mb-3" id="">'+ name +'</h3></div><div class="text-center mt-3"><div class="row"><div class="col mt-0"><button onclick="'+temp+'" type="button" class="btn btn-lg btn-primary">Add Session</button></div><div class="col mt-0"><button onclick="'+temp2+'" type="button" class="btn btn-lg btn-primary">Show Session</button></div></div></div></div></div></div>');
             }
             
             myPanel.appendTo(myCol);
@@ -211,19 +213,26 @@
 			document.location.href = 'php/delete_coach.php?user=' + coachUsername;
 		}
 
-        function setSession() {
+        function addPlayer() {
+            window.location = "register-player.php";
+        }
 
-            $.ajax({
-                type: "POST",
-                url: "sessions.php",
-                data: 'playerUser=ciao',
-                success: function (data) {
-                    console.log(data);
-                }
-            });
+        function setSession(username) {
+            setCookie("playerUserSET", username, 1);
             window.location = "sessions.php";
         }
 
+        function showSession(username) {
+            setCookie("playerUserSHOW", username, 1);
+            window.location = "graphic.php";
+        }
+
+        function setCookie(cName, cValue, expDays) {
+            let date = new Date();
+            date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+        }   
         
     </script>
     
@@ -243,7 +252,7 @@
         $clubsData = array();
         $i = 0;
 
-        echo '<script type="text/javascript">RemoveClubs();</script>';
+        //echo '<script type="text/javascript">RemoveClubs();</script>';
         
         $query3 = "SELECT Player FROM coachplayer WHERE Coach = '$user'";
         $result3 = mysqli_query($conn, $query3);
@@ -294,25 +303,10 @@
                 echo '<script type="text/javascript">addPlayers("", "", "", true);</script>';
             }
         }
-
-        
-		if (isset($_POST["AddSession"]))
-        {
-            echo $_POST["AddSession"];
-        }
         
         //mysqli_close($conn);
 		//exit;
-		/*
-		if(isset($_POST["seeClub"])) {
-			header("location: my-club.php",false);
-		}
 		
-		for ($k=0; $k < $playerNumber ; $k++) { 
-			if(isset($_POST["AddSessionButton". $k .""])) {
-				header("location: sessions.php",false);
-			}
-		}*/
 	?>
 
 	<script>

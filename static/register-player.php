@@ -112,32 +112,42 @@
 									<div class="m-sm-4">
 										<form method="post" enctype="multipart/form-data">
 											<div class="mb-3">
-												<label class="form-label">Nome</label>
-												<input class="form-control form-control-lg" type="text" name="name" placeholder="Enter his name" required/>
+												<label class="form-label">Nome:</label>
+												<input class="form-control form-control-lg" type="text" name="name"
+													placeholder="Enter your name" required />
 											</div>
 											<div class="mb-3">
-												<label class="form-label">Cognome</label>
-												<input class="form-control form-control-lg" type="text" name="surname" placeholder="Enter his surnname" required/>
+												<label class="form-label">Cognome:</label>
+												<input class="form-control form-control-lg" type="text" name="surname"
+													placeholder="Enter your surnname" required />
 											</div>
 											<div class="mb-3">
-												<label class="form-label">Email</label>
-												<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter his email" required/>
+												<label class="form-label">Email:</label>
+												<input class="form-control form-control-lg" type="email" name="email"
+													placeholder="Enter your email" required />
 											</div>
 											<div class="mb-3">
-												<label class="form-label">Username</label>
-												<input class="form-control form-control-lg" type="text" name="username" placeholder="Enter his username" required/>
+												<label class="form-label">Username:</label>
+												<input class="form-control form-control-lg" type="text" name="username"
+													placeholder="Enter username" required />
 											</div>
 											<div class="mb-3">
-												<label class="form-label">Password</label>
-												<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter his password" required/>
+												<label class="form-label">Password:</label>
+												<input class="form-control form-control-lg" type="password" name="password"
+													placeholder="Enter password" required />
 											</div>
 											<div class="mb-3">
 												<label class="form-label">Scegli un avatar: </label>
-												<input type="file" name="avatar" accept="image/*" class="form-control" required />
+												<input type="file" name="avatar" accept="image/*" class="form-control" required/>
+											</div>
+											<div class="mb-3">
+												<label class="form-label">Scrivi una parola che ti piace: (domanda di sicurezza)</label>
+												<input class="form-control form-control-lg" type="text" name="securityAnswer" placeholder="Enter answer" required />
 											</div>
 											<div class="text-center mt-3">
 												<!--<a href="dashboard.php" class="btn btn-lg btn-primary">Sign up</a>!-->
-												<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Register</button>
+												<button type="submit" name="submit" value="Submit"
+													class="btn btn-lg btn-primary">Sign up</button>
 											</div>
 										</form>
 									</div>
@@ -186,6 +196,7 @@
 		$userType = $_SESSION['UserType'];
 		$srcAvatar = $_SESSION['Avatar'];
 
+		/*
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$name = $_POST["name"];
 			$surname = $_POST["surname"];
@@ -215,6 +226,51 @@
 				mysqli_close($conn);
 			}
 		}
+		*/
+
+		$conn = mysqli_connect("localhost","root","","xeos");
+		if (mysqli_connect_errno()) {
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			exit();
+		}
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			$name = $_POST["name"];
+			$surname = $_POST["surname"];
+			$email = $_POST["email"];
+			$username = $_POST["username"];
+			$password = $_POST["password"];
+			$usertype = "player";
+			$securityAnswer = $_POST['securityAnswer'];
+
+			$avatar = addslashes(file_get_contents($_FILES['avatar']['tmp_name']));
+
+			// If forum inputs aren't empty 
+			if (!empty($name) && !empty($surname) && !empty($email) && !empty($username) && !empty($password) && !empty($securityAnswer)) {
+												
+				// Validate password strength
+				$uppercase = preg_match('@[A-Z]@', $password);
+				$lowercase = preg_match('@[a-z]@', $password);
+				$number = preg_match('@[0-9]@', $password);
+				$specialChars = preg_match('@[^\w]@', $password);
+
+				if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+					echo "<h5 class='notification text-danger mt-3'>Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character</h5>";             											
+				}else{
+					$checkUser = "SELECT * FROM users WHERE Username = '$username'";
+					$checkResult = mysqli_query($conn, $checkUser);
+					if (mysqli_num_rows($checkResult) > 0) {
+						echo "<h5 class='notification text-danger mt-3'>Username already exists</h5>";                  
+					}else {
+						$users = "INSERT INTO users(Name, Surname, Email, Username, Password , Avatar, UserType, Risposta) VALUES ('$name', '$surname', '$email', '$username', '$password' , '$avatar', '$usertype','$securityAnswer')";
+						$result = mysqli_query($conn, $users);					
+						$coachPlayer = "INSERT INTO coachplayer(Coach, Player) VALUES ('$user', '$username')";
+						$result2 = mysqli_query($conn, $coachPlayer);
+						
+					}
+					mysqli_close($conn);
+				}
+			}                
+		}
 	?>
 
 	<script>
@@ -229,7 +285,6 @@
 			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
 			var image = document.getElementById('avatarImage');
             image.src = avatar;
-			document.getElementById("dashRole").innerHTML =userType;
 
 			switch (userType) {
 				case 'player':

@@ -29,6 +29,8 @@
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -102,40 +104,39 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Player graphics</h1>
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<h1 class="h3 mb-3" id="pageTitle">Show Graphics</h1>
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item" id="addBackButton">
+									<button id="backButton" class="btn btn-lg btn-primary">Back</button>
+								</li>
+							</ul>
+						</div>
+					</div>
 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Show graphics of a player</h5>
+									<h5 class="card-title mb-0" id="cardTitle">Show graphics of a player</h5>
 								</div>
 								<div class="card-body">
 
 									<div class="m-sm-4">
-										<form method="post" enctype="multipart/form-data">
-											<div class="mb-3">
-												<label class="form-label">Select a player:</label>
-												<select name="playerOfSession" id="pOfSession" class="form-select mb-3" required>
-													
-												</select>
-											</div>
-											<div class="text-center mt-3">
-												<input type="submit" name="Search" value="Search" class="btn btn-lg btn-primary"></button>
-											</div>
-										</form>
-
-										<div style="padding-bottom: 25px"></div>
-
 										<form method="post">
 											<div class="mb-3">
 												<label class="form-label">Select a date:</label>
-												<select disabled name="dateOfSession" id="dOfSession" class="form-select mb-3" required>
+												<select name="dateOfSession" id="dOfSession" class="form-select mb-3" required>
 													
 												</select>
 											</div>
 											<div class="text-center mt-3">
-												<input disabled type="submit" name="Show" value="Show" id="showButton" class="btn btn-lg btn-primary"></button>
+												<input type="submit" name="Show" value="Show" id="showButton" class="btn btn-lg btn-primary"></button>
 											</div>
 										</form>
 									</div>
@@ -250,9 +251,9 @@
                 newOption.innerHTML = dates[index];
                 selection.appendChild(newOption);
 			}
-			selection.removeAttribute('disabled');
-			var button = document.getElementById("showButton");
-			button.removeAttribute('disabled')
+			//selection.removeAttribute('disabled');
+			//var button = document.getElementById("showButton");
+			//button.removeAttribute('disabled')
 		}
 
 		function DrawGraphic(dataJSON, fileType) {
@@ -336,64 +337,58 @@
 		$userType = $_SESSION['UserType'];
 		$srcAvatar = $_SESSION['Avatar'];
 
-		$playersOfCoach = array();
+
+
 		$playerDates = array();
 		$selectedPlayer = "";
 
-		$query2 = "SELECT Player FROM coachplayer WHERE Coach = '$user'";
-		$result2 = mysqli_query($conn, $query2);
+		$selectedPlayer = $_COOKIE["playerUserSHOW"];
+		$query3 = "SELECT DISTINCT date FROM other WHERE player = '$selectedPlayer'";
+		$result3 = mysqli_query($conn, $query3);
 
-		while ($row = $result2->fetch_assoc()) {
-            array_push($playersOfCoach, $row["Player"]);
-        }
-
-		if (isset($_POST['Search'])) {
-			$selectedPlayer = $_POST['playerOfSession'];
-			$query3 = "SELECT DISTINCT  date FROM other WHERE player = '$selectedPlayer'";
-			$result3 = mysqli_query($conn, $query3);
-
-			while ($row = $result3->fetch_assoc()) {
-				array_push($playerDates, $row["date"]);
-			}
-
-			echo '<script type="text/javascript">InsertDates(' . json_encode($playerDates) . ');</script>';
+		while ($row = $result3->fetch_assoc()) {
+			array_push($playerDates, $row["date"]);
 		}
-		if (isset($_POST['Show'])) {
+
+		echo '<script type="text/javascript">InsertDates(' . json_encode($playerDates) . ');</script>';
+
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$selectedDate = $_POST['dateOfSession'];
 			//$fileTypes = array("acc", "ecg", "gyro", "other");
-			$fileTypes = array("acc", "gyro", "other");
-			for ($i=0; $i < 4; $i++) { 
-				$temp = $fileTypes[$i];
-				$selectedPlayer = "giocatore1";
-				/*
-				$query4 = "SELECT `session` FROM " . $temp . " WHERE player = '$selectedPlayer' ORDER BY `session` DESC LIMIT 1";
-				$result4 = $conn->query($query4) or die($conn->error);
-				*/
-				
-				switch ($temp) {
-					case "acc":
-						$query5 = "SELECT timestamp, accX, accY, accZ FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
-						break;
-					case "ecg":
-						$query5 = "SELECT timestamp, respiration, ecgLead1, ecgLead2, ecgLead3 FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
-						break;
-					case "gyro":
-						$query5 = "SELECT timestamp, gyroX, gyroY, gyroZ FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
-						break;
-					case "other":
-						$query5 = "SELECT timestamp, battery, skinTemp, ambientTemp, occupiedMemory, respirationRate, heartRate, gainCH0, gainCH1, gainCH2, gainCH3 FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
-						break;
-				}
-				//$query5 = "SELECT * FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
-				$result5 = mysqli_query($conn, $query5);
+			if (!empty($selectedDate)) {
+				$fileTypes = array("acc", "gyro", "other");
+				for ($i=0; $i < 4; $i++) { 
+					$temp = $fileTypes[$i];
+					$selectedPlayer = "giocatore1";
+					/*
+					$query4 = "SELECT `session` FROM " . $temp . " WHERE player = '$selectedPlayer' ORDER BY `session` DESC LIMIT 1";
+					$result4 = $conn->query($query4) or die($conn->error);
+					*/
+					switch ($temp) {
+						case "acc":
+							$query5 = "SELECT timestamp, accX, accY, accZ FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
+							break;
+						case "ecg":
+							$query5 = "SELECT timestamp, respiration, ecgLead1, ecgLead2, ecgLead3 FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
+							break;
+						case "gyro":
+							$query5 = "SELECT timestamp, gyroX, gyroY, gyroZ FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
+							break;
+						case "other":
+							$query5 = "SELECT timestamp, battery, skinTemp, ambientTemp, occupiedMemory, respirationRate, heartRate, gainCH0, gainCH1, gainCH2, gainCH3 FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
+							break;
+					}
+					//$query5 = "SELECT * FROM " . $temp . " WHERE player = '$selectedPlayer' AND date = '$selectedDate' AND session = '1'";
+					$result5 = mysqli_query($conn, $query5);
 
-				$dataArray = array();
-				while ($row = mysqli_fetch_assoc($result5)) {
-					$dataArray[] = $row;
+					$dataArray = array();
+					while ($row = mysqli_fetch_assoc($result5)) {
+						$dataArray[] = $row;
+					}
+					echo '<script type="text/javascript">DrawGraphic(' . json_encode($dataArray) . ', "' . $temp . '");</script>';
 				}
-				echo '<script type="text/javascript">DrawGraphic(' . json_encode($dataArray) . ', "' . $temp . '");</script>';
-
 			}
+			
 		}
 	?>
 
@@ -428,24 +423,48 @@
 
 	<script>
 
+		function getCookie(cName) {
+			const name = cName + "=";
+			const cDecoded = decodeURIComponent(document.cookie); //to be careful
+			const cArr = cDecoded .split('; ');
+			let res;
+			cArr.forEach(val => {
+				if (val.indexOf(name) === 0) res = val.substring(name.length);
+			})
+			return res;
+		}
+
+        function setCookie(cName, cValue, expDays) {
+            let date = new Date();
+            date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+        }
+
 		document.addEventListener("DOMContentLoaded", function () {
+			var btn = document.getElementById('backButton');
+			btn.addEventListener('click', function() {
+				setCookie("playerUserSHOW", "", 1);
+				document.location.href = 'club-players.php';
+			});
+
 			var user = "<?php echo $user; ?>";
 			var name = "<?php echo $name; ?>";
 			var surname = "<?php echo $surname; ?>";
 			var userType = "<?php echo $userType; ?>";
 			var avatar = "<?php echo $srcAvatar; ?>";
 			var sidebarUl = document.getElementById("sidebarUl");
-
-			var players = <?php echo json_encode($playersOfCoach); ?>;
-
-			for (let index = 0; index < players.length; index++) {
-                var selection = document.getElementById("pOfSession");
-                var newOption = document.createElement("option");
-                newOption.setAttribute("value", players[index]);
-                newOption.innerHTML = players[index];
-                selection.appendChild(newOption);
+			
+			var cookieUsername = getCookie("playerUserSHOW");
+			if (!cookieUsername) {
+				document.location.href = "club-players.php";
+			} else {
+				var playerUsername = $('<input class="form-control" type="text" name="playerOfSession" value="'+cookieUsername+'" placeholder="'+cookieUsername+'" readonly="">');
+				const contentUsername = document.getElementById("inputPlayerUsername");
+				playerUsername.appendTo(contentUsername);
 			}
 
+			document.getElementById("cardTitle").innerHTML = "Show graphics of " + cookieUsername;
 			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
 			var image = document.getElementById('avatarImage');
             image.src = avatar;
