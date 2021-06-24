@@ -25,7 +25,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>Register player | Xeos</title>
+	<title>Register A Club | Xeos</title>
 
 	<link href="css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -138,7 +138,7 @@
 											</div>
 											<div class="mb-3">
 												<label class="form-label">Select an avatar: </label>
-												<input type="file" name="avatar" accept="image/*" class="form-control" />
+												<input type="file" name="avatar" accept="image/*" class="form-control" required/>
 											</div>
 
 											<div class="text-center mt-3">
@@ -245,7 +245,7 @@
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$clubName = $_POST["name"];
-
+			
 			$avatar = addslashes(file_get_contents($_FILES['avatar']['tmp_name']));
 			
 			
@@ -266,6 +266,16 @@
 					//exit();
 				}else {
 					$key = rand_key(20);
+					while (true) {
+						$checkKey = "SELECT RandomKey FROM club WHERE RandomKey = '$key'";
+						$KeyResult = mysqli_query($conn, $checkID);
+						if (mysqli_num_rows($KeyResult) > 0) {
+							$key = rand_key(20);
+						} else {
+							break;
+						}
+					}
+
 					$query = "INSERT INTO club(ClubName, RandomKey, Avatar) VALUES ('$clubName', '$key', '$avatar')";
 					$result = mysqli_query($conn, $query);
 

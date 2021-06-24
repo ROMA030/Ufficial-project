@@ -119,17 +119,17 @@
                         <div class="col-xxl-8 d-flex">
                             <div class="w-100">
                                 <div class="container">
+									
+									<!--
 									<div class="row" id="contentPanel">
 										
 									</div>
-									<!--
-									<form method="post">
+									-->
+                                    <form method="post">
                                         <div class="row" id="contentPanel">
 
                                         </div>
                                     </form>
-									-->
-                                    
                                 </div>
                             </div>
                         </div>
@@ -175,49 +175,64 @@
 
 		function cardClub(){
 			var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');
-			var myPanel = $('<div class="" id="CreateClub"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Create your club</h3></div><div class="text-center mt-3"><button type="submit" name="createClub" class="btn btn-lg btn-primary">Create</button></div></div></div></div>');
+			var myPanel = $('<div class="" id=""><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Create your club</h3></div><div class="text-center mt-3"><button type="submit" name="createClub" id="createClub" class="btn btn-lg btn-primary">Create</button></div></div></div></div>');
 			myPanel.appendTo(myCol);
             myCol.appendTo('#contentPanel');
+
+			var registerClubButton = document.getElementById('createClub');
+			registerClubButton.addEventListener('click', function() {
+				document.location.href = 'register-club.php';
+			});
 		}
 
 		var addCoachs = function (id, name, src, username){
             var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');            
-            var myPanel = $('<div class="" id="'+id+'Coach"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "playerAvatarImage'+ id +'"/><h3 class="mt-1 mb-3" id="">'+ name +'</h3></div><div class="text-center mt-3"><div class="row"><div class="col mt-0"><button name="DeleteButton'+ id +'" value = "'+ username +'" onclick="DeleteCoach(this, '+ id +')" class="btn btn-lg btn-primary">Delete</button></div><div class="col mt-0"><button type="submit" name="ShowSessionButton'+ id +'" class="btn btn-lg btn-primary">Modify</button></div></div></div></div></div></div>');
+            var myPanel = $('<div class="" id="'+id+'Coach"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "playerAvatarImage'+ id +'"/><h3 class="mt-1 mb-3" id="">'+ name +'</h3></div><div class="text-center mt-3"><button name="DeleteButton'+ id +'" value = "'+ username +'" onclick="DeleteCoach(this, '+ id +')" class="btn btn-lg btn-primary">Delete</button></div></div></div></div>');
             myPanel.appendTo(myCol);
             myCol.appendTo('#contentPanel');
         };
 		
-        var addCols = function (id, name, src, addCard, userType){
+        var addClub = function (id, name, src, addCard){
             var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');
             if (addCard == true) {
-				switch (userType) {
-					case 'coach':
-						var myPanel = $('<div class="" id="JoinClub"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Join a club</h3></div><div class="text-center mt-3"><button type="submit" name="joinClub" class="btn btn-lg btn-primary">Join</button></div></div></div></div>');
-						break;
-					case 'admin':
-						
-						break;
-					default:
-						console.log("UserType not found");
-				}
-            } else {
-                var myPanel = $('<div class="" id="'+id+'Club"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="users"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "clubAvatarImage"/><h3 class="mt-1 mb-3" id="">'+ name +'</h3></div><div class="text-center mt-3"><button type="submit" name="ClubButton'+ id +'" class="btn btn-lg btn-primary">Show Players</button></div></div></div></div>');
+				var myPanel = $('<div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Join a club</h3></div><div class="text-center mt-3"><button id="joinClub" class="btn btn-lg btn-primary">Join</button></div></div></div>');
+			} else {
+                var myPanel = $('<div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="users"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "clubAvatarImage"/><h3 class="mt-1 mb-3">'+ name +'</h3></div><div class="text-center mt-3"><button type="submit" name="ClubButton'+ id +'" class="btn btn-lg btn-primary">Show Coachs</button></div></div></div>');
             }
             
             myPanel.appendTo(myCol);
             myCol.appendTo('#contentPanel');
+
+			if (addCard == true) {
+				var joinClubButton = document.getElementById('joinClub');
+				joinClubButton.addEventListener('click', function() {
+					document.location.href = 'join-club.php';
+				});
+			}
         };
 
-        var addPlayers = function (id, name, src, addCard){
+        var addPlayers = function (id, name, src, addCard, ){
             var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');
             if (addCard == true) {
-                var myPanel = $('<div class="" id="AddPlayer"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user-plus"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Add a player</h3></div><div class="text-center mt-3"><button type="submit" name="addPlayer" class="btn btn-lg btn-primary">Add</button></div></div></div></div>');
+                var myPanel = $('<div class="" id="AddPlayer"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user-plus"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Add a player</h3></div><div class="text-center mt-3"><button id="addPlayerButton" class="btn btn-lg btn-primary">Add</button></div></div></div></div>');
             } else {
-                var myPanel = $('<div class="" id="'+id+'Player"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "playerAvatarImage'+ id +'"/><h3 class="mt-1 mb-3" id="">'+ name +'</h3></div><div class="text-center mt-3"><div class="row"><div class="col mt-0"><button name="AddSessionButton'+ id +'" class="btn btn-lg btn-primary">Add Session</button></div><div class="col mt-0"><button type="submit" name="ShowSessionButton'+ id +'" class="btn btn-lg btn-primary">Show Session</button></div></div></div></div></div></div>');
+                var myPanel = $('<div class="" id="'+id+'Player"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "playerAvatarImage'+ id +'"/><h3 class="mt-1 mb-3" id="">'+ name +'</h3></div><div class="text-center mt-3"><div class="row"><div class="col mt-0"><button id="AddSessionButton'+name+'" class="btn btn-lg btn-primary">Add Session</button></div><div class="col mt-0"><button type="submit" name="ShowSessionButton'+ id +'" class="btn btn-lg btn-primary">Show Session</button></div></div></div></div></div></div>');
             }
             
             myPanel.appendTo(myCol);
             myCol.appendTo('#contentPanel');
+
+			if (addCard == true) {
+				var addPlayerButton = document.getElementById('addPlayerButton');
+				addPlayerButton.addEventListener('click', function() {
+					document.location.href = 'register-player.php';
+				});
+			}else {
+				var AddSessionButton = document.getElementById('AddSessionButton'+name);
+				AddSessionButton.addEventListener('click', function() {
+					document.location.href = 'join-club.php';
+				});
+			}
         };
 
         function RemoveClubs() {
@@ -321,25 +336,19 @@
 						} else {
 							$clubSrcAvatar = "data:image/jpeg;base64,".base64_encode( $clubAvatar )."";
 						}
-						echo '<script type="text/javascript">addCols("' . $clubID . '", "' . $clubName . '", "' . $clubSrcAvatar . '", false, "");</script>';
+						echo '<script type="text/javascript">addClub("' . $clubID . '", "' . $clubName . '", "' . $clubSrcAvatar . '", false);</script>';
 						//$i = $i + 1;
 					}
 				}
 				$i = $i + 1;
 				if ($i == $number) {
-					/*
-					if ($userType == "manager") {
-						echo '<script type="text/javascript">cardClub('. $createClub .');</script>';
-					}else 
-					{} */
-					echo '<script type="text/javascript">addCols("", "", "", true, "'. $userType .'");</script>';
-					
+					echo '<script type="text/javascript">addClub("", "", "", true);</script>';
 				}
 			}
-
 			
 			for ($j=0; $j <= $number; $j++) { 
 				if(isset($_POST["ClubButton".$j.""])) {
+					/*
 					echo '<script type="text/javascript">RemoveClubs();</script>';
 					
 					$query3 = "SELECT Player FROM coachplayer WHERE Coach = '$user'";
@@ -370,7 +379,7 @@
 
 						while ($row = mysqli_fetch_assoc($result4)) {
 							$playersData[] = $row;
-
+							$playerUserName = $row["Username"]; 
 							$playerName = $row["Name"];
 							$playerSurname = $row["Surname"];
 							$playerAvatar = $row["Avatar"];
@@ -381,7 +390,7 @@
 							}
 
 							$playerFullName = $playerName . ' ' . $playerSurname;
-							echo '<script type="text/javascript">addPlayers("' . $x . '", "' . $playerFullName . '", "' . $playerSrcAvatar . '", false);</script>';
+							echo '<script type="text/javascript">addPlayers("' . $x . '", "' . $playerFullName . '", "' . $playerSrcAvatar . '", false, "' . $playerUserName . '");</script>';
 							
 						}
 						$x = $x + 1;
@@ -389,41 +398,24 @@
 						if ($x == $playerNumber) {
 							echo '<script type="text/javascript">addPlayers("", "", "", true);</script>';
 						}
-					}
+					}*/
+					$_SESSION['ClubID'] = $j;
+					header("location: club-players.php",false);
 				}
 			}
 		}
-
-		
-
-		if(isset($_POST["createClub"])) {
-			header("location: register-club.php",false);
-		}
-
+		//mysqli_close($conn);
+		//exit;
+		/*
 		if(isset($_POST["seeClub"])) {
 			header("location: my-club.php",false);
-		}
-
-		if(isset($_POST["add"])) {
-			header("location: register-player.php",false);
-		}
-
-		if(isset($_POST["joinClub"])) {
-			header("location: register-player.php",false);
-		}
-
-		if(isset($_POST["addPlayer"])) {
-			header("location: register-player.php",false);
 		}
 		
 		for ($k=0; $k < $playerNumber ; $k++) { 
 			if(isset($_POST["AddSessionButton". $k .""])) {
 				header("location: sessions.php",false);
 			}
-		}
-
-		
-	    
+		}*/
 	?>
 
 	<script>
