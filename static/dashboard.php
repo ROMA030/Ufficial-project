@@ -382,7 +382,6 @@
 			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
 			var image = document.getElementById('avatarImage');
             image.src = avatar;
-			document.getElementById("dashRole").innerHTML =userType;
 
 			switch (userType) {
 				case 'player':
