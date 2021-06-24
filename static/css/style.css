@@ -203,7 +203,7 @@
   ---------------------------*/
   .cover
   {
-    height: 70%; 
+    height: 100%; 
     background-image: url("https://xeos.it/wp-content/uploads/2015/12/2.jpg"); 
     background-size: cover;
     -o-background-size: cover;
