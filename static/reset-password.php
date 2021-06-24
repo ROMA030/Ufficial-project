@@ -77,6 +77,7 @@
                                                     mysqli_close($conn);
                                                 }else  {
 													echo "<h5 class='notification text-danger mt-3'>Passwords must be the same</h5>";												   
+                                                }   
 											}
 										}
 
