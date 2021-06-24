@@ -91,64 +91,68 @@
 			</nav>
 
 			<main class="content">
-                <div class="mb-3">
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="card">
-                                <img class="card-img-top" src="img/icons/Icone.png" alt="Unsplash">
-                                <div class="card-body">
-                                    <p class="card-text">Contattaci via email per eventuali problemi.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6">
-                            <div class="card">
-                                <div class="card-header">
+				<div class="container-fluid p-0">
+					<div class="row">
+						<div class="col-md-3 col-xl-3">
+						</div>
+						<div class="col-md-6 col-xl-6">
+							<div class="card mb-3">							
+								<div class="card">
+									<img class="card-img-top" src="img/icons/Icone.png" alt="Unsplash">
+									<div class="card-body">
+										<p class="card-text">Contattaci via email per eventuali problemi.</p>
+									</div>
+								</div> 							
+								<div class="card-body">
+								<h3 class="h6 card-title">LE NOSTRE EMAIL</h3>
+								<div class="card" >
+								<div class="card-header">
 									<div>
-                                   		<h5 class="card-title mb-0">NOME1</h5>
+                                   		<h4 class="card-title mb-0">Michele Arici</h4>
                                     </div>
-                                    <div class="card-body"><p>Primo elemento</p>
-                                    </div>
-                                    <div class="card-header">
-                                        <h5 class="card-title mb-0">NOME2</h5>
-                                    </div>
-                                    <div class="card-body"><p>Secondo elemento</p>
+                                    <div class="card-body"><p>Primoelemento@gmail.com</p>
                                     </div>
                                     <div class="card-header">
-                                        <h5 class="card-title mb-0">NOME3</h5>
+                                        <h4 class="card-title mb-0">Yegor Cherednychenko</h4>
                                     </div>
-                                    <div class="card-body"><p>Terzo elemento</p>
-                                    </div>
-                                    <div class="card-header">
-                                        <h5 class="card-title mb-0">NOME4</h5>
-                                    </div>
-                                    <div class="card-body"><p>Quarto elemento</p>
+                                    <div class="card-body"><p>Secondoelemento@gmail.com</p>
                                     </div>
                                     <div class="card-header">
-                                        <h5 class="card-title mb-0">NOME5</h5>
+                                        <h4 class="card-title mb-0">Francesco Tonassi</h4>
                                     </div>
-                                    <div class="card-body"><p>Quinto elemento</p>
+                                    <div class="card-body"><p>Terzoelemento@gmail.com</p>
+                                    </div>
+                                    <div class="card-header">
+                                        <h4 class="card-title mb-0">Daniele Romano</h4>
+                                    </div>
+                                    <div class="card-body"><p>Quartoelemento@gmail.com</p>
+                                    </div>
+                                    <div class="card-header">
+                                        <h4 class="card-title mb-0">Alessandro Ragnoli</h4>
+                                    </div>
+                                    <div class="card-body"><p>Quintoelemento@gmail.com</p>
                                     </div>       
                                 </div>
                             </div>
-                        </div>
-                    </div>
+									</div>
+								</div>
+							<div class="col-md-3 col-xl-3">
+						</div>
+						<style>
+							h5 {text-align: center;}
+							h4 {text-align: center;}
+							h3 {text-align: center;}
+							p {text-align: center;}
+						</style>
 				</div>
-
-                <style>
-                    h5 {text-align: center;}
-                    p {text-align: center;}
-                </style>
+					
 			</main>
        
 			<footer class="footer">
 				<div class="container-fluid">
 					<div class="row text-muted">
 						<div class="col-6 text-start">
-							<p class="mb-0">
 								<a class="text-muted" target="_blank"><strong>Xeos</strong></a> &copy;
-							</p>
 						</div>
 						<div class="col-6 text-end">
 							<ul class="list-inline">
@@ -172,12 +176,27 @@
 	<script src="js/app.js"></script>
 
 	<?php
+		$conn = mysqli_connect("localhost","root","","xeos");
 		$user = $_SESSION['username'];
-		$name = $_SESSION['Name'];
-		$surname = $_SESSION['Surname'];
-		$userType = $_SESSION['UserType'];
-		$srcAvatar = $_SESSION['Avatar'];
-		$email = $_SESSION['Email'];
+
+		$query = "SELECT * FROM users WHERE Username = '$user'";
+		$result = mysqli_query($conn, $query);
+		
+		while ($row = $result->fetch_assoc()) 
+		{
+			$name = $row['Name'];
+			$_SESSION['Name'] = $name;
+			$surname = $row['Surname'];
+			$_SESSION['Surname'] = $surname;
+			$userType = $row['UserType'];
+			$_SESSION['UserType'] = $userType;
+			$avatar = $row['Avatar'];
+			$email = $row['Email'];
+			$_SESSION['Email'] = $email;
+			
+		}
+		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
+		$_SESSION['Avatar'] = $srcAvatar;
 	?>
 
 	<script>
@@ -197,6 +216,12 @@
 			var bigImage = document.getElementById('bigAvatarImage');
 			bigImage.src = avatar;
             image.src = avatar;
+			document.getElementById("nameProfile").innerHTML =  name + ' ' + surname;
+			document.getElementById("nameP").innerHTML = name;
+			document.getElementById("surnameP").innerHTML = surname;
+			document.getElementById("emailP").innerHTML = email;
+			document.getElementById("userP").innerHTML = user;
+
 
 			switch (userType) {
 				case 'player':
