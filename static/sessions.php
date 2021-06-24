@@ -75,7 +75,7 @@
 
 							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
 								data-bs-toggle="dropdown">
-								<img src="" id="avatarImage" class="avatar img-fluid rounded me-1"/> <span class="text-dark" id="nameSurname">Charles Hall</span>
+								<img src="" id="avatarImage" class="avatar img-fluid rounded me-1"/> <span class="text-dark" id="nameSurname">User</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
@@ -98,17 +98,30 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Player graphics</h1>
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<h1 class="h3 mb-3" id="pageTitle">Add session</h1>
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item" id="addBackButton">
+									<button id="backButton" class="btn btn-lg btn-primary">Back</button>
+								</li>
+							</ul>
+						</div>
+					</div>
 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 
 								<div class="card-header">
-									<h5 class="card-title mb-0">Empty card</h5>
+									<h5 class="card-title mb-0">Complete the form</h5>
 								</div>
 
-								<div class="card-body">
+								<div class="card-body" id="mainCard">
 									<form method="post" enctype="multipart/form-data">
                                         <div class="m-sm-4">
 											<form method="post" enctype="multipart/form-data">
@@ -132,11 +145,9 @@
 													<label class="form-label">Session name</label>
 													<input class="form-control form-control-lg" type="text" name="name" placeholder="Enter session name" required/>
 												</div>
-												<div class="mb-3">
-													<label class="form-label">Select which player it belongs to:</label>
-													<select name="playerOfSession" id="pOfSession" class="form-select mb-3" required>
-														
-													</select>
+												<div class="mb-3" id="inputPlayerUsername">
+													<label class="form-label">Player it belongs to:</label>
+													
 												</div>
 												<div class="text-center mt-3">
 													<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Upload</button>
@@ -181,6 +192,24 @@
 
 	<script src="js/app.js"></script>
 
+	<script>
+		function Success() {
+            var show = document.getElementById("mainCard");
+            show.innerHTML = "";
+            var panel1 = $('</br><h4 class="text-success text-center mt-5">Files successfully uploaded!</h4>');
+            
+            panel1.appendTo(show);
+        }
+
+		function SessionExisting() {
+            var show = document.getElementById("mainCard");
+            show.innerHTML = "";
+            var panel1 = $('</br><h4 class="text-danger text-center mt-5">Session with same date already existing</h4>');
+            
+            panel1.appendTo(show);
+        }
+	</script>
+
 	<?php
 		ini_set("post_max_size", "30M");
 
@@ -192,17 +221,7 @@
 		$userType = $_SESSION['UserType'];
 		$srcAvatar = $_SESSION['Avatar'];
 
-
-		echo $_POST["playerUser"];
-
-		$playersOfCoach = array();
-		$query2 = "SELECT Player FROM coachplayer WHERE Coach = '$user'";
-		$result2 = mysqli_query($conn, $query2);
-
-		while ($row = $result2->fetch_assoc()) {
-            //$playersOfCoach = $row["Player"];
-            array_push($playersOfCoach, $row["Player"]);
-        }
+		$errors = $alreadyExists = false;
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$player = $_POST['playerOfSession'];
@@ -228,35 +247,55 @@
 				try {
 					$temp = $fileTypes[$i];
 
-					$query3 = "SELECT `session` FROM " . $temp . " WHERE player = '$player' ORDER BY `session` DESC LIMIT 1";
-					$result3 = $conn->query($query3) or die($conn->error);
-					if (!$incremented) {
-						if (mysqli_num_rows($result3) > 0) {
-							while ($row = $result3->fetch_assoc()) {
-								$sessionNumber = $row['session'] + 1;
-								$incremented = true;
+					//Has already a session with the same date?
+					$query5 = "SELECT DISTINCT `date` FROM " . $temp . " WHERE player = '$player'";
+					$result5 = $conn->query($query5) or die($conn->error);
+					if (mysqli_num_rows($result5) > 0) {
+						while ($row5 = $result5->fetch_assoc()) {
+							if ($fileDate == $row5['date']) {
+								$alreadyExists = true;
 							}
 						}
 					}
 
-                    $file = clean_dir($temp);
-
-                    $query4 = "LOAD DATA INFILE '" . $file . "'
-							   INTO TABLE `" . $temp . "` 
-							   FIELDS TERMINATED by ','
-							   LINES TERMINATED BY \"\n\"
-							   IGNORE 1 ROWS 
-							   SET player = '$player', session = '$sessionNumber', date = '$fileDate'";
+					if ($alreadyExists == false) {
+						//Determine Session number
+						$query3 = "SELECT `session` FROM " . $temp . " WHERE player = '$player' ORDER BY `session` DESC LIMIT 1";
+						$result3 = $conn->query($query3) or die($conn->error);
+						if (!$incremented) {
+							if (mysqli_num_rows($result3) > 0) {
+								while ($row = $result3->fetch_assoc()) {
+									$sessionNumber = $row['session'] + 1;
+									$incremented = true;
+								}
+							}
+						}
+						$file = clean_dir($temp);
+						$query4 = "LOAD DATA INFILE '" . $file . "'
+								INTO TABLE `" . $temp . "` 
+								FIELDS TERMINATED by ','
+								LINES TERMINATED BY \"\n\"
+								IGNORE 1 ROWS 
+								SET player = '$player', session = '$sessionNumber', date = '$fileDate'";
+						
+						$result4 = mysqli_query($conn, $query4);
+						if (!$result4) {
+							throw new Exception("Problema! Avvenuto col file: " . $file . "<br>");
+							$errors = true;
+						}
+					}
 					
-                    $result4 = mysqli_query($conn, $query4);
-					
-                    if (!$result4) {
-                        throw new Exception("Problema! Avvenuto col file: " . $file . "<br>");
-                    }
                 } catch (Throwable $e) {
                     echo $e->getMessage();
+					$errors = true;
                 }
             }
+			if ($alreadyExists == true) {
+				echo '<script type="text/javascript">SessionExisting();</script>';
+			} elseif ($errors != true) {
+				echo '<script type="text/javascript">Success();</script>';
+			}
+			
 		}
 
 		function clean_dir($nome_file)
@@ -269,25 +308,46 @@
 	?>
 
 	<script>
+		function getCookie(cName) {
+			const name = cName + "=";
+			const cDecoded = decodeURIComponent(document.cookie); //to be careful
+			const cArr = cDecoded .split('; ');
+			let res;
+			cArr.forEach(val => {
+				if (val.indexOf(name) === 0) res = val.substring(name.length);
+			})
+			return res;
+		}
+
+        function setCookie(cName, cValue, expDays) {
+            let date = new Date();
+            date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+        }
 
 		document.addEventListener("DOMContentLoaded", function () {
+			var btn = document.getElementById('backButton');
+			btn.addEventListener('click', function() {
+				setCookie("playerUserSET", "", 1);
+				document.location.href = 'club-players.php';
+			});
+
 			var user = "<?php echo $user; ?>";
 			var name = "<?php echo $name; ?>";
 			var surname = "<?php echo $surname; ?>";
 			var userType = "<?php echo $userType; ?>";
 			var avatar = "<?php echo $srcAvatar; ?>";
 			var sidebarUl = document.getElementById("sidebarUl");
-
-            var players = <?php echo json_encode($playersOfCoach); ?>;
-
-			for (let index = 0; index < players.length; index++) {
-                var selection = document.getElementById("pOfSession");
-                var newOption = document.createElement("option");
-                newOption.setAttribute("value", players[index]);
-                newOption.innerHTML = players[index];
-                selection.appendChild(newOption);
+			
+			var cookieUsername = getCookie("playerUserSET");
+			if (!cookieUsername) {
+				document.location.href = "club-players.php";
+			} else {
+				var playerUsername = $('<input class="form-control" type="text" name="playerOfSession" value="'+cookieUsername+'" placeholder="'+cookieUsername+'" readonly="">');
+				const contentUsername = document.getElementById("inputPlayerUsername");
+				playerUsername.appendTo(contentUsername);
 			}
-
 
 			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
 			var image = document.getElementById('avatarImage');
