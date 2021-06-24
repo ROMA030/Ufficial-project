@@ -421,7 +421,7 @@
 			$result2 = mysqli_query($conn, $query2);
 
 
-			while ($row = $result->fetch_assoc()) 
+			while ($row = $result2->fetch_assoc()) 
 			{
 				$Id [] = $row['Id'];
 				$eventName [] = $row['Nome'];
