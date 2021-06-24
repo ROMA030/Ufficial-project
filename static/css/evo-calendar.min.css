@@ -400,6 +400,7 @@ tr.calendar-body .calendar-day .day[disabled] {
     -webkit-transform: translate(-50%, calc(-100% + -5px));
     -ms-transform: translate(-50%, calc(-100% + -5px));
     transform: translate(-50%, calc(-100% + -5px));
+    margin-top: 17px;
 }
 .event-indicator > .type-bullet {
     float: left;
@@ -409,6 +410,7 @@ tr.calendar-body .calendar-day .day[disabled] {
     width: 10px;
     height: 10px;
     border-radius: 50%;
+    
 }
 .event-container > .event-icon > div {
     width: 100%;
