@@ -33,7 +33,7 @@
 									<form method="post">
 										<div class="mb-3">
 											<label class="form-label">Username</label>
-											<input class="form-control form-control-lg" type="username" name="username" placeholder="Enter your username" required/>
+											<input class="form-control form-control-lg" type="text" name="username" placeholder="Enter your username" required/>
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Password</label>
