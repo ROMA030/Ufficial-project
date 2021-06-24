@@ -116,8 +116,8 @@
 						echo "<h5 class='notification text-danger mt-3'>Username already exists</h5>";                  
 					}else {
 						$users = "INSERT INTO users(Name, Surname, Email, Username, Password , Avatar, UserType, Risposta) VALUES ('$name', '$surname', '$email', '$username', '$password' , '$avatar', '$usertype','$securityAnswer')";
-						$result = mysqli_query($conn, $users);
-						header("location: ../pages-sign-in.php");
+						$result = mysqli_query($conn, $users);					
+						header("Location: pages-sign-in.php");
 					}
 					mysqli_close($conn);
 				}
