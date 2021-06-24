@@ -47,7 +47,7 @@
 	</script>
 
 	<script>
-		function addEvent(eventName, eventDescription, eventData)
+		function addEvent(eventName, eventDescription, eventData, eventClub)
 		{
 			var res = eventData.trim().split("-");
 			console.log(res);
@@ -100,7 +100,66 @@
 				  name: eventName,
 				  date: newData,
 				  description: eventDescription, 
-				  type: "evento",
+				  type: eventClub,
+				}
+			  ]);
+			
+		}
+
+		function addEvent1(eventName, eventDescription, eventData, eventClub, eventID)
+		{
+			var res = eventData.trim().split("-");
+			console.log(res);
+
+			if (res[1] == "01")
+				res[1] == "January"
+			
+			if (res[1] == "02")
+				res[1] == "February"
+			
+			if (res[1] == "03")
+				res[1] == "March"
+
+			if (res[1] == "04")
+				res[1] == "April"
+			
+			if (res[1] == "05")
+				res[1] == "May"
+
+			if (res[1] == "06")
+				res[1] == "June"
+
+			if (res[1] == "07")
+				res[1] == "July"
+
+			if (res[1] == "08")
+				res[1] == "August"
+
+
+			if (res[1] == "09")
+				res[1] == "September"
+
+
+			if (res[1] == "10")
+				res[1] == "October"
+
+			if (res[1] == "11")
+				res[1] == "November"
+
+			if (res[1] == "12")
+				res[1] == "December"
+
+
+			var newData = res[1] + "/" + res[2] + "/" + res[0];
+
+			console.log(eventData);
+			$("#calendar").evoCalendar('addCalendarEvent', [
+				{
+				  id: eventID,
+				  name: eventName,
+				  date: newData,
+				  description: eventDescription, 
+				  type: eventClub,
 				}
 			  ]);
 			
@@ -253,14 +312,17 @@
 											  <input type="text" placeholder="Enter Event" name="eventName" id="eventName" required>
 
 											  <label for="des"><b>Inserisci descrizione evento</b></label>
-											  <input type="text" placeholder="Description event" name="des" id="eventDescription" required>
+											  <input type="text" placeholder="Description event" name="eventDescription" id="eventDescription" required>
+
+											  <label for="des"><b>Inserisci nome squadra</b></label>
+											  <input type="text" placeholder="Enter name club" name="eventClub" id="eventClub" required>
 
 											  <label for="data"><b>Inserisci la data dell'evento</b></label>
 											  <input type="date" placeholder="Insert data" name="data" id="eventData" required>
 
 											  <div>
 												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annulla</button>
-												<button type="button" class="signupbtn"  onclick="addEvent(document.getElementById('eventName').value, document.getElementById('eventDescription').value, document.getElementById('eventData').value), document.getElementById('id01').style.display='none'">Crea evento</button>
+												<button type="button" class="signupbtn"  onclick="addEvent(document.getElementById('eventName').value, document.getElementById('eventDescription').value, document.getElementById('eventData').value, document.getElementById('eventClub').value), document.getElementById('id01').style.display='none'">Crea evento</button>
 											  </div>
 											</div>
 										  </form>
@@ -283,29 +345,6 @@
 										
 										<div class="row" id="calendar"></div>
 										
-										<script src="js/evo-calendar.min.js"></script>
-
-										<script>
-
-										$(document).ready(function() {
-															$('#calendar').evoCalendar({
-																theme:"Orange coral",
-																calendarEvents: [
-																	{
-																		id: 'Evento', // Event's ID (required)
-																		name: "New Year", // Event name (required)
-																		date: "January/1/2020", // Event date (required)
-																		description:"Buon anno",
-																		type: "holiday", // Event type (required)
-																		everyYear: true // Same event every year (optional)
-																	}
-																]
-															})
-													})
-
-
-											</script>
-
 					
 
 					<div class="row">
@@ -350,6 +389,9 @@
 
 		$query = "SELECT * FROM users WHERE Username = '$user'";
 		$result = mysqli_query($conn, $query);
+
+		$query1 = "SELECT * FROM eventplayer WHERE Player = '$user'";
+		$result1 = mysqli_query($conn, $query1);
 		
 		while ($row = $result->fetch_assoc()) 
 		{
@@ -364,9 +406,45 @@
 			$_SESSION['Email'] = $email;
 			
 		}
+
+		$Id = array();
+		$eventName = array();
+		$eventDesc = array();
+		$eventData = array();
+		$eventClub = array();
+
+		while ($row = $result1->fetch_assoc()) 
+		{
+			$eventID = $row['Event'];
+			$_SESSION['Event'] = $eventID;
+			$query2 = "SELECT * FROM events WHERE Id = '$eventID'";
+			$result2 = mysqli_query($conn, $query2);
+
+
+			while ($row = $result->fetch_assoc()) 
+			{
+				$Id [] = $row['Id'];
+				$eventName [] = $row['Nome'];
+				$eventDesc [] = $row['Desc'];
+				$eventData [] = $row['Data'];
+				$eventClub [] = $row['Club'];
+			
+			}
+
+			
+		}
+
+		$_SESSION['eventID'] = $Id;
+		$_SESSION['eventName'] = $eventName;
+		$_SESSION['eventDesc'] = $eventDesc;
+		$_SESSION['eventData'] = $eventData;
+		$_SESSION['eventClub'] = $eventClub;
+
 		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
 		$_SESSION['Avatar'] = $srcAvatar;
 	?>
+
+	
 
 	<script src="js/app.js"></script>
 
@@ -412,21 +490,48 @@
 			}
 		});
 	</script>
-	
+
+<script src="js/evo-calendar.min.js"></script>
+
+<script>
+
+$(document).ready(function() {
+	$('#calendar').evoCalendar({
+		theme:"Orange coral",
+		calendarEvents: [
+			{
+				id: 'Evento', // Event's ID (required)
+				name: "Capodanno", // Event name (required)
+				date: "January/1/2000", // Event date (required)
+				description:"Buon anno",
+				type: "holiday", // Event type (required)
+				everyYear: true // Same event every year (optional)
+			}
+		]
+	})
+
+
+	let eventID = "<?php json_encode($Id); ?>";
+	let eventName = "<?php json_encode($eventName); ?>";
+	let eventDesc = "<?php json_encode($eventDesc); ?>";
+	let eventData = "<?php json_encode($eventData); ?>";
+	let eventClub = "<?php json_encode($eventClub); ?>";
+
+	for (let index = 0; index < eventID.length; index++) {
+
+		addEvent1(eventID[index],
+		eventName[index],
+		eventDesc[index],
+		eventData[index],
+		eventClub[index]);
+	}
+
+})
+
+</script>
+
 	
 
-	<script>
-		document.addEventListener("DOMContentLoaded", function () {
-			var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
-			var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
-			document.getElementById("datetimepicker-dashboard").flatpickr({
-				inline: true,
-				prevArrow: "<span title=\"Previous month\">&laquo;</span>",
-				nextArrow: "<span title=\"Next month\">&raquo;</span>",
-				defaultDate: defaultDate
-			});
-		});
-	</script>
 	<script src="js/app.js"></script>
 
 	<!-- Optional JavaScript; choose one of the two! -->
