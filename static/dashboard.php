@@ -300,7 +300,7 @@
 						</div>
 					</div>
 										
-										<a class="add_event_button" onclick="document.getElementById('id01').style.display='block'" style="text-decoration: none;" onmouseover = "this.style.background = '#fff'" onmouseout  = "this.style.background = '#8f0000'">Aggiungi evento<i class="fas fa-plus-circle"></i></a>
+										<a class="add_event_button" onclick="document.getElementById('id01').style.display='block'" style="text-decoration: none;" onmouseover = "this.style.background = '#fff'" onmouseout  = "this.style.background = '#8f0000'">Aggiungi evento <i class="fas fa-plus-circle"></i></a>
 										
 										<div id="id01" class="modal">
 										  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
