@@ -15,7 +15,6 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href='css/app.css?v=<%= DateTime.Now.Ticks %>'/>
-	<link rel="stylesheet" type="text/css" href='css/style.css?v=<%= DateTime.Now.Ticks %>'/>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,6 +25,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/evo-calendar.min.css">
 	<link rel="stylesheet" href="css/evo-calendar.orange-coral.min.css"> 
 
@@ -220,8 +220,6 @@
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1"
 										data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1"
-										data-feather="pie-chart"></i> Analytics</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="Contact.php"><i class="align-middle me-1"
 										data-feather="help-circle"></i> Contact</a>
@@ -236,7 +234,7 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
+					<h1 class="h3 mb-3"><strong>Dashboard</strong></h1>
 
 					
 					<section class="cover1">
@@ -244,7 +242,7 @@
 								
 									<div class="cover__caption">
 										<div class="cover__caption__copy" >
-											<h1 style="color: #fff;">Search of incredible</h1>
+											<h1 style="color: #fff; margin: 11px">I tuoi Club</h1>
 											<div class="center col-xl-2 col-xxl-3" justify="center">
 													<div class="card flex-fill w-100" style="background: transparent;">
 														
@@ -254,19 +252,19 @@
 																	<div class="carousel-item active">
 																	<img class="center img-fluid rounded-circle mb-2" width="250" height="250" src="img/avatars/avatar-2.jpg" alt="Squad">
 																	<div class="carousel-caption">
-																		<h3>Nome Squadra</h3>
+																		
 																	</div>
 																	</div>
 																	<div class="carousel-item">
 																	<img class="center img-fluid rounded-circle mb-2 center" width="250" height="250" src="img/avatars/avatar-3.jpg" alt="...">
 																	<div class="carousel-caption">
-																		<h3>Nome Squadra</h3>
+																	
 																	</div>
 																	</div>
 																	<div class="carousel-item">
 																	<img src="img/avatars/avatar-4.jpg" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" alt="...">
 																	<div class="carousel-caption">
-																		<h3>Nome Squadra</h3>
+																		
 																	</div>
 																	</div>
 																</div>
@@ -440,8 +438,7 @@
 	?>
 
 	
-
-	<script src="js/app.js"></script>
+<script src="js/app.js"></script>
 
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
@@ -485,7 +482,7 @@
 			}
 		});
 	</script>
-
+<script src="js/app.js"></script>
 <script src="js/evo-calendar.min.js"></script>
 
 <script>
