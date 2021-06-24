@@ -109,8 +109,7 @@ CREATE TABLE IF NOT EXISTS `gyro` (
 );
 
 CREATE TABLE IF NOT EXISTS `events` (
-    `Coach` varchar(40),
-    `Player` varchar(40),
-    `Date` varchar(40),
-    `Text` varchar(255)
+    `Name` varchar(40),
+    `Description` varchar(255),
+    `Date` varchar(40)
 );
