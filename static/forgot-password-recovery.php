@@ -29,7 +29,7 @@
 
 						<div class="card">
 							<div class="card-body" >
-								<div class="m-sm-4">
+								<div class="m-sm-4" id="form">
 									<form method="post">
 										<div class="mb-3">
 											<label class="form-label">Email:</label>
@@ -47,13 +47,6 @@
 										</div>
 									</form>
 
-									<script>
-										function ErroriFormattazione() {
-										var form = document.getElementById("form");
-										var panel1 = $('</br><h4 class="text-danger text-center mt-5">Email or answer are incorrect</h4>');											
-										panel1.appendTo(form);
-										}
-									</script>
 									<?php
 										// Used for connect to the database called "sito"
 										$conn = mysqli_connect("localhost","root","","xeos");
@@ -71,7 +64,7 @@
 												header("Location: reset-password.php"); 
 												exit();
 											}else {									
-												echo "<script type='text/javascript'>ErroriFormattazione()</script>";
+												echo "<h5 class='notification text-danger mt-3'>Email or Security answer wrong</h5>";
 											}	
 											mysqli_close($conn);								
 										}

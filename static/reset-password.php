@@ -66,10 +66,8 @@
                                             $number = preg_match('@[0-9]@', $newpassword);
                                             $specialChars = preg_match('@[^\w]@', $newpassword);
                                 
-                                            if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($newpassword) < 8) { 
-                                                header("Location: reset-password.php"); 
-												echo "<p class='text-danger text-center mt-3'>Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character</p>";
-												mysqli_close($conn);
+                                            if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($newpassword) < 8) {                                                 
+												echo "<h5 class='notification text-danger mt-3'>Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character</h5>";
 											}else {                                             
 												if($newpassword == $confpassword){      
                                                     $users = "UPDATE users SET Password = '$newpassword' WHERE Email = '$email'";
@@ -78,10 +76,7 @@
                                                     exit();                                            
                                                     mysqli_close($conn);
                                                 }else  {
-                                                    header("Location: reset-password.php"); 
-                                                    echo "<p class='text-danger text-center mt-3'>Passwords must be the same.</p>";
-												    mysqli_close($conn);
-                                                }   
+													echo "<h5 class='notification text-danger mt-3'>Passwords must be the same</h5>";												   
 											}
 										}
 

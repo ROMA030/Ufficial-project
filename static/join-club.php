@@ -4,6 +4,8 @@
 		header("location: pages-sign-in.php");
 	}elseif ($_SESSION["UserType"] == "player") {
         header("location: not-here.php");
+    }elseif ($_SESSION["UserType"] == "manager") {
+      header("location: not-here.php");
     }
 ?>
 <!DOCTYPE html>
@@ -21,10 +23,12 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
 
-	<title>Register player | Xeos</title>
+	<title>Join A Club | Xeos</title>
 
 	<link href="css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -73,8 +77,7 @@
 								<i class="align-middle" data-feather="settings"></i>
 							</a>
 
-							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
-								data-bs-toggle="dropdown">
+							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
 								<img src="" id="avatarImage" class="avatar img-fluid rounded me-1"/> <span class="text-dark" id="nameSurname">Charles Hall</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
@@ -98,42 +101,42 @@
 
 			<main class="content">
 				<div class="container-fluid p-0">
+
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<h1 class="h3 mb-3">Join a club</h1>
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<button id="backButton" class="btn btn-lg btn-primary">Back</button>
+								</li>
+							</ul>
+						</div>
+					</div>
+
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Information</h5>
+
+									<div class="row">
+										<h5 class="card-title mb-0">Complete the form</h5>
+									</div>
+									
 								</div>
 								<div class="card-body">
-									<div class="m-sm-4">
-										<form method="post" enctype="multipart/form-data">
+									<div class="m-sm-4" id="show">
+										<form method="post" enctype="multipart/form-data" id = "form">
 											<div class="mb-3">
-												<label class="form-label">Nome:</label>
-                                                <div class="form-control form-control-lg" id="nameP"></div>								
+												<label class="form-label">Secret Key</label>
+												<input class="form-control form-control-lg" type="password" name="key" placeholder="Enter secret key" required/>
 											</div>
-											<div class="mb-3">
-												<label class="form-label">Cognome:</label>
-												<div class="form-control form-control-lg" id="surnameP"></div>	
-											</div>
-											<div class="mb-3">
-												<label class="form-label">Email:</label>
-												<div class="form-control form-control-lg" id="emailP"></div>	
-											</div>
-											<div class="mb-3">
-												<label class="form-label">Username:</label>
-												<div class="form-control form-control-lg" id="usernameP"></div>	
-											</div>
-											<div class="mb-3">
-												<label class="form-label">Password:</label>
-												<div class="form-control form-control-lg" id="passwordP"></div>	
-											</div>
-											<div class="mb-3">
-												<label class="form-label">Avatar: </label>
-												<a type="file" name="avatar" accept="image/*" class="form-control"></a>
-											</div>
+            
 											<div class="text-center mt-3">
-												<!--<a href="dashboard.php" class="btn btn-lg btn-primary">Sign up</a>!-->
-												<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Edit</button>
+												<button type="submit" name="submit" value="Submit" class="btn btn-lg btn-primary">Join</button>
 											</div>
 										</form>
 									</div>
@@ -172,19 +175,42 @@
 		</div>
 	</div>
 
-    <?php
-		$user = $_SESSION['username'];
-		$name = $_SESSION['Name'];
-		$surname = $_SESSION['Surname'];
-		$userType = $_SESSION['UserType'];
-		$srcAvatar = $_SESSION['Avatar'];
-		$email = $_SESSION['Email'];
-	?>
-
 	<script src="js/app.js"></script>
 
-    <?php
+    <script>
+		var btn = document.getElementById('backButton');
+		btn.addEventListener('click', function() {
+			document.location.href = 'clubs.php';
+		});
+
+        function InClub() {
+            var show = document.getElementById("show");
+            show.innerHTML = "";
+            var panel1 = $('</br><h4 class="text-danger text-center mt-5">You are already in that club!</h4>');
+            
+            panel1.appendTo(show);
+        }
+
+		function ErrorClub() {
+            var show = document.getElementById("show");
+            show.innerHTML = "";
+            var panel1 = $('</br><h4 class="text-danger text-center mt-5">The key you enter is not valid!</h4>');
+            
+            panel1.appendTo(show);
+        }
+
+        function SuccesfullyJoined() {
+            var show = document.getElementById("show");
+            show.innerHTML = "";
+            var panel1 = $('</br><h4 class="text-success text-center mt-5">Succesfully joined the club!</h4>');
+            
+            panel1.appendTo(show);
+        }
+    </script>
+
+	<?php
 		$conn = mysqli_connect("localhost","root","","xeos");
+        
 		$user = $_SESSION['username'];
 		$userName = $_SESSION['Name'];
 		$userSurname = $_SESSION['Surname'];
@@ -192,70 +218,64 @@
 		$srcAvatar = $_SESSION['Avatar'];
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			$name = $_POST["name"];
-			$surname = $_POST["surname"];
-			$email = $_POST["email"];
-			$username = $_POST["username"];
-			$password = $_POST["password"];
-	
-			$avatar = addslashes(file_get_contents($_FILES['avatar']['tmp_name']));
-	
-			if (!empty($name) && !empty($surname) && !empty($email) && !empty($username) && !empty($password)) {
-				
-				$checkUser = "SELECT * FROM users WHERE Username = '$username'";
-				$checkResult = mysqli_query($conn, $checkUser);
-	
-				if (mysqli_num_rows($checkResult) > 0) {
-					header("location: ../pages-sign-up.php");
-					echo "<p class='text-danger text-center mt-3'>Username already exists</p>";
-					exit();
+			$clubKey = $_POST["key"];
+            $alreadyInClub = false;
+			if (!empty($clubKey)) {
+				$checkID = "SELECT ClubID FROM club WHERE RandomKey = '$clubKey'";
+				$IDResult = mysqli_query($conn, $checkID);
+
+				if (mysqli_num_rows($IDResult) > 0) {
+                    while ($row = mysqli_fetch_assoc($IDResult)) {
+                        $clubID = $row["ClubID"];
+                        $checkCoach = "SELECT * FROM clubcoach WHERE Club = '$clubID'";
+                        $checkResult = mysqli_query($conn, $checkCoach);
+                        
+                        while ($row2 = mysqli_fetch_assoc($checkResult)) {
+                            if ($user == $row2["Coach"]) {
+                                $alreadyInClub = true;
+                            }
+                        }
+
+                        if ($alreadyInClub == false) {
+                            $addCoach = "INSERT INTO clubcoach(Club, Coach) VALUES ('$clubID', '$user')";
+                            $addResult = mysqli_query($conn, $addCoach);
+
+                            echo "<script type='text/javascript'>SuccesfullyJoined()</script>";
+                        } else {
+                            echo "<script type='text/javascript'>InClub()</script>";
+                        }
+                        
+                    }
 				}else {
-					$users = "INSERT INTO users(Name, Surname, Email, Username, Password , Avatar, UserType) VALUES ('$name', '$surname', '$email', '$username', '$password' , '$avatar', 'player')";
-					$result = mysqli_query($conn, $users);
-					$coachPlayer = "INSERT INTO coachplayer(Coach, Player) VALUES ('$user', '$username')";
-					$result2 = mysqli_query($conn, $coachPlayer);
-					header("location: ../register-player.php?user=". $user);
-					exit();
-				}
-				mysqli_close($conn);
+                    echo "<script type='text/javascript'>ErrorClub()</script>";
+                }
 			}
+			mysqli_close($conn);
 		}
 	?>
-    
-	<script>
 
+	<script>
 		document.addEventListener("DOMContentLoaded", function () {
 			var user = "<?php echo $user; ?>";
-			var name = "<?php echo $name; ?>";
-			var surname = "<?php echo $surname; ?>";
+			var name = "<?php echo $userName; ?>";
+			var surname = "<?php echo $userSurname; ?>";
 			var userType = "<?php echo $userType; ?>";
 			var avatar = "<?php echo $srcAvatar; ?>";
-			var email = "<?php echo $email; ?>"; 
 			var sidebarUl = document.getElementById("sidebarUl");
-			console.log(userType);
+
 			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
-			document.getElementById("userTypeAnchor").innerHTML = userType;
 			var image = document.getElementById('avatarImage');
-			var bigImage = document.getElementById('bigAvatarImage');
-			bigImage.src = avatar;
             image.src = avatar;
-
-			document.getElementById("nameP").innerHTML = name;
-			document.getElementById("surnameP").innerHTML = surname;
-			document.getElementById("emailP").innerHTML = email;
-			document.getElementById("userP").innerHTML = user;
-
 
 			switch (userType) {
 				case 'player':
 					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				case 'coach':
-					CreateSidebarElement("graphic.php", "book", "Graphics", false);
-					CreateSidebarElement("sessions.php", "book", "Sessions", false);
+                    CreateSidebarElement("clubs.php", "users", "Club", false);
 					break;
 				case 'manager':
-					
+					CreateSidebarElement("clubs.php", "users", "Club", false);
 					break;
 				case 'admin':
 					CreateSidebarElement("graphic.php", "book", "Graphics");
@@ -264,40 +284,20 @@
 					console.log("UserType not found");
 			}
 
-			function  CreateSidebarElement(href, icon, name, active){
-				var liElement = document.createElement("li");
-				liElement.className += "sidebar-item";
-				if (active == true) {
-					liElement.className += " active";
-				}
-				var aElement = document.createElement("a");
-				aElement.className += "sidebar-link";
-				aElement.href = href;
-				var divElement = document.createElement("div");
-				var iElement = document.createElement("i");
-				//iElement.className += "align-middle";
-				//iElement.setAttribute("data-feather", icon);
-				
-				//iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
-				//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
-				var spanElement = document.createElement("span");
-				spanElement.className += " align-middle";
-				spanElement.textContent = name;
 
-				aElement.appendChild(iElement);
-				aElement.appendChild(spanElement);
-				aElement.appendChild(divElement);
-				
-				liElement.appendChild(aElement);
-				sidebarUl.appendChild(liElement);
+			function  CreateSidebarElement(href, icon, name, active){
+				if (active == true) {
+					var iconOnSide = $('<li class="sidebar-item active"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
+				} else {
+					var iconOnSide = $('<li class="sidebar-item"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
+				}
+
+				iconOnSide.appendTo('#sidebarUl');
+				feather.replace()
 			}
 		});
-		
 	</script>
-
 
 </body>
 
 </html>
-
-
