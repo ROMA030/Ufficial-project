@@ -15,6 +15,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href='css/app.css?v=<%= DateTime.Now.Ticks %>'/>
+	<link rel="stylesheet" type="text/css" href='css/style.css?v=<%= DateTime.Now.Ticks %>'/>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -178,129 +179,68 @@
 
 					<h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
 
-					<div class="row">
-						<div class="col-xl-6 col-xxl-5 d-flex">
-							<div class="w-100">
-								<div class="row">
-									<div class="col-sm-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Benvenuto!</h5>
-													</div>
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="bell"></i>
+					
+					<section class="cover1">
+								<div class="cover__filter1"></div>
+								
+									<div class="cover__caption">
+										<div class="cover__caption__copy" >
+											<h1 style="color: #fff;">Search of incredible</h1>
+											<div class="center col-xl-2 col-xxl-3" justify="center">
+													<div class="card flex-fill w-100" style="background: transparent;">
+														
+														<div class="card-body py-3">	
+															<div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
+																<div class="carousel-inner">
+																	<div class="carousel-item active">
+																	<img class="center img-fluid rounded-circle mb-2" width="250" height="250" src="img/avatars/avatar-2.jpg" alt="Squad">
+																	<div class="carousel-caption">
+																		<h3>Nome Squadra</h3>
+																	</div>
+																	</div>
+																	<div class="carousel-item">
+																	<img class="center img-fluid rounded-circle mb-2 center" width="250" height="250" src="img/avatars/avatar-3.jpg" alt="...">
+																	<div class="carousel-caption">
+																		<h3>Nome Squadra</h3>
+																	</div>
+																	</div>
+																	<div class="carousel-item">
+																	<img src="img/avatars/avatar-4.jpg" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" alt="...">
+																	<div class="carousel-caption">
+																		<h3>Nome Squadra</h3>
+																	</div>
+																	</div>
+																</div>
+																<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+																	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+																	<span class="visually-hidden">Previous</span>
+																</button>
+																<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+																	<span class="carousel-control-next-icon" aria-hidden="true"></span>
+																	<span class="visually-hidden">Next</span>
+																</button>
+															</div>
 														</div>
 													</div>
+													<style>
+														.center {
+														display: block;
+														margin-left: auto;
+														margin-right: auto;
+														}
+													</style>
 												</div>
-											<h1 class="mt-1 mb-3">Felice di rivederti! &#128540</h1>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">About you!</h5>
-													</div>
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="tag"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">Stai ricoprendo il ruolo di
-													<b><h1 class="mt-1 mb-3" id="dashRole" style="color:Red"></h1></b>
-												</h1>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="card">
-										<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Benvenuto!</h5>
-													</div>
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="bell"></i>
-														</div>
-													</div>
-												</div>
-											<h1 class="mt-1 mb-3">Felice di rivederti! &#128540</h1>
-											</div>
-										</div>
-										<div class="card">
-										<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Benvenuto!</h5>
-													</div>
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="bell"></i>
-														</div>
-													</div>
-												</div>
-											<h1 class="mt-1 mb-3">Felice di rivederti! &#128540</h1>
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-						</div>
+							</section>
 
-						<div class="center col-xl-2 col-xxl-3" justify="center">
-							<div class="card flex-fill w-100">
-								<div class="card-header">
-									<h5 class="card-title mb-0">I tuoi club!</h5>
-								</div>
-								<div class="card-body py-3">	
-									<div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
-										<div class="carousel-inner">
-											<div class="carousel-item active">
-											<img class="center img-fluid rounded-circle mb-2" width="250" height="250" src="img/avatars/avatar-2.jpg" alt="Squad">
-											<div class="carousel-caption">
-												<h3>Nome Squadra</h3>
-											</div>
-											</div>
-											<div class="carousel-item">
-											<img class="center img-fluid rounded-circle mb-2 center" width="250" height="250" src="img/avatars/avatar-3.jpg" alt="...">
-											<div class="carousel-caption">
-												<h3>Nome Squadra</h3>
-											</div>
-											</div>
-											<div class="carousel-item">
-											<img src="img/avatars/avatar-4.jpg" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" alt="...">
-											<div class="carousel-caption">
-												<h3>Nome Squadra</h3>
-											</div>
-											</div>
-										</div>
-										<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-											<span class="visually-hidden">Previous</span>
-										</button>
-										<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-											<span class="carousel-control-next-icon" aria-hidden="true"></span>
-											<span class="visually-hidden">Next</span>
-										</button>
-									</div>
-								</div>
-							</div>
-							<style>
-								.center {
-								display: block;
-								margin-left: auto;
-								margin-right: auto;
-								}
-							</style>
-						</div>
-					</div>
+
+
+
+						
 										
-										<a class="add_event_button" onclick="document.getElementById('id01').style.display='block'" style="text-decoration: none;" onmouseover = "this.style.background = '#fff'" onmouseout  = "this.style.background = '#8f0000'">Aggiungi evento <i class="fas fa-plus-circle"></i></a>
+										<a class="add_event_button" onclick="document.getElementById('id01').style.display='block'" style="text-decoration: none; margin-top: 20px" onmouseover = "this.style.background = '#fff'" onmouseout  = "this.style.background = '#8f0000'">Aggiungi evento <i class="fas fa-plus-circle"></i></a>
 										
 										<div id="id01" class="modal">
 										  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -398,32 +338,9 @@
 						</div>
 					</div>
 				</div>
+
 			</main>
 
-			<footer class="footer">
-				<div class="container-fluid">
-					<div class="row text-muted">
-						<div class="col-6 text-start">
-							<p class="mb-0">
-								<a class="text-muted" target="_blank"><strong>Xeos</strong></a> &copy;
-							</p>
-						</div>
-						<div class="col-6 text-end">
-							<ul class="list-inline">
-								<li class="list-inline-item">
-									<a class="text-muted" target="_blank" href="contact.php">Contact</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-								</li>
-								<li class="list-inline-item">
-									<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</footer>
 		</div>
 	</div>
 

@@ -11,8 +11,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href='css/style.css?v=<%= DateTime.Now.Ticks %>'/>
 
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@600&display=swap" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -69,7 +68,7 @@
                 <div class="topnav" id="myTopnav">
                     <a class="active" href=""><i class="fa fa-fw fa-home"></i> Home</a>
                     <a href="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
-                    <a href=""><i class="fa fa-fw fa-user"></i> Login/Register</a>
+                    <a href="#section"><i class="fa fa-fw fa-user"></i> Login/Register</a>
                     <a href="#intro"><i class="fa fa-fw fa-search"></i> About</a>
                     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                         <i class="fa fa-bars"></i>

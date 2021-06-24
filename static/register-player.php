@@ -160,7 +160,7 @@
 						<div class="col-6 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item">
-									<a class="text-muted" target="_blank">Contact</a>
+									<a class="text-muted" target="_blank" href="index.html#contact">Contact</a>
 								</li>
 								<li class="list-inline-item">
 									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
