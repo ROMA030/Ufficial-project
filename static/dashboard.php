@@ -265,13 +265,13 @@
 											  <p>Riempi i campi richiesti per poter creare un evento.</p>
 											  <hr>
 											  <label for="email"><b>Inserisci nome evento</b></label>
-											  <input type="text" placeholder="Enter Event" name="email" required>
+											  <input type="text" placeholder="Inserisci evento" name="email" required>
 
 											  <label for="des"><b>Inserisci descrizione evento</b></label>
-											  <input type="text" placeholder="Description event" name="des" required>
+											  <input type="text" placeholder="Descrizione evento" name="des" required>
 
 											  <label for="data"><b>Inserisci la data dell'evento</b></label>
-											  <input type="date" placeholder="Insert data" name="data" required>
+											  <input type="date" placeholder="Inserisci data" name="data" required>
 
 											  <div>
 												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annulla</button>
