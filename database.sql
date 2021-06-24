@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 24, 2021 alle 11:35
--- Versione del server: 10.4.18-MariaDB
--- Versione PHP: 8.0.3
+-- Creato il: Giu 24, 2021 alle 17:17
+-- Versione del server: 10.4.19-MariaDB
+-- Versione PHP: 8.0.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -125,38 +125,27 @@ CREATE TABLE `ecg` (
 -- --------------------------------------------------------
 
 --
--- Struttura delle tabelle `events`
+-- Struttura della tabella `eventplayer`
 --
 
-CREATE TABLE `events` (
-  `Id` int(255) NOT NULL,
-  `Nome` varchar(40) DEFAULT NULL,
-  `Desc` varchar(255) DEFAULT NULL,
-  `Data` varchar(40) DEFAULT NULL,
-  `Club`varchar(40) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `eventPlayer` (
-  `Event` int(255),
+CREATE TABLE `eventplayer` (
+  `Event` int(255) DEFAULT NULL,
   `Player` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Indici per le tabelle `events`
---
-ALTER TABLE `events`
-  ADD PRIMARY KEY (`Id`);
+-- --------------------------------------------------------
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
+-- Struttura della tabella `events`
 --
 
---
--- AUTO_INCREMENT per la tabella `events`
---
-ALTER TABLE `events`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
+CREATE TABLE `events` (
+  `Id` int(11) NOT NULL,
+  `Nome` varchar(40) DEFAULT NULL,
+  `Desc` varchar(255) DEFAULT NULL,
+  `Data` varchar(40) DEFAULT NULL,
+  `Club` varchar(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -225,6 +214,12 @@ ALTER TABLE `club`
   ADD PRIMARY KEY (`ClubID`);
 
 --
+-- Indici per le tabelle `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- AUTO_INCREMENT per le tabelle scaricate
 --
 
@@ -233,6 +228,12 @@ ALTER TABLE `club`
 --
 ALTER TABLE `club`
   MODIFY `ClubID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `events`
+--
+ALTER TABLE `events`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

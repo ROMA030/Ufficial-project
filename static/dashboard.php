@@ -106,7 +106,7 @@
 			
 		}
 
-		function addEvent1(eventName, eventDescription, eventData, eventClub, eventID)
+		function addEvent1(eventID ,eventName, eventDescription, eventData, eventClub)
 		{
 			var res = eventData.trim().split("-");
 			console.log(res);
@@ -390,8 +390,7 @@
 		$query = "SELECT * FROM users WHERE Username = '$user'";
 		$result = mysqli_query($conn, $query);
 
-		$query1 = "SELECT * FROM eventplayer WHERE Player = '$user'";
-		$result1 = mysqli_query($conn, $query1);
+		
 		
 		while ($row = $result->fetch_assoc()) 
 		{
@@ -407,6 +406,13 @@
 			
 		}
 
+		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
+		$_SESSION['Avatar'] = $srcAvatar;
+		
+		
+		$query1 = "SELECT * FROM eventplayer WHERE Player = '$user'";
+		$result1 = mysqli_query($conn, $query1);
+
 		$Id = array();
 		$eventName = array();
 		$eventDesc = array();
@@ -420,7 +426,6 @@
 			$query2 = "SELECT * FROM events WHERE Id = '$eventID'";
 			$result2 = mysqli_query($conn, $query2);
 
-
 			while ($row = $result2->fetch_assoc()) 
 			{
 				$Id [] = $row['Id'];
@@ -428,20 +433,10 @@
 				$eventDesc [] = $row['Desc'];
 				$eventData [] = $row['Data'];
 				$eventClub [] = $row['Club'];
-			
 			}
-
-			
 		}
-
-		$_SESSION['eventID'] = $Id;
-		$_SESSION['eventName'] = $eventName;
-		$_SESSION['eventDesc'] = $eventDesc;
-		$_SESSION['eventData'] = $eventData;
-		$_SESSION['eventClub'] = $eventClub;
-
-		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
-		$_SESSION['Avatar'] = $srcAvatar;
+		
+		
 	?>
 
 	
@@ -511,11 +506,11 @@ $(document).ready(function() {
 	})
 
 
-	let eventID = "<?php json_encode($Id); ?>";
-	let eventName = "<?php json_encode($eventName); ?>";
-	let eventDesc = "<?php json_encode($eventDesc); ?>";
-	let eventData = "<?php json_encode($eventData); ?>";
-	let eventClub = "<?php json_encode($eventClub); ?>";
+	let eventID = <?php echo json_encode($Id); ?>;
+	let eventName = <?php echo json_encode($eventName); ?>;
+	let eventDesc = <?php echo json_encode($eventDesc); ?>;
+	let eventData = <?php echo json_encode($eventData); ?>;
+	let eventClub = <?php echo json_encode($eventClub); ?>;
 
 	for (let index = 0; index < eventID.length; index++) {
 
@@ -524,6 +519,7 @@ $(document).ready(function() {
 		eventDesc[index],
 		eventData[index],
 		eventClub[index]);
+		
 	}
 
 })
