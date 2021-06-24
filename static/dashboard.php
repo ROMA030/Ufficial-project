@@ -46,15 +46,60 @@
 	</script>
 
 	<script>
-		function addEvent()
+		function addEvent(eventName, eventDescription, eventData)
 		{
+			var res = eventData.trim().split("-");
+			console.log(res);
+
+			if (res[1] == "01")
+				res[1] == "January"
+			
+			if (res[1] == "02")
+				res[1] == "February"
+			
+			if (res[1] == "03")
+				res[1] == "March"
+
+			if (res[1] == "04")
+				res[1] == "April"
+			
+			if (res[1] == "05")
+				res[1] == "May"
+
+			if (res[1] == "06")
+				res[1] == "June"
+
+			if (res[1] == "07")
+				res[1] == "July"
+
+			if (res[1] == "08")
+				res[1] == "August"
+
+
+			if (res[1] == "09")
+				res[1] == "September"
+
+
+			if (res[1] == "10")
+				res[1] == "October"
+
+			if (res[1] == "11")
+				res[1] == "November"
+
+			if (res[1] == "12")
+				res[1] == "December"
+
+
+			var newData = res[1] + "/" + res[2] + "/" + res[0];
+
+			console.log(eventData, eventName, eventDescription);
 			$("#calendar").evoCalendar('addCalendarEvent', [
 				{
 				  id: '09nk7Ts',
-				  name: "My Birthday",
-				  date: "February/15/2020",
-				  type: "allenamento",
-				  everyYear: true
+				  name: eventName,
+				  date: newData,
+				  description: eventDescription, 
+				  type: "evento",
 				}
 			  ]);
 			
@@ -267,15 +312,15 @@
 											  <label for="email"><b>Inserisci nome evento</b></label>
 											  <input type="text" placeholder="Enter Event" name="eventName" id="eventName" required>
 
-											  <label for="psw"><b>Password</b></label>
-											  <input type="password" placeholder="Enter Password" name="psw"  required>
+											  <label for="des"><b>Inserisci descrizione evento</b></label>
+											  <input type="text" placeholder="Description event" name="des" id="eventDescription" required>
 
 											  <label for="data"><b>Inserisci la data dell'evento</b></label>
-											  <input type="date" placeholder="Insert data" name="data" required>
+											  <input type="date" placeholder="Insert data" name="data" id="eventData" required>
 
 											  <div>
 												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annulla</button>
-												<button type="button" class="signupbtn"  onclick="addEvent(document.getElementById('eventName').value, document.getElementById('eventName').value); document.getElementById('id01').style.display='none'">Crea evento</button>
+												<button type="button" class="signupbtn"  onclick="addEvent(document.getElementById('eventName').value, document.getElementById('eventDescription').value, document.getElementById('eventData').value), document.getElementById('id01').style.display='none'">Crea evento</button>
 											  </div>
 											</div>
 										  </form>
@@ -313,50 +358,8 @@
 																		description:"Buon anno",
 																		type: "holiday", // Event type (required)
 																		everyYear: true // Same event every year (optional)
-																	},
-																	{
-																		name: "Vacation Leave",
-																		badge: "02/13 - 02/15", // Event badge (optional)
-																		date: ["February/13/2020", "February/15/2020"], // Date range
-																		description: "Vacation leave for 3 days.", // Event description (optional)
-																		type: "event",
-																		color: "#63d867" // Event custom color (optional)
-																	},
-																	{
-																		name: "Vacation Leave",
-																		badge: "02/13 - 02/15", // Event badge (optional)
-																		date: ["February/13/2020", "February/15/2020"], // Date range
-																		description: "Vacation leave for 3 days.", // Event description (optional)
-																		type: "event",
-																		color: "#63d867" // Event custom color (optional)
-																	},
-																	{
-																		name: "Vacation Leave",
-																		badge: "02/13 - 02/15", // Event badge (optional)
-																		date: ["February/13/2020", "February/15/2020"], // Date range
-																		description: "Vacation leave for 3 days.", // Event description (optional)
-																		type: "event",
-																		color: "#63d867" // Event custom color (optional)
-																	},
-																	{
-																		name: "Vacation Leave",
-																		badge: "02/13 - 02/15", // Event badge (optional)
-																		date: ["February/13/2020", "February/15/2020"], // Date range
-																		description: "Vacation leave for 3 days.", // Event description (optional)
-																		type: "event",
-																		color: "#63d867" // Event custom color (optional)
-																	},
-																	{
-																		name: "Vacation Leave",
-																		badge: "02/13 - 02/15", // Event badge (optional)
-																		date: ["February/13/2020", "February/15/2020"], // Date range
-																		description: "Vacation leave for 3 days.", // Event description (optional)
-																		type: "event",
-																		color: "#63d867" // Event custom color (optional)
-																	},
-																	
+																	}
 																]
-
 															})
 													})
 
