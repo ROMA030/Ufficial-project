@@ -125,15 +125,38 @@ CREATE TABLE `ecg` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `events`
+-- Struttura delle tabelle `events`
 --
 
 CREATE TABLE `events` (
-  `Coach` varchar(40) DEFAULT NULL,
-  `Player` varchar(40) DEFAULT NULL,
-  `Date` varchar(40) DEFAULT NULL,
-  `Text` varchar(255) DEFAULT NULL
+  `Id` int(255) NOT NULL,
+  `Nome` varchar(40) DEFAULT NULL,
+  `Desc` varchar(255) DEFAULT NULL,
+  `Data` varchar(40) DEFAULT NULL,
+  `Club`varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `eventPlayer` (
+  `Event` int(255),
+  `Player` varchar(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Indici per le tabelle `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- AUTO_INCREMENT per le tabelle scaricate
+--
+
+--
+-- AUTO_INCREMENT per la tabella `events`
+--
+ALTER TABLE `events`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
 
 -- --------------------------------------------------------
 
