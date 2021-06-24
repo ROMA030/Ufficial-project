@@ -267,8 +267,8 @@
 											  <label for="email"><b>Inserisci nome evento</b></label>
 											  <input type="text" placeholder="Enter Event" name="email" required>
 
-											  <label for="psw"><b>Password</b></label>
-											  <input type="password" placeholder="Enter Password" name="psw" required>
+											  <label for="des"><b>Inserisci descrizione evento</b></label>
+											  <input type="text" placeholder="Description event" name="des" required>
 
 											  <label for="data"><b>Inserisci la data dell'evento</b></label>
 											  <input type="date" placeholder="Insert data" name="data" required>
