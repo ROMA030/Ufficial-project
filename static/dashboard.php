@@ -261,27 +261,21 @@
 										  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 										  <form class="modal-content" >
 											<div class="container">
-											  <h1>Sign Up</h1>
-											  <p>Please fill in this form to create an account.</p>
+											  <h1>Crea evento</h1>
+											  <p>Riempi i campi richiesti per poter creare un evento.</p>
 											  <hr>
-											  <label for="email"><b>Email</b></label>
-											  <input type="text" placeholder="Enter Email" name="email" required>
+											  <label for="email"><b>Inserisci nome evento</b></label>
+											  <input type="text" placeholder="Enter Event" name="email" required>
 
 											  <label for="psw"><b>Password</b></label>
 											  <input type="password" placeholder="Enter Password" name="psw" required>
 
-											  <label for="psw-repeat"><b>Repeat Password</b></label>
-											  <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-      
-											  <label>
-												<input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-											  </label>
-
-											  <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+											  <label for="data"><b>Inserisci la data dell'evento</b></label>
+											  <input type="date" placeholder="Insert data" name="data" required>
 
 											  <div>
-												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-												<button type="button" class="signupbtn"  onclick="addEvent(); document.getElementById('id01').style.display='none'">Add event</button>
+												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annulla</button>
+												<button type="button" class="signupbtn"  onclick="addEvent(); document.getElementById('id01').style.display='none'">Crea evento</button>
 											  </div>
 											</div>
 										  </form>
