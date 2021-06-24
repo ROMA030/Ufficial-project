@@ -342,10 +342,10 @@
 					echo '<script type="text/javascript">addClub("", "", "", true);</script>';
 				}
 			}
-			echo $number;
 			
 			for ($j=0; $j <= $number; $j++) { 
 				if(isset($_POST["ClubButton".$j.""])) {
+					/*
 					echo '<script type="text/javascript">RemoveClubs();</script>';
 					
 					$query3 = "SELECT Player FROM coachplayer WHERE Coach = '$user'";
@@ -395,7 +395,9 @@
 						if ($x == $playerNumber) {
 							echo '<script type="text/javascript">addPlayers("", "", "", true);</script>';
 						}
-					}
+					}*/
+					$_SESSION['ClubID'] = $j;
+					header("location: club-players.php",false);
 				}
 			}
 		}

@@ -24,10 +24,7 @@
 	<title>Sessions | Xeos</title>
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-	<script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -192,6 +189,9 @@
 		$userType = $_SESSION['UserType'];
 		$srcAvatar = $_SESSION['Avatar'];
 
+
+		echo $_POST["playerUser"];
+
 		$playersOfCoach = array();
 		$query2 = "SELECT Player FROM coachplayer WHERE Coach = '$user'";
 		$result2 = mysqli_query($conn, $query2);
@@ -200,8 +200,6 @@
             //$playersOfCoach = $row["Player"];
             array_push($playersOfCoach, $row["Player"]);
         }
-
-		
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$player = $_POST['playerOfSession'];
