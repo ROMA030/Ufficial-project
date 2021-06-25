@@ -39,7 +39,7 @@
 						Pages
 					</li>
 
-					<li class="sidebar-item active">
+					<li class="sidebar-item">
 						<a class="sidebar-link" href="dashboard.php">
 							<i class="align-middle" data-feather="sliders"></i>
 							<span class="align-middle">Dashboard</span>
@@ -49,6 +49,12 @@
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="pages-profile.php">
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+						</a>
+					</li>
+
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="contact.php">
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Contact</span>
 						</a>
 					</li>
 
@@ -77,8 +83,6 @@
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1"
 										data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1"
-										data-feather="pie-chart"></i> Analytics</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="Contact.php"><i class="align-middle me-1"
 										data-feather="help-circle"></i> Contact</a>
@@ -110,27 +114,27 @@
 									<div>
                                    		<h4 class="card-title mb-0">Michele Arici</h4>
                                     </div>
-                                    <div class="card-body"><p>Primoelemento@gmail.com</p>
+                                    <div class="card-body"><p>miki.arici8@gmail.com</p>
                                     </div>
                                     <div class="card-header">
                                         <h4 class="card-title mb-0">Yegor Cherednychenko</h4>
                                     </div>
-                                    <div class="card-body"><p>Secondoelemento@gmail.com</p>
+                                    <div class="card-body"><p>cherednychenkoyehor@gmail.com</p>
                                     </div>
                                     <div class="card-header">
                                         <h4 class="card-title mb-0">Francesco Tonassi</h4>
                                     </div>
-                                    <div class="card-body"><p>Terzoelemento@gmail.com</p>
+                                    <div class="card-body"><p>francescotonassi@gmail.com</p>
                                     </div>
                                     <div class="card-header">
                                         <h4 class="card-title mb-0">Daniele Romano</h4>
                                     </div>
-                                    <div class="card-body"><p>Quartoelemento@gmail.com</p>
+                                    <div class="card-body"><p>dani21roby@gmail.com</p>
                                     </div>
                                     <div class="card-header">
                                         <h4 class="card-title mb-0">Alessandro Ragnoli</h4>
                                     </div>
-                                    <div class="card-body"><p>Quintoelemento@gmail.com</p>
+                                    <div class="card-body"><p>ragnolialessandro88@gmail.com</p>
                                     </div>       
                                 </div>
                             </div>
