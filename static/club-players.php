@@ -6,7 +6,7 @@
 	}elseif ($_SESSION["UserType"] == "player") {
         header("location: not-here.php");
     }
-    if (!isset($_SESSION["ClubID"])) {
+    if (!isset($_COOKIE["clubIDSHOW"])) {
 		header("location: clubs.php");
 	}
 ?>

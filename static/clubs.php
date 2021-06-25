@@ -53,7 +53,7 @@
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="pages-profile.php">
-							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle" href="pages-profile.php">Profile</span>
 						</a>
 					</li>
 
@@ -198,7 +198,7 @@
 				var myPanel = $('<div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Join a club</h3></div><div class="text-center mt-3"><button onclick="JoinClub()" type="button" class="btn btn-lg btn-primary">Join</button></div></div></div>');
 			} else {
 				var temp = "ShowPlayers('"+id+"')";
-                var myPanel = $('<div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="users"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "clubAvatarImage"/><h3 class="mt-1 mb-3">'+ name +'</h3></div><div class="text-center mt-3"><button onclick="'+temp+'" type="button" class="btn btn-lg btn-primary">Show Coaches</button></div></div></div>');
+                var myPanel = $('<div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="users"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "clubAvatarImage"/><h3 class="mt-1 mb-3">'+ name +'</h3></div><div class="text-center mt-3"><button onclick="'+temp+'" type="button" class="btn btn-lg btn-primary">Show players</button></div></div></div>');
             }
             //button type="submit" name="ClubButton'+ id +'" class="btn btn-lg btn-primary"
             myPanel.appendTo(myCol);
