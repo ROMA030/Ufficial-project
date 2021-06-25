@@ -87,7 +87,7 @@
 								<a class="dropdown-item" href="#"><i class="align-middle me-1"
 										data-feather="help-circle"></i> Help Center</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Log out</a>
+								<a class="dropdown-item" href="index.html">Log out</a>
 							</div>
 						</li>
 					</ul>
@@ -209,7 +209,7 @@
 			}
         };
 
-        var addPlayers = function (id, name, src, addCard, ){
+        var addPlayers = function (id, name, src, addCard){
             var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');
             if (addCard == true) {
                 var myPanel = $('<div class="" id="AddPlayer"><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="user-plus"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Add a player</h3></div><div class="text-center mt-3"><button id="addPlayerButton" class="btn btn-lg btn-primary">Add</button></div></div></div></div>');
@@ -339,11 +339,11 @@
 					}
 				}
 				$i = $i + 1;
-				if ($i == $number) {
-					echo '<script type="text/javascript">addClub("", "", "", true);</script>';
-				}
+				
 			}
-			
+
+			echo '<script type="text/javascript">addClub("", "", "", true);</script>';
+
 			for ($j=0; $j <= $number; $j++) { 
 				if(isset($_POST["ClubButton".$j.""])) {
 					/*
@@ -404,16 +404,7 @@
 		}
 		//mysqli_close($conn);
 		//exit;
-		/*
-		if(isset($_POST["seeClub"])) {
-			header("location: my-club.php",false);
-		}
-		
-		for ($k=0; $k < $playerNumber ; $k++) { 
-			if(isset($_POST["AddSessionButton". $k .""])) {
-				header("location: sessions.php",false);
-			}
-		}*/
+
 	?>
 
 	<script>
