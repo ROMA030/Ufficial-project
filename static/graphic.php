@@ -359,7 +359,7 @@
 				$fileTypes = array("acc", "gyro", "other");
 				for ($i=0; $i < 4; $i++) { 
 					$temp = $fileTypes[$i];
-					$selectedPlayer = "giocatore1";
+					//$selectedPlayer = "giocatore1";
 					/*
 					$query4 = "SELECT `session` FROM " . $temp . " WHERE player = '$selectedPlayer' ORDER BY `session` DESC LIMIT 1";
 					$result4 = $conn->query($query4) or die($conn->error);
