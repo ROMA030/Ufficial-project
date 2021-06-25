@@ -53,7 +53,7 @@
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="pages-profile.php">
-							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle" href="pages-profile.php">Profile</span>
 						</a>
 					</li>
 

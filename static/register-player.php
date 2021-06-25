@@ -109,7 +109,7 @@
 						<div class="col-6 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item" id="addBackButton">
-									<button id="backButton" class="btn btn-lg btn-primary">Back</button>
+									<button id="backButton" class="btn btn-lg btn-primary" href="club-players.php">Back</button>
 								</li>
 							</ul>
 						</div>
