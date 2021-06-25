@@ -432,7 +432,29 @@
 		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
 		$_SESSION['Avatar'] = $srcAvatar;
 		
-		$query1 = "SELECT * FROM eventplayer WHERE Player = '$user'";
+		switch ($userType) {
+			case 'player':
+				$query5 = "SELECT Club FROM clubplayers WHERE player = '$user'";
+				break;
+			case 'coach':
+				$query5 = "SELECT Club FROM clubcoach WHERE Coach = '$user'";
+				break;
+			case 'manager':
+				$query5 = "SELECT Club FROM clubmanager WHERE Manager = '$user'";
+				break;
+		}
+
+		
+		$result5 = mysqli_query($conn, $query5);
+		
+		$clubID = 0;
+
+		while ($row = $result5->fetch_assoc()) {
+			$clubID = $row["Club"];
+			$_SESSION["UserClubID"] = $clubID;
+		}
+
+		$query1 = "SELECT * FROM eventplayer WHERE Club = '$clubID'";
 		$result1 = mysqli_query($conn, $query1);
 
 		$Id = array();

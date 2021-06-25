@@ -16,12 +16,12 @@
     $eventDesc = $cookieArray[2];
     $eventClub = $cookieArray[3];
     
-    $query = "INSERT INTO events(`Nome`, `Desc`, `Data`, `Club`) VALUES ('$eventName', '$eventDesc', '$eventDate', '5')";
+    $query = "INSERT INTO events(`Nome`, `Desc`, `Data`, `Club`) VALUES ('$eventName', '$eventDesc', '$eventDate', '')";
     $result = mysqli_query($conn, $query);
     
     //$eventID += 1;
-    
-    $query2 = "INSERT INTO eventplayer(Event, Player) VALUES ('$eventID', '$user')";
+    $clubID = $_SESSION["UserClubID"];
+    $query2 = "INSERT INTO eventplayer(Event, Club) VALUES ('$eventID', '$clubID')";
     $result2 = mysqli_query($conn, $query2);
 
     //$_SESSION["eventID"] = $eventID;

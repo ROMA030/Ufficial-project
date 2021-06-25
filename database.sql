@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 24, 2021 alle 17:17
--- Versione del server: 10.4.19-MariaDB
--- Versione PHP: 8.0.7
+-- Creato il: Giu 25, 2021 alle 15:37
+-- Versione del server: 10.4.18-MariaDB
+-- Versione PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -130,7 +130,7 @@ CREATE TABLE `ecg` (
 
 CREATE TABLE `eventplayer` (
   `Event` int(255) DEFAULT NULL,
-  `Player` varchar(40) DEFAULT NULL
+  `Club` int(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -200,7 +200,7 @@ CREATE TABLE `users` (
   `Password` varchar(40) DEFAULT NULL,
   `Avatar` longblob DEFAULT NULL,
   `UserType` varchar(40) DEFAULT NULL,
-  `Risposta` varchar(40) DEFAULT NULL
+  `Risposta` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
