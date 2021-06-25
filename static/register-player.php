@@ -201,6 +201,11 @@
 
 	<script src="js/app.js"></script>
 	<script>
+		var btn = document.getElementById('backButton');
+		btn.addEventListener('click', function() {
+			document.location.href = 'club-players.php';
+		});
+
 		function ErrorRegister(type) {
 			var target = document.getElementById('formDiv');
 			if (type=="password") {
