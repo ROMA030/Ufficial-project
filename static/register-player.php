@@ -24,7 +24,7 @@
 
 	<title>Register player | Xeos</title>
 
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -122,7 +122,7 @@
 									<h5 class="card-title mb-0">Complete the form</h5>
 								</div>
 								<div class="card-body">
-									<div class="m-sm-4">
+									<div class="m-sm-4" id="formDiv">
 										<form method="post" enctype="multipart/form-data">
 											<div class="mb-3">
 												<label class="form-label">Nome:</label>
@@ -200,13 +200,24 @@
 	</div>
 
 	<script src="js/app.js"></script>
+	<script>
+		function ErrorRegister(type) {
+			var target = document.getElementById('formDiv');
+			if (type=="password") {
+				var errorConst = $("<h5 class='notification text-danger text-center mt-3'>Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character</h5>");
+			} else if (type=="username") {
+				var errorConst = $("<h5 class='notification text-danger text-center mt-3'>Username already exists</h5>");
+			}
+			errorConst.appendTo(target);
+		}
 
+	</script>
 	<?php
 		$conn = mysqli_connect("localhost","root","","xeos");
 		$user = $_SESSION['username'];
 		$userName = $_SESSION['Name'];
 		$userSurname = $_SESSION['Surname'];
-		$userType = $_SESSION['UserType'];
+		$userUserType = $_SESSION['UserType'];
 		$srcAvatar = $_SESSION['Avatar'];
 
 		/*
@@ -267,12 +278,14 @@
 				$specialChars = preg_match('@[^\w]@', $password);
 
 				if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
-					echo "<h5 class='notification text-danger mt-3'>Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character</h5>";             											
+					//echo "<h5 class='notification text-danger mt-3'>Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character</h5>";             											
+					echo '<script type="text/javascript">ErrorRegister("password")</script>';
 				}else{
 					$checkUser = "SELECT * FROM users WHERE Username = '$username'";
 					$checkResult = mysqli_query($conn, $checkUser);
 					if (mysqli_num_rows($checkResult) > 0) {
-						echo "<h5 class='notification text-danger mt-3'>Username already exists</h5>";                  
+						//echo "<h5 class='notification text-danger mt-3'>Username already exists</h5>";
+						echo '<script type="text/javascript">ErrorRegister("username")</script>';
 					}else {
 						$users = "INSERT INTO users(Name, Surname, Email, Username, Password , Avatar, UserType, Risposta) VALUES ('$name', '$surname', '$email', '$username', '$password' , '$avatar', '$usertype','$securityAnswer')";
 						$result = mysqli_query($conn, $users);					
@@ -289,9 +302,9 @@
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
 			var user = "<?php echo $user; ?>";
-			var name = "<?php echo $name; ?>";
-			var surname = "<?php echo $surname; ?>";
-			var userType = "<?php echo $userType; ?>";
+			var name = "<?php echo $userName; ?>";
+			var surname = "<?php echo $userSurname; ?>";
+			var userType = "<?php echo $userUserType; ?>";
 			var avatar = "<?php echo $srcAvatar; ?>";
 			var sidebarUl = document.getElementById("sidebarUl");
 
@@ -304,10 +317,10 @@
 					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				case 'coach':
-					CreateSidebarElement("clubs.php", "users", "Clubs", false);
+                    CreateSidebarElement("clubs.php", "users", "Club", false);
 					break;
 				case 'manager':
-					
+					CreateSidebarElement("clubs.php", "users", "Club", false);
 					break;
 				case 'admin':
 					CreateSidebarElement("graphic.php", "book", "Graphics");
@@ -317,28 +330,14 @@
 			}
 
 			function  CreateSidebarElement(href, icon, name, active){
-				var liElement = document.createElement("li");
-				liElement.className += "sidebar-item";
-				var aElement = document.createElement("a");
-				aElement.className += "sidebar-link";
-				aElement.href = href;
-				var divElement = document.createElement("div");
-				var iElement = document.createElement("i");
-				//iElement.className += "align-middle";
-				//iElement.setAttribute("data-feather", icon);
-				
-				iElement.innerHTML.replace('<i class="align-middle" data-feather="' + icon + '"></i>');
-				//aElement.innerHTML('<i class="align-middle" data-feather="book"></i>');
-				var spanElement = document.createElement("span");
-				spanElement.className += name;
-				spanElement.textContent = "Graphics";
+				if (active == true) {
+					var iconOnSide = $('<li class="sidebar-item active"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
+				} else {
+					var iconOnSide = $('<li class="sidebar-item"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
+				}
 
-				aElement.appendChild(iElement);
-				aElement.appendChild(spanElement);
-				aElement.appendChild(divElement);
-				
-				liElement.appendChild(aElement);
-				sidebarUl.appendChild(liElement);
+				iconOnSide.appendTo('#sidebarUl');
+				feather.replace()
 			}
 		});
 	</script>
