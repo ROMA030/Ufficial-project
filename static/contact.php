@@ -52,6 +52,12 @@
 						</a>
 					</li>
 
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="clubs.php">
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Club</span>
+						</a>
+					</li>
+
 				</ul>
 			</div>
 		</nav>
