@@ -288,7 +288,7 @@
 				
 				<div id="id01" class="modal">
 					<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-					<form class="modal-content" >
+					<form class="modal-content" method="post">
 						<div class="container">
 							<h1>Crea evento</h1>
 							<p>Riempi i campi richiesti per poter creare un evento.</p>
@@ -307,7 +307,9 @@
 
 							<div>
 								<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annulla</button>
-								<button type="button" class="signupbtn"  onclick="addEvent(document.getElementById('eventName').value, document.getElementById('eventDescription').value, document.getElementById('eventData').value, document.getElementById('eventClub').value), document.getElementById('id01').style.display='none'">Crea evento</button>
+								<!--<button type="button" class="signupbtn"  onclick="addEvent(document.getElementById('eventName').value, document.getElementById('eventDescription').value, document.getElementById('eventData').value, document.getElementById('eventClub').value), document.getElementById('id01').style.display='none'">Crea evento</button>
+								-->
+								<button type="submit" name="submit" class="signupbtn">Crea evento</button>
 							</div>
 						</div>
 					</form>
@@ -438,6 +440,60 @@
 				$eventClub [] = $row['Club'];
 			}
 		}
+
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+			$eventDescription = $_POST['eventDescription'];
+			$eventName = $_POST['eventName'];
+			$eventClub = $_POST['eventClub'];
+			$eventData = $_POST['data'];
+
+			
+			echo date('Y-m-d', strtotime($eventData));;
+			
+			$query10 = "SELECT Id FROM events ORDER BY `Id` DESC LIMIT 1";
+			$result10 = mysqli_query($conn, $query10);
+
+			$eventID = 1;
+			if (mysqli_num_rows($result10) > 0) {
+				while ($row = mysqli_fetch_assoc($result10)) {
+					$eventID = $row["Id"] + 1;
+				}
+			}
+
+			switch ($variable) {
+				case 'value':
+					# code...
+					break;
+				case 'value':
+					# code...
+					break;
+				case 'value':
+					# code...
+					break;
+				case 'value':
+					# code...
+					break;
+				case 'value':
+					# code...
+					break;
+				case 'value':
+					# code...
+					break;
+				case 'value':
+					# code...
+					break;
+				case 'value':
+					# code...
+					break;
+					
+				default:
+					# code...
+					break;
+			}
+
+			
+			
+		}
 		
 		
 	?>
@@ -519,10 +575,8 @@
 				if (res[1] == "08")
 					res[1] == "August"
 
-
 				if (res[1] == "09")
 					res[1] == "September"
-
 
 				if (res[1] == "10")
 					res[1] == "October"
