@@ -100,7 +100,20 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 
-					<h1 class="h3 mb-3">Register a player</h1>
+				<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<h1 class="h3 mb-3" id="pageTitle">Register a player</h1>
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item" id="addBackButton">
+									<button id="backButton" class="btn btn-lg btn-primary">Back</button>
+								</li>
+							</ul>
+						</div>
+					</div>
 
 					<div class="row">
 						<div class="col-12">

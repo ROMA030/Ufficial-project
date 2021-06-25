@@ -193,22 +193,25 @@
         var addClub = function (id, name, src, addCard){
             var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');
             if (addCard == true) {
-				var myPanel = $('<div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Join a club</h3></div><div class="text-center mt-3"><button id="joinClub" class="btn btn-lg btn-primary">Join</button></div></div></div>');
+				var myPanel = $('<div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Join a club</h3></div><div class="text-center mt-3"><button onclick="JoinClub()" type="button" class="btn btn-lg btn-primary">Join</button></div></div></div>');
 			} else {
-                var myPanel = $('<div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="users"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "clubAvatarImage"/><h3 class="mt-1 mb-3">'+ name +'</h3></div><div class="text-center mt-3"><button type="submit" name="ClubButton'+ id +'" class="btn btn-lg btn-primary">Show Coachs</button></div></div></div>');
+				var temp = "ShowPlayers('"+id+"')";
+                var myPanel = $('<div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="users"></i></div></div></div><div class="card-body text-center"><img src="'+src+'" class="img-fluid rounded-circle mb-2" style="max-height: 150px; min-height: 150px;" width="150" height="150" id = "clubAvatarImage"/><h3 class="mt-1 mb-3">'+ name +'</h3></div><div class="text-center mt-3"><button onclick="'+temp+'" type="button" class="btn btn-lg btn-primary">Show Coachs</button></div></div></div>');
             }
-            
+            //button type="submit" name="ClubButton'+ id +'" class="btn btn-lg btn-primary"
             myPanel.appendTo(myCol);
             myCol.appendTo('#contentPanel');
-
+			/*
 			if (addCard == true) {
 				var joinClubButton = document.getElementById('joinClub');
 				joinClubButton.addEventListener('click', function() {
 					document.location.href = 'join-club.php';
 				});
 			}
+			*/
         };
 
+		/*
         var addPlayers = function (id, name, src, addCard){
             var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');
             if (addCard == true) {
@@ -232,6 +235,7 @@
 				});
 			}
         };
+		*/
 
         function RemoveClubs() {
             const contentClubs = document.getElementById("contentPanel");
@@ -244,7 +248,23 @@
 			divToClear.innerHTML = '';
 			document.location.href = 'php/delete_coach.php?user=' + coachUsername;
 		}
-    
+
+		function setCookie(cName, cValue, expDays) {
+            let date = new Date();
+            date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+        } 
+
+		function ShowPlayers(id) {
+			setCookie("clubIDSHOW", id, 1);
+            window.location = "club-players.php";
+		}
+
+		function JoinClub() {
+            window.location = "join-club.php";
+		}
+
     </script>
     
 	<?php
@@ -274,7 +294,7 @@
         }
 
 		$playerNumber = $coachNumber = 0;
-
+		$clubsIDArray = array();
 		if ($userType == "manager") {
 			$checkManager = "SELECT Club FROM clubmanager WHERE Manager = '$user'";
 			$managerResult = mysqli_query($conn, $checkManager);
@@ -324,6 +344,7 @@
 			while ($row = mysqli_fetch_assoc($result)) {
 				$clubsData[] = $row;
 				$clubID = $row["ClubID"];
+				//array_push($clubsIDArray, $clubID);
 				foreach($clubsOfCoach as $id){
 					if ($clubID == $id) {
 						array_push($playersOfClub, $clubID);
@@ -341,12 +362,21 @@
 				$i = $i + 1;
 				
 			}
+			
 
 			echo '<script type="text/javascript">addClub("", "", "", true);</script>';
 
+			foreach ($playersOfClub as $id) {
+				if(isset($_POST["ClubButton".$id.""])) {
+					$_SESSION['ClubID'] = $id;
+					header("location: club-players.php",false);
+				}
+			}
+
+			/*
 			for ($j=0; $j <= $number; $j++) { 
 				if(isset($_POST["ClubButton".$j.""])) {
-					/*
+					
 					echo '<script type="text/javascript">RemoveClubs();</script>';
 					
 					$query3 = "SELECT Player FROM coachplayer WHERE Coach = '$user'";
@@ -396,11 +426,11 @@
 						if ($x == $playerNumber) {
 							echo '<script type="text/javascript">addPlayers("", "", "", true);</script>';
 						}
-					}*/
+					}
 					$_SESSION['ClubID'] = $j;
 					header("location: club-players.php",false);
 				}
-			}
+			}*/
 		}
 		//mysqli_close($conn);
 		//exit;

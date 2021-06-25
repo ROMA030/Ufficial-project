@@ -246,7 +246,9 @@
 		$userType = $_SESSION['UserType'];
 		$srcAvatar = $_SESSION['Avatar'];
 
-        $clubID = $_SESSION["ClubID"];
+        //$clubID = $_SESSION["ClubID"];
+        $clubID = $_COOKIE["clubIDSHOW"];
+
 		$playerNumber = $coachNumber = 0;
 
         $clubsData = array();
@@ -297,12 +299,16 @@
                 echo '<script type="text/javascript">addPlayers("' . $x . '", "' . $playerFullName . '", "' . $playerSrcAvatar . '", false, "' . $playerUserName . '");</script>';
                 
             }
+
             $x = $x + 1;
 
+			/*
             if ($x == $playerNumber) {
                 echo '<script type="text/javascript">addPlayers("", "", "", true);</script>';
-            }
+            }*/
         }
+
+		echo '<script type="text/javascript">addPlayers("", "", "", true);</script>';
         
         //mysqli_close($conn);
 		//exit;
