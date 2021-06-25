@@ -77,8 +77,6 @@
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.php"><i class="align-middle me-1"
 										data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1"
-										data-feather="pie-chart"></i> Analytics</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="Contact.php"><i class="align-middle me-1"
 										data-feather="help-circle"></i> Contact</a>
@@ -181,7 +179,7 @@
 		</div>
 	</div>
 
-	<script src="js/app.js"></script>
+	
 
 	<?php
 		$user = $_SESSION['username'];
@@ -191,7 +189,9 @@
 		$srcAvatar = $_SESSION['Avatar'];
 		$email = $_SESSION['Email'];
 	?>
-
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="js/app.js"></script>
 	<script>
 
 		document.addEventListener("DOMContentLoaded", function () {
@@ -202,6 +202,7 @@
 			var avatar = "<?php echo $srcAvatar; ?>";
 			var email = "<?php echo $email; ?>"; 
 			var sidebarUl = document.getElementById("sidebarUl");
+
 			console.log(userType);
 			document.getElementById("nameSurname").innerHTML = name + ' ' + surname;
 			document.getElementById("userTypeAnchor").innerHTML = userType;
@@ -215,13 +216,13 @@
 			document.getElementById("emailP").innerHTML = email;
 			document.getElementById("userP").innerHTML = user;
 
-
+			
 			switch (userType) {
 				case 'player':
 					CreateSidebarElement("graphic.php", "book", "Graphics");
 					break;
 				case 'coach':
-                    CreateSidebarElement("clubs.php", "users", "Club", false);
+					CreateSidebarElement("clubs.php", "users", "Club", false);
 					break;
 				case 'manager':
 					CreateSidebarElement("clubs.php", "users", "Club", false);
@@ -233,12 +234,11 @@
 					console.log("UserType not found");
 			}
 
-
 			function  CreateSidebarElement(href, icon, name, active){
 				if (active == true) {
 					var iconOnSide = $('<li class="sidebar-item active"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
 				} else {
-					var iconOnSide = $('<li class="sidebar-item"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
+				var iconOnSide = $('<li class="sidebar-item"><a class="sidebar-link" href="'+href+'"><i class="align-middle" data-feather="'+icon+'"></i> <span class="align-middle">'+name+'</span></a></li>');
 				}
 
 				iconOnSide.appendTo('#sidebarUl');
