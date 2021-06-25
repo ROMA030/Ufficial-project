@@ -7,8 +7,8 @@
         exit();
     }
 
-    $query = "DELETE FROM users WHERE Username = '$user'";
-    $result = mysqli_query($conn, $query);
+    //$query = "DELETE FROM users WHERE Username = '$user'";
+    //$result = mysqli_query($conn, $query);
 
     $query2 = "DELETE FROM clubcoach WHERE Coach = '$user'";
     $result2 = mysqli_query($conn, $query2);
