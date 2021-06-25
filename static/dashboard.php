@@ -168,42 +168,42 @@
 </head>
 
 <body>
-				<div class="wrapper">
-					<nav id="sidebar" class="sidebar js-sidebar">
-						<div class="sidebar-content js-simplebar">
-							<a class="sidebar-brand" href="index.html">
-								<span class="align-middle">
-									<img class="align-middle" src="img/photos/xeos-logo-top.png" width="130">
-								</span>
-							</a>
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar js-sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="index.html">
+					<span class="align-middle">
+						<img class="align-middle" src="img/photos/xeos-logo-top.png" width="130">
+					</span>
+				</a>
 
-							<ul class="sidebar-nav" id="sidebarUl">
-								<li class="sidebar-header">
-									Pages
-								</li>
+				<ul class="sidebar-nav" id="sidebarUl">
+					<li class="sidebar-header">
+						Pages
+					</li>
 
-								<li class="sidebar-item active">
-									<a class="sidebar-link" href="dashboard.php">
-										<i class="align-middle" data-feather="sliders"></i>
-										<span class="align-middle">Dashboard</span>
-									</a>
-								</li>
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="dashboard.php">
+							<i class="align-middle" data-feather="sliders"></i>
+							<span class="align-middle">Dashboard</span>
+						</a>
+					</li>
 
-								<li class="sidebar-item">
-									<a class="sidebar-link" href="pages-profile.php">
-										<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-									</a>
-								</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="pages-profile.php">
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+						</a>
+					</li>
 
-							</ul>
-						</div>
-					</nav>
+				</ul>
+			</div>
+		</nav>
 
-					<div class="main">
-						<nav class="navbar navbar-expand navbar-light navbar-bg">
-							<a onclick="collapseFunc()" class="sidebar-toggle js-sidebar-toggle">
-								<i class="hamburger align-self-center"></i>
-							</a>
+		<div class="main">
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
+				<a onclick="collapseFunc()" class="sidebar-toggle js-sidebar-toggle">
+					<i class="hamburger align-self-center"></i>
+				</a>
 
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
@@ -231,147 +231,130 @@
 				</div>
 			</nav>
 
-			<main class="content">
-				<div class="container-fluid p-0">
-
-					<h1 class="h3 mb-3"><strong>Dashboard</strong></h1>
+		<main class="content">
+			<div class="container-fluid p-0">
+				<h1 class="h3 mb-3"><strong>Dashboard</strong></h1>
 
 					
-					<section class="cover1">
-								<div class="cover__filter1"></div>
-								
-									<div class="cover__caption">
-										<div class="cover__caption__copy" >
-											<h1 style="color: #fff; margin: 11px">I tuoi Club</h1>
-											<div class="center col-xl-2 col-xxl-3" justify="center">
-													<div class="card flex-fill w-100" style="background: transparent;">
-														
-														<div class="card-body py-3">	
-															<div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
-																<div class="carousel-inner">
-																	<div class="carousel-item active">
-																	<img class="center img-fluid rounded-circle mb-2" width="250" height="250" src="img/avatars/avatar-2.jpg" alt="Squad">
-																	<div class="carousel-caption">
-																		
-																	</div>
-																	</div>
-																	<div class="carousel-item">
-																	<img class="center img-fluid rounded-circle mb-2 center" width="250" height="250" src="img/avatars/avatar-3.jpg" alt="...">
-																	<div class="carousel-caption">
-																	
-																	</div>
-																	</div>
-																	<div class="carousel-item">
-																	<img src="img/avatars/avatar-4.jpg" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" alt="...">
-																	<div class="carousel-caption">
-																		
-																	</div>
-																	</div>
-																</div>
-																<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-																	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-																	<span class="visually-hidden">Previous</span>
-																</button>
-																<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-																	<span class="carousel-control-next-icon" aria-hidden="true"></span>
-																	<span class="visually-hidden">Next</span>
-																</button>
-															</div>
-														</div>
+				<section class="cover1">
+					<div class="cover__filter1"></div>				
+					<div class="cover__caption">
+						<div class="cover__caption__copy" >
+							<h1 style="color: #fff; margin: 11px">I tuoi Club</h1>
+							<div class="center col-xl-2 col-xxl-3" justify="center">
+								<div class="card flex-fill w-100" style="background: transparent;">													
+										<div class="card-body py-3">	
+											<div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
+												<div class="carousel-inner">
+													<div class="carousel-item active">
+														<img class="center img-fluid rounded-circle mb-2" width="250" height="250" src="img/avatars/avatar-2.jpg" alt="Squad">
+														<div class="carousel-caption"></div>
 													</div>
-													<style>
-														.center {
-														display: block;
-														margin-left: auto;
-														margin-right: auto;
-														}
-													</style>
+													<div class="carousel-item">
+														<img class="center img-fluid rounded-circle mb-2 center" width="250" height="250" src="img/avatars/avatar-3.jpg" alt="...">
+														<div class="carousel-caption"></div>
+													</div>
+													<div class="carousel-item">
+														<img src="img/avatars/avatar-4.jpg" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" alt="...">
+														<div class="carousel-caption"></div>
+													</div>
 												</div>
+												<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+													<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+													<span class="visually-hidden">Previous</span>
+												</button>
+												<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+													<span class="carousel-control-next-icon" aria-hidden="true"></span>
+													<span class="visually-hidden">Next</span>
+												</button>
 											</div>
 										</div>
 									</div>
-							</section>
-
-
-
-
-						
-										
-										<a class="add_event_button" onclick="document.getElementById('id01').style.display='block'" style="text-decoration: none; margin-top: 20px" onmouseover = "this.style.background = '#fff'" onmouseout  = "this.style.background = '#8f0000'">Aggiungi evento <i class="fas fa-plus-circle"></i></a>
-										
-										<div id="id01" class="modal">
-										  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-										  <form class="modal-content" >
-											<div class="container">
-											  <h1>Crea evento</h1>
-											  <p>Riempi i campi richiesti per poter creare un evento.</p>
-											  <hr>
-											  <label for="email"><b>Inserisci nome evento</b></label>
-											  <input type="text" placeholder="Enter Event" name="eventName" id="eventName" required>
-
-											  <label for="des"><b>Inserisci descrizione evento</b></label>
-											  <input type="text" placeholder="Description event" name="eventDescription" id="eventDescription" required>
-
-											  <label for="des"><b>Inserisci nome squadra</b></label>
-											  <input type="text" placeholder="Enter name club" name="eventClub" id="eventClub" required>
-
-											  <label for="data"><b>Inserisci la data dell'evento</b></label>
-											  <input type="date" placeholder="Insert data" name="data" id="eventData" required>
-
-											  <div>
-												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annulla</button>
-												<button type="button" class="signupbtn"  onclick="addEvent(document.getElementById('eventName').value, document.getElementById('eventDescription').value, document.getElementById('eventData').value, document.getElementById('eventClub').value), document.getElementById('id01').style.display='none'">Crea evento</button>
-											  </div>
-											</div>
-										  </form>
-										</div>
-
-										<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
-										
-										<script>
-										// Get the modal
-										var modal = document.getElementById('id01');
-
-										// When the user clicks anywhere outside of the modal, close it
-										window.onclick = function(event) {
-										  if (event.target == modal) {
-											modal.style.display = "none";
-										  }
+									<style>
+										.center {
+										display: block;
+										margin-left: auto;
+										margin-right: auto;
 										}
-										</script>
-										
-										
-										<div class="row" id="calendar"></div>
-										
-					
-
-					<div class="row">
-						<div class="col-12 col-lg-12 col-xxl-12 d-flex">
-							<div class="card flex-fill">
-								<div class="card-header">
-									<h5 class="card-title mb-0">Latest Sessions</h5>
+									</style>
 								</div>
-								<table class="table table-hover my-0">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th class="d-none d-xl-table-cell">Start Time</th>
-											<th class="d-none d-xl-table-cell">End Time</th>
-											<th>Status</th>
-											<th class="d-none d-md-table-cell">Assignee</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Project Apollo</td>
-											<td class="d-none d-xl-table-cell">01/01/2021</td>
-											<td class="d-none d-xl-table-cell">31/06/2021</td>
-											<td><span class="badge bg-success">Done</span></td>
-											<td class="d-none d-md-table-cell">Vanessa Tucker</td>
-										</tr>
-									</tbody>
-								</table>
 							</div>
+						</div>
+					</div>
+				</section>
+
+										
+				<a class="add_event_button" onclick="document.getElementById('id01').style.display='block'" style="text-decoration: none; margin-top: 20px" onmouseover = "this.style.background = '#fff'" onmouseout  = "this.style.background = '#8f0000'">Aggiungi evento <i class="fas fa-plus-circle"></i></a>
+				
+				<div id="id01" class="modal">
+					<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+					<form class="modal-content" >
+						<div class="container">
+							<h1>Crea evento</h1>
+							<p>Riempi i campi richiesti per poter creare un evento.</p>
+							<hr>
+							<label for="email"><b>Inserisci nome evento</b></label>
+							<input type="text" placeholder="Enter Event" name="eventName" id="eventName" required>
+
+							<label for="des"><b>Inserisci descrizione evento</b></label>
+							<input type="text" placeholder="Description event" name="eventDescription" id="eventDescription" required>
+
+							<label for="des"><b>Inserisci nome squadra</b></label>
+							<input type="text" placeholder="Enter name club" name="eventClub" id="eventClub" required>
+
+							<label for="data"><b>Inserisci la data dell'evento</b></label>
+							<input type="date" placeholder="Insert data" name="data" id="eventData" required>
+
+							<div>
+								<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annulla</button>
+								<button type="button" class="signupbtn"  onclick="addEvent(document.getElementById('eventName').value, document.getElementById('eventDescription').value, document.getElementById('eventData').value, document.getElementById('eventClub').value), document.getElementById('id01').style.display='none'">Crea evento</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+				
+				<script>
+					// Get the modal
+					var modal = document.getElementById('id01');
+
+					// When the user clicks anywhere outside of the modal, close it
+					window.onclick = function(event) {
+						if (event.target == modal) {
+						modal.style.display = "none";
+						}
+					}
+				</script>
+				
+				
+				<div class="row" id="calendar"></div>															
+				<div class="row">
+					<div class="col-12 col-lg-12 col-xxl-12 d-flex">
+						<div class="card flex-fill">
+							<div class="card-header">
+								<h5 class="card-title mb-0">Latest Sessions</h5>
+							</div>
+							<table class="table table-hover my-0">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th class="d-none d-xl-table-cell">Start Time</th>
+										<th class="d-none d-xl-table-cell">End Time</th>
+										<th>Status</th>
+										<th class="d-none d-md-table-cell">Assignee</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Project Apollo</td>
+										<td class="d-none d-xl-table-cell">01/01/2021</td>
+										<td class="d-none d-xl-table-cell">31/06/2021</td>
+										<td><span class="badge bg-success">Done</span></td>
+										<td class="d-none d-md-table-cell">Vanessa Tucker</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
