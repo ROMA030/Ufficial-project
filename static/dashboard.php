@@ -20,8 +20,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="AdminKit">
-	<meta name="keywords"
-		content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
@@ -32,6 +31,7 @@
 	<title>AdminKit Demo - Bootstrap 5 Admin Template</title>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/c9bd9ac924.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<script>
 		function collapseFunc()
@@ -47,11 +47,12 @@
 	</script>
 
 	<script>
+	
 		function addEvent(eventName, eventDescription, eventData, eventClub)
 		{
 			var res = eventData.trim().split("-");
 			console.log(res);
-
+			var dataPHP = res[0] + "-" + res[1] + "-" + res[2];
 			if (res[1] == "01")
 				res[1] == "January"
 			
@@ -92,7 +93,7 @@
 
 
 			var newData = res[1] + "/" + res[2] + "/" + res[0];
-
+			console.log("primo add event");
 			console.log(eventData, eventName, eventDescription);
 			$("#calendar").evoCalendar('addCalendarEvent', [
 				{
@@ -102,68 +103,20 @@
 				  description: eventDescription, 
 				  type: eventClub,
 				}
-			  ]);
+			]);
+
+			var stringCookie = eventName + "," + dataPHP + "," + eventDescription + "," + eventClub + ",";
+			console.log(stringCookie);
+			//setCookie("eventID", "eventID", 1);
+			setCookie("eventDatas", stringCookie, 1);
+
+			window.location = "php/save_events.php";
+
 			
 		}
 
-		function addEvent1(eventID ,eventName, eventDescription, eventData, eventClub)
-		{
-			var res = eventData.trim().split("-");
-			console.log(res);
-
-			if (res[1] == "01")
-				res[1] == "January"
-			
-			if (res[1] == "02")
-				res[1] == "February"
-			
-			if (res[1] == "03")
-				res[1] == "March"
-
-			if (res[1] == "04")
-				res[1] == "April"
-			
-			if (res[1] == "05")
-				res[1] == "May"
-
-			if (res[1] == "06")
-				res[1] == "June"
-
-			if (res[1] == "07")
-				res[1] == "July"
-
-			if (res[1] == "08")
-				res[1] == "August"
-
-
-			if (res[1] == "09")
-				res[1] == "September"
-
-
-			if (res[1] == "10")
-				res[1] == "October"
-
-			if (res[1] == "11")
-				res[1] == "November"
-
-			if (res[1] == "12")
-				res[1] == "December"
-
-
-			var newData = res[1] + "/" + res[2] + "/" + res[0];
-
-			console.log(eventData);
-			$("#calendar").evoCalendar('addCalendarEvent', [
-				{
-				  id: eventID,
-				  name: eventName,
-				  date: newData,
-				  description: eventDescription, 
-				  type: eventClub,
-				}
-			  ]);
-			
-		}
+		
+		
 	</script>
 </head>
 
@@ -307,9 +260,9 @@
 
 							<div>
 								<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annulla</button>
-								<!--<button type="button" class="signupbtn"  onclick="addEvent(document.getElementById('eventName').value, document.getElementById('eventDescription').value, document.getElementById('eventData').value, document.getElementById('eventClub').value), document.getElementById('id01').style.display='none'">Crea evento</button>
-								-->
-								<button type="submit" name="submit" class="signupbtn">Crea evento</button>
+								<button type="button" class="signupbtn"  onclick="addEvent(document.getElementById('eventName').value, document.getElementById('eventDescription').value, document.getElementById('eventData').value, document.getElementById('eventClub').value), document.getElementById('id01').style.display='none'">Crea evento</button>
+								
+								<!--<button type="submit" name="submit" class="signupbtn">Crea evento</button>-->
 							</div>
 						</div>
 					</form>
@@ -331,35 +284,7 @@
 				
 				
 				<div class="row" id="calendar"></div>															
-				<div class="row">
-					<div class="col-12 col-lg-12 col-xxl-12 d-flex">
-						<div class="card flex-fill">
-							<div class="card-header">
-								<h5 class="card-title mb-0">Latest Sessions</h5>
-							</div>
-							<table class="table table-hover my-0">
-								<thead>
-									<tr>
-										<th>Name</th>
-										<th class="d-none d-xl-table-cell">Start Time</th>
-										<th class="d-none d-xl-table-cell">End Time</th>
-										<th>Status</th>
-										<th class="d-none d-md-table-cell">Assignee</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Project Apollo</td>
-										<td class="d-none d-xl-table-cell">01/01/2021</td>
-										<td class="d-none d-xl-table-cell">31/06/2021</td>
-										<td><span class="badge bg-success">Done</span></td>
-										<td class="d-none d-md-table-cell">Vanessa Tucker</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
+				
 			</main>
 			<footer class="footer">
 				<div class="container-fluid">
@@ -387,6 +312,101 @@
 			</footer>
 		</div>
 	</div>
+	<script src="js/evo-calendar.min.js"></script>
+	
+	<script>
+		
+		
+		
+	</script>
+
+	<script>
+		/*
+		unction CreateEvent(idEvento, name, data, desc, club) {
+			console.log(data);
+			
+			$("#calendar").evoCalendar('addCalendarEvent', [
+				{
+					id: idEvento,
+					name: name,
+					date: data,
+					description: desc, 
+					type: club,
+				}
+			]);
+
+			console.log(idEvento);
+			console.log("fatto");
+		}
+		*/
+
+		function setCookie(cName, cValue, expDays) {
+			let date = new Date();
+			date.setTime(date.getTime() + (expDays * 24 * 60 * 60 * 1000));
+			const expires = "expires=" + date.toUTCString();
+			document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
+		} 
+
+		function addEvent1(eventID ,eventName, eventDescription, eventData, eventClub)
+		{
+			var res = eventData.trim().split("-");
+			console.log(res);
+			
+			
+
+			if (res[1] == "01")
+				res[1] = "January"
+			
+			if (res[1] == "02")
+				res[1] = "February"
+			
+			if (res[1] == "03")
+				res[1] = "March"
+
+			if (res[1] == "04")
+				res[1] = "April"
+			
+			if (res[1] == "05")
+				res[1] = "May"
+
+			if (res[1] == "06")
+				res[1] = "June"
+
+			if (res[1] == "07")
+				res[1] = "July"
+
+			if (res[1] == "08")
+				res[1] = "August"
+
+			if (res[1] == "09")
+				res[1] = "September"
+
+			if (res[1] == "10")
+				res[1] = "October"
+
+			if (res[1] == "11")
+				res[1] = "November"
+
+			if (res[1] == "12")
+				res[1] = "December"
+
+
+			var newData = res[1] + "/" + res[2] + "/" + res[0];
+			
+			console.log(newData);
+			$("#calendar").evoCalendar('addCalendarEvent', [
+				{
+				  id: eventID,
+				  name: eventName,
+				  date: newData,
+				  description: eventDescription, 
+				  type: eventClub,
+				}
+			]);
+
+		}
+
+	</script>
 
 	<?php
 		$conn = mysqli_connect("localhost","root","","xeos");
@@ -394,8 +414,6 @@
 
 		$query = "SELECT * FROM users WHERE Username = '$user'";
 		$result = mysqli_query($conn, $query);
-
-		
 		
 		while ($row = $result->fetch_assoc()) 
 		{
@@ -414,7 +432,6 @@
 		$srcAvatar = "data:image/jpeg;base64,".base64_encode( $avatar )."";
 		$_SESSION['Avatar'] = $srcAvatar;
 		
-		
 		$query1 = "SELECT * FROM eventplayer WHERE Player = '$user'";
 		$result1 = mysqli_query($conn, $query1);
 
@@ -431,70 +448,28 @@
 			$query2 = "SELECT * FROM events WHERE Id = '$eventID'";
 			$result2 = mysqli_query($conn, $query2);
 
-			while ($row = $result2->fetch_assoc()) 
+			while ($row2 = $result2->fetch_assoc()) 
 			{
-				$Id [] = $row['Id'];
-				$eventName [] = $row['Nome'];
-				$eventDesc [] = $row['Desc'];
-				$eventData [] = $row['Data'];
-				$eventClub [] = $row['Club'];
+				//$Id [] = $row['Id'];
+				array_push($Id, $row2['Id']);
+				$eventName [] = $row2['Nome'];
+				$eventDesc [] = $row2['Desc'];
+				$eventData [] = $row2['Data'];
+				$eventClub [] = $row2['Club'];
 			}
 		}
 
-		if ($_SERVER["REQUEST_METHOD"] == "POST") {
-			$eventDescription = $_POST['eventDescription'];
-			$eventName = $_POST['eventName'];
-			$eventClub = $_POST['eventClub'];
-			$eventData = $_POST['data'];
+		$query10 = "SELECT Id FROM events ORDER BY `Id` DESC LIMIT 1";
+		$result10 = mysqli_query($conn, $query10);
 
-			
-			echo date('Y-m-d', strtotime($eventData));;
-			
-			$query10 = "SELECT Id FROM events ORDER BY `Id` DESC LIMIT 1";
-			$result10 = mysqli_query($conn, $query10);
-
-			$eventID = 1;
-			if (mysqli_num_rows($result10) > 0) {
-				while ($row = mysqli_fetch_assoc($result10)) {
-					$eventID = $row["Id"] + 1;
-				}
+		$event2ID = 1;
+		if (mysqli_num_rows($result10) > 0) {
+			while ($row = mysqli_fetch_assoc($result10)) {
+				$event2ID = $row["Id"] + 1;
 			}
-
-			switch ($variable) {
-				case 'value':
-					# code...
-					break;
-				case 'value':
-					# code...
-					break;
-				case 'value':
-					# code...
-					break;
-				case 'value':
-					# code...
-					break;
-				case 'value':
-					# code...
-					break;
-				case 'value':
-					# code...
-					break;
-				case 'value':
-					# code...
-					break;
-				case 'value':
-					# code...
-					break;
-					
-				default:
-					# code...
-					break;
-			}
-
-			
-			
 		}
-		
+
+		$_SESSION["eventID"] = $event2ID;
 		
 	?>
 
@@ -541,138 +516,43 @@
 				iconOnSide.appendTo('#sidebarUl');
 				feather.replace()
 			}
-
-			function addEvent(eventName, eventDescription, eventData, eventClub)
-			{
-				
-				var user = "<?php echo $user; ?>";
-				var lastID = eventID.length;
-				console.log(lastID);
-				var res = eventData.trim().split("-");
-				console.log(res);
-
-				if (res[1] == "01")
-					res[1] == "January"
-				
-				if (res[1] == "02")
-					res[1] == "February"
-				
-				if (res[1] == "03")
-					res[1] == "March"
-
-				if (res[1] == "04")
-					res[1] == "April"
-				
-				if (res[1] == "05")
-					res[1] == "May"
-
-				if (res[1] == "06")
-					res[1] == "June"
-
-				if (res[1] == "07")
-					res[1] == "July"
-
-				if (res[1] == "08")
-					res[1] == "August"
-
-				if (res[1] == "09")
-					res[1] == "September"
-
-				if (res[1] == "10")
-					res[1] == "October"
-
-				if (res[1] == "11")
-					res[1] == "November"
-
-				if (res[1] == "12")
-					res[1] == "December"
-
-
-				var newData = res[1] + "/" + res[2] + "/" + res[0];
-				console.log("in Func");
-				console.log(eventData, eventName, eventDescription);
-				$("#calendar").evoCalendar('addCalendarEvent', [
-					{
-						id: lastID,
-						name: eventName,
-						date: newData,
-						description: eventDescription, 
-						type: eventClub,
-					}
-					]);
-
-
-				var mysql = require('mysql');
-
-				var con = mysql.createConnection({
-				host: "localhost",
-				user: "root",
-				password: "",
-				database: "xeos"
-				});
-
-				con.connect(function(err) {
-				if (err) throw err;
-				console.log("Connected!");
-				var sql = "INSERT INTO events (%s,%s,%s,%s) VALUES ('Nome', 'Desc', 'Data', 'Club')", eventName, newData, eventDescription, eventClub;
-				con.query(sql, function (err, result) {
-					if (err) throw err;
-					console.log("1 record inserted");
-				});
-				});
-
-				con.connect(function(err) {
-				if (err) throw err;
-				console.log("Connected!");
-				var sql = "INSERT INTO  eventplayer (%d,%s) VALUES ('Event', 'Player')", lastID, user;
-				con.query(sql, function (err, result) {
-					if (err) throw err;
-					console.log("1 record inserted");
-				});
-				});
-			}
 		});
 	</script>
-<script src="js/evo-calendar.min.js"></script>
 
-<script>
 
-$(document).ready(function() {
-	$('#calendar').evoCalendar({
-		theme:"Orange coral",
-		calendarEvents: [
-			{
-				id: 'Evento', // Event's ID (required)
-				name: "Capodanno", // Event name (required)
-				date: "January/1/2000", // Event date (required)
-				description:"Buon anno",
-				type: "holiday", // Event type (required)
-				everyYear: true // Same event every year (optional)
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			$("#calendar").evoCalendar({
+				theme:"Orange coral",
+				calendarEvents: [
+					{
+						id: 'Evento', // Event's ID (required)
+						name: "Capodanno", // Event name (required)
+						date: "January/1/2000", // Event date (required)
+						description:"Buon anno",
+						type: "holiday", // Event type (required)
+						everyYear: true // Same event every year (optional)
+					}
+				]
+			})
+
+			let eventID = <?php echo json_encode($Id); ?>;
+			let eventName = <?php echo json_encode($eventName); ?>;
+			let eventDesc = <?php echo json_encode($eventDesc); ?>;
+			let eventData = <?php echo json_encode($eventData); ?>;
+			let eventClub = <?php echo json_encode($eventClub); ?>;
+
+			for (let index = 0; index < eventID.length; index++) {
+				console.log(eventName[index]);
+				addEvent1(eventID[index],
+				eventName[index],
+				eventDesc[index],
+				eventData[index],
+				eventClub[index]);
 			}
-		]
-	})
+		});
 
-
-	let eventID = <?php echo json_encode($Id); ?>;
-	let eventName = <?php echo json_encode($eventName); ?>;
-	let eventDesc = <?php echo json_encode($eventDesc); ?>;
-	let eventData = <?php echo json_encode($eventData); ?>;
-	let eventClub = <?php echo json_encode($eventClub); ?>;
-
-	for (let index = 0; index < eventID.length; index++) {
-
-		addEvent1(eventID[index],
-		eventName[index],
-		eventDesc[index],
-		eventData[index],
-		eventClub[index]);
-		
-	}
-
-	
-})
-
-</script>
+	</script>
 
 	
 
