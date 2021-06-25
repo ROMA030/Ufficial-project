@@ -4,7 +4,9 @@
 		header("location: pages-sign-in.php");
 	}elseif ($_SESSION["UserType"] != "coach") {
         header("location: not-here.php");
-    }
+    }if (!isset($_COOKIE['clubIDSHOW'])) {
+		header("location: club-players.php");
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -293,10 +295,14 @@
 						echo '<script type="text/javascript">ErrorRegister("username")</script>';
 					}else {
 						$users = "INSERT INTO users(Name, Surname, Email, Username, Password , Avatar, UserType, Risposta) VALUES ('$name', '$surname', '$email', '$username', '$password' , '$avatar', '$usertype','$securityAnswer')";
-						$result = mysqli_query($conn, $users);					
-						$coachPlayer = "INSERT INTO coachplayers(Coach, Player) VALUES ('$user', '$username')";
+						$result = mysqli_query($conn, $users);		
+
+						$coachPlayer = "INSERT INTO coachplayer(Coach, Player) VALUES ('$user', '$username')";
 						$result2 = mysqli_query($conn, $coachPlayer);
-						
+
+						$clubID = $_COOKIE['clubIDSHOW'];
+						$clubPlayer = "INSERT INTO clubplayers(Club, player) VALUES ('$clubID', '$username')";
+						$result3 = mysqli_query($conn, $clubPlayer);
 					}
 					mysqli_close($conn);
 				}
