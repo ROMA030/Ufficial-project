@@ -173,14 +173,16 @@
 
 		function cardClub(){
 			var myCol = $('<div class="col-sm-4 col-md-4 pb-2" align="center" justify="center"></div>');
-			var myPanel = $('<div class="" id=""><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Create your club</h3></div><div class="text-center mt-3"><button type="submit" name="createClub" id="createClub" class="btn btn-lg btn-primary">Create</button></div></div></div></div>');
+			var myPanel = $('<div class="" id=""><div class="card"><div class="card-body"><div class="row"><div class="col mt-0"></div><div class="col-auto"><div class="stat text-primary"><i class="align-middle" data-feather="plus-circle"></i></div></div></div><div class="card-body text-center"><img src="img/icons/plus.png" class="img-fluid rounded-circle mb-2" width="150" height="150" id = "addAvatarImage"/><h3 class="mt-1 mb-3" id="">Create your club</h3></div><div class="text-center mt-3"><button onclick="CreateClub()" type="button" class="btn btn-lg btn-primary">Create</button></div></div></div></div>');
 			myPanel.appendTo(myCol);
             myCol.appendTo('#contentPanel');
 
+			/*
 			var registerClubButton = document.getElementById('createClub');
 			registerClubButton.addEventListener('click', function() {
 				document.location.href = 'register-club.php';
 			});
+			*/
 		}
 
 		var addCoachs = function (id, name, src, username){
@@ -259,6 +261,10 @@
 		function ShowPlayers(id) {
 			setCookie("clubIDSHOW", id, 1);
             window.location = "club-players.php";
+		}
+
+		function CreateClub() {
+            window.location = "register-club.php";
 		}
 
 		function JoinClub() {
