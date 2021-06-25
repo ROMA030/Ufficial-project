@@ -294,7 +294,7 @@
 					}else {
 						$users = "INSERT INTO users(Name, Surname, Email, Username, Password , Avatar, UserType, Risposta) VALUES ('$name', '$surname', '$email', '$username', '$password' , '$avatar', '$usertype','$securityAnswer')";
 						$result = mysqli_query($conn, $users);					
-						$coachPlayer = "INSERT INTO coachplayer(Coach, Player) VALUES ('$user', '$username')";
+						$coachPlayer = "INSERT INTO coachplayers(Coach, Player) VALUES ('$user', '$username')";
 						$result2 = mysqli_query($conn, $coachPlayer);
 						
 					}

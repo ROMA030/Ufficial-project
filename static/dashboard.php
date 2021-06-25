@@ -485,6 +485,98 @@
 				iconOnSide.appendTo('#sidebarUl');
 				feather.replace()
 			}
+
+			function addEvent(eventName, eventDescription, eventData, eventClub)
+			{
+				
+				var user = "<?php echo $user; ?>";
+				var lastID = eventID.length;
+				console.log(lastID);
+				var res = eventData.trim().split("-");
+				console.log(res);
+
+				if (res[1] == "01")
+					res[1] == "January"
+				
+				if (res[1] == "02")
+					res[1] == "February"
+				
+				if (res[1] == "03")
+					res[1] == "March"
+
+				if (res[1] == "04")
+					res[1] == "April"
+				
+				if (res[1] == "05")
+					res[1] == "May"
+
+				if (res[1] == "06")
+					res[1] == "June"
+
+				if (res[1] == "07")
+					res[1] == "July"
+
+				if (res[1] == "08")
+					res[1] == "August"
+
+
+				if (res[1] == "09")
+					res[1] == "September"
+
+
+				if (res[1] == "10")
+					res[1] == "October"
+
+				if (res[1] == "11")
+					res[1] == "November"
+
+				if (res[1] == "12")
+					res[1] == "December"
+
+
+				var newData = res[1] + "/" + res[2] + "/" + res[0];
+				console.log("in Func");
+				console.log(eventData, eventName, eventDescription);
+				$("#calendar").evoCalendar('addCalendarEvent', [
+					{
+						id: lastID,
+						name: eventName,
+						date: newData,
+						description: eventDescription, 
+						type: eventClub,
+					}
+					]);
+
+
+				var mysql = require('mysql');
+
+				var con = mysql.createConnection({
+				host: "localhost",
+				user: "root",
+				password: "",
+				database: "xeos"
+				});
+
+				con.connect(function(err) {
+				if (err) throw err;
+				console.log("Connected!");
+				var sql = "INSERT INTO events (%s,%s,%s,%s) VALUES ('Nome', 'Desc', 'Data', 'Club')", eventName, newData, eventDescription, eventClub;
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					console.log("1 record inserted");
+				});
+				});
+
+				con.connect(function(err) {
+				if (err) throw err;
+				console.log("Connected!");
+				var sql = "INSERT INTO  eventplayer (%d,%s) VALUES ('Event', 'Player')", lastID, user;
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					console.log("1 record inserted");
+				});
+				});
+			}
 		});
 	</script>
 <script src="js/evo-calendar.min.js"></script>
@@ -523,101 +615,7 @@ $(document).ready(function() {
 		
 	}
 
-	function addEvent(eventName, eventDescription, eventData, eventClub)
-		{
-			
-
-			var user = "<?php echo $user; ?>";
-			var lastID = <?php echo $Id[count($Id)-1]; ?>;
-
-			var res = eventData.trim().split("-");
-			console.log(res);
-
-			if (res[1] == "01")
-				res[1] == "January"
-			
-			if (res[1] == "02")
-				res[1] == "February"
-			
-			if (res[1] == "03")
-				res[1] == "March"
-
-			if (res[1] == "04")
-				res[1] == "April"
-			
-			if (res[1] == "05")
-				res[1] == "May"
-
-			if (res[1] == "06")
-				res[1] == "June"
-
-			if (res[1] == "07")
-				res[1] == "July"
-
-			if (res[1] == "08")
-				res[1] == "August"
-
-
-			if (res[1] == "09")
-				res[1] == "September"
-
-
-			if (res[1] == "10")
-				res[1] == "October"
-
-			if (res[1] == "11")
-				res[1] == "November"
-
-			if (res[1] == "12")
-				res[1] == "December"
-
-
-			var newData = res[1] + "/" + res[2] + "/" + res[0];
-
-			console.log(eventData, eventName, eventDescription);
-			$("#calendar").evoCalendar('addCalendarEvent', [
-				{
-				  id: lastID,
-				  name: eventName,
-				  date: newData,
-				  description: eventDescription, 
-				  type: eventClub,
-				}
-			  ]);
-
-
-			var mysql = require('mysql');
-
-			var con = mysql.createConnection({
-			host: "localhost",
-			user: "root",
-			password: "",
-			database: "xeos"
-			});
-
-			con.connect(function(err) {
-			if (err) throw err;
-			console.log("Connected!");
-			var sql = "INSERT INTO events (%s,%s,%s,%s) VALUES ('Nome', 'Desc', 'Data', 'Club')", eventName, newData, eventDescription, eventClub;
-			con.query(sql, function (err, result) {
-				if (err) throw err;
-				console.log("1 record inserted");
-			});
-			});
-
-			con.connect(function(err) {
-			if (err) throw err;
-			console.log("Connected!");
-			var sql = "INSERT INTO  eventplayer (%d,%s) VALUES ('Event', 'Player')", lastID, user;
-			con.query(sql, function (err, result) {
-				if (err) throw err;
-				console.log("1 record inserted");
-			});
-			});
-
-
-			
-		}
+	
 })
 
 </script>
