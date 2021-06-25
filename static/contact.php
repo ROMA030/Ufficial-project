@@ -55,6 +55,10 @@
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="contact.php">
 							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Contact</span>
+							
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="clubs.php">
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Club</span>
 						</a>
 					</li>
 
