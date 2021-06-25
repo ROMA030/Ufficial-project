@@ -200,15 +200,15 @@
 											<div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
 												<div class="carousel-inner">
 													<div class="carousel-item active">
-														<img class="center img-fluid rounded-circle mb-2" width="250" height="250" src="img/avatars/avatar-2.jpg" alt="Squad">
+														<a href="clubs.php"><img class="center img-fluid rounded-circle mb-2" width="250" height="250" src="img/avatars/avatar-2.jpg" alt="Squad"></a>
 														<div class="carousel-caption"></div>
 													</div>
 													<div class="carousel-item">
-														<img class="center img-fluid rounded-circle mb-2 center" width="250" height="250" src="img/avatars/avatar-3.jpg" alt="...">
+													<a href="clubs.php"><img class="center img-fluid rounded-circle mb-2 center" width="250" height="250" src="img/avatars/avatar-3.jpg" alt="..."></a>
 														<div class="carousel-caption"></div>
 													</div>
 													<div class="carousel-item">
-														<img src="img/avatars/avatar-4.jpg" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" alt="...">
+													<a href="clubs.php"><img src="img/avatars/avatar-4.jpg" class="center img-fluid rounded-circle mb-2 center" width="250" height="250" alt="..."></a>
 														<div class="carousel-caption"></div>
 													</div>
 												</div>
