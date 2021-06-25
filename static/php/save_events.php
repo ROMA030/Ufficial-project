@@ -14,7 +14,6 @@
     $eventName = $cookieArray[0];
     $eventDate = $cookieArray[1];
     $eventDesc = $cookieArray[2];
-    $eventClub = $cookieArray[3];
     
     $query = "INSERT INTO events(`Nome`, `Desc`, `Data`, `Club`) VALUES ('$eventName', '$eventDesc', '$eventDate', '')";
     $result = mysqli_query($conn, $query);

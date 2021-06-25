@@ -48,7 +48,7 @@
 
 	<script>
 	
-		function addEvent(eventName, eventDescription, eventData, eventClub)
+		function addEvent(eventName, eventDescription, eventData)
 		{
 			var res = eventData.trim().split("-");
 			console.log(res);
@@ -93,7 +93,6 @@
 
 
 			var newData = res[1] + "/" + res[2] + "/" + res[0];
-			console.log("primo add event");
 			console.log(eventData, eventName, eventDescription);
 			$("#calendar").evoCalendar('addCalendarEvent', [
 				{
@@ -101,11 +100,11 @@
 				  name: eventName,
 				  date: newData,
 				  description: eventDescription, 
-				  type: eventClub,
+				  type: "eventClub",
 				}
 			]);
 
-			var stringCookie = eventName + "," + dataPHP + "," + eventDescription + "," + eventClub + ",";
+			var stringCookie = eventName + "," + dataPHP + "," + eventDescription + ",";
 			console.log(stringCookie);
 			//setCookie("eventID", "eventID", 1);
 			setCookie("eventDatas", stringCookie, 1);
@@ -242,7 +241,7 @@
 				<div id="id01" class="modal">
 					<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 					<form class="modal-content" method="post">
-						<div class="container">
+						<div class="container" id="formContainer">
 							<h1>Crea evento</h1>
 							<p>Riempi i campi richiesti per poter creare un evento.</p>
 							<hr>
@@ -252,16 +251,13 @@
 							<label for="des"><b>Inserisci descrizione evento</b></label>
 							<input type="text" placeholder="Description event" name="eventDescription" id="eventDescription" required>
 
-							<label for="des"><b>Inserisci nome squadra</b></label>
-							<input type="text" placeholder="Enter name club" name="eventClub" id="eventClub" required>
-
 							<label for="data"><b>Inserisci la data dell'evento</b></label>
 							<input type="date" placeholder="Insert data" name="data" id="eventData" required>
 
 							<div>
-								<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Annulla</button>
-								<button type="button" class="signupbtn"  onclick="addEvent(document.getElementById('eventName').value, document.getElementById('eventDescription').value, document.getElementById('eventData').value, document.getElementById('eventClub').value), document.getElementById('id01').style.display='none'">Crea evento</button>
 								
+								<button type="button" class="btn btn-lg btn-primary"  onclick="addEvent(document.getElementById('eventName').value, document.getElementById('eventDescription').value, document.getElementById('eventData').value), document.getElementById('id01').style.display='none'">Crea evento</button>
+								<button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-lg btn-secondary">Annulla</button>
 								<!--<button type="submit" name="submit" class="signupbtn">Crea evento</button>-->
 							</div>
 						</div>
@@ -347,13 +343,11 @@
 			document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
 		} 
 
-		function addEvent1(eventID ,eventName, eventDescription, eventData, eventClub)
+		function addEvent1(eventID ,eventName, eventDescription, eventData)
 		{
 			var res = eventData.trim().split("-");
 			console.log(res);
 			
-			
-
 			if (res[1] == "01")
 				res[1] = "January"
 			
@@ -400,7 +394,7 @@
 				  name: eventName,
 				  date: newData,
 				  description: eventDescription, 
-				  type: eventClub,
+				  type: "ciao",
 				}
 			]);
 
@@ -443,41 +437,41 @@
 				$query5 = "SELECT Club FROM clubmanager WHERE Manager = '$user'";
 				break;
 		}
-
-		
-		$result5 = mysqli_query($conn, $query5);
-		
 		$clubID = 0;
 
-		while ($row = $result5->fetch_assoc()) {
-			$clubID = $row["Club"];
-			$_SESSION["UserClubID"] = $clubID;
-		}
-
-		$query1 = "SELECT * FROM eventplayer WHERE Club = '$clubID'";
-		$result1 = mysqli_query($conn, $query1);
-
+		$result5 = mysqli_query($conn, $query5);
+		 
 		$Id = array();
 		$eventName = array();
 		$eventDesc = array();
 		$eventData = array();
 		$eventClub = array();
 
-		while ($row = $result1->fetch_assoc()) 
-		{
-			$eventID = $row['Event'];
-			$_SESSION['Event'] = $eventID;
-			$query2 = "SELECT * FROM events WHERE Id = '$eventID'";
-			$result2 = mysqli_query($conn, $query2);
+		if (mysqli_num_rows($result5) > 0) {
+			
+			while ($row = $result5->fetch_assoc()) {
+				$clubID = $row["Club"];
+				$_SESSION["UserClubID"] = $clubID;
+			}
 
-			while ($row2 = $result2->fetch_assoc()) 
+			$query1 = "SELECT * FROM eventplayer WHERE Club = '$clubID'";
+			$result1 = mysqli_query($conn, $query1);
+
+			while ($row = $result1->fetch_assoc()) 
 			{
-				//$Id [] = $row['Id'];
-				array_push($Id, $row2['Id']);
-				$eventName [] = $row2['Nome'];
-				$eventDesc [] = $row2['Desc'];
-				$eventData [] = $row2['Data'];
-				$eventClub [] = $row2['Club'];
+				$eventID = $row['Event'];
+				$_SESSION['Event'] = $eventID;
+				$query2 = "SELECT * FROM events WHERE Id = '$eventID'";
+				$result2 = mysqli_query($conn, $query2);
+
+				while ($row2 = $result2->fetch_assoc()) 
+				{
+					//$Id [] = $row['Id'];
+					array_push($Id, $row2['Id']);
+					$eventName [] = $row2['Nome'];
+					$eventDesc [] = $row2['Desc'];
+					$eventData [] = $row2['Data'];
+				}
 			}
 		}
 
@@ -562,16 +556,27 @@
 			let eventName = <?php echo json_encode($eventName); ?>;
 			let eventDesc = <?php echo json_encode($eventDesc); ?>;
 			let eventData = <?php echo json_encode($eventData); ?>;
-			let eventClub = <?php echo json_encode($eventClub); ?>;
 
-			for (let index = 0; index < eventID.length; index++) {
-				console.log(eventName[index]);
-				addEvent1(eventID[index],
-				eventName[index],
-				eventDesc[index],
-				eventData[index],
-				eventClub[index]);
+			let clubID = <?php echo json_encode($clubID); ?>;
+
+			if (clubID > 0) {
+				if (eventID.length > 0) {
+					for (let index = 0; index < eventID.length; index++) {
+						console.log(eventName[index]);
+						addEvent1(eventID[index],
+						eventName[index],
+						eventDesc[index],
+						eventData[index]);
+					}
+				}
+			} else {
+				var formContainer = document.getElementById('formContainer');
+				formContainer.innerHTML = '';
+				var errorConst = $("<h3 class='notification text-danger text-center mt-3'>You don't have a club!</h3>");
+				errorConst.appendTo(formContainer);
 			}
+			
+			
 		});
 
 	</script>
